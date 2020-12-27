@@ -18,6 +18,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
+  components: true,
   loading: { color: '#fff' },
   /*
   ** Global CSS
@@ -34,7 +35,8 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxt/components'
   ],
   /*
   ** Nuxt.js modules

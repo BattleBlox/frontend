@@ -13,5 +13,8 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    'no-return-assign': 'off',
+    'vue/html-closing-bracket-newline': 'off',
+    'vue/comment-directive': 'off'
   }
 }
