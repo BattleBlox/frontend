@@ -1,0 +1,1 @@
+export const TILES_SET_ALL_TILES = 'TILES_SET_ALL_TILES'

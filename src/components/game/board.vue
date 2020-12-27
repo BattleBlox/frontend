@@ -1,18 +1,25 @@
 <template>
   <div class="c-board">
-    <tile />
-    <tile />
-    <tile />
-    <tile />
-    <tile />
-    <tile />
+    <tile v-for="tile in tiles" :key="tile.identifier" v-bind="tile" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+  computed: {
+    ...mapState('tiles', ['tiles'])
+  }
 }
 </script>
 
 <style scoped>
+.c-board {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid red;
+  width: 602px;
+  margin: 20px auto;
+}
 </style>

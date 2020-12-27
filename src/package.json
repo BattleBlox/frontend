@@ -24,7 +24,10 @@
     "babel-jest": "24.1.0",
     "eslint": "6.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
+    "fibers": "^5.0.0",
     "jest": "24.1.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
     "vue-jest": "5.0.0-alpha.7"
   }
 }
