@@ -3,6 +3,10 @@
     <board />
 
     <p>Current Player: {{ currentPlayer }} </p>
+    <p>Current Mode: {{ currentMode }} </p>
+
+    <button @click="selectMode('attack')">Attack</button>
+    <button @click="selectMode('reinforce')">Reinforce</button>
   </div>
 </template>
 
@@ -12,7 +16,8 @@ import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapState('turn', [
-      'currentPlayer'
+      'currentPlayer',
+      'currentMode'
     ])
   },
 
@@ -65,7 +70,8 @@ export default {
     ]),
 
     ...mapActions('turn', [
-      'selectPlayer'
+      'selectPlayer',
+      'selectMode'
     ])
   }
 }

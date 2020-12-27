@@ -1,8 +1,9 @@
-import { TURN_SET_SELECTED_TILE, TURN_DESELECT_TILE, TURN_SELECT_PLAYER } from '@/store/mutations.constants'
+import { TURN_SET_SELECTED_TILE, TURN_DESELECT_TILE, TURN_SELECT_PLAYER, TURN_SELECT_MODE } from '@/store/mutations.constants'
 
 export const state = () => ({
   selectedTile: null,
-  currentPlayer: null
+  currentPlayer: null,
+  currentMode: null
 })
 
 export const mutations = {
@@ -16,6 +17,10 @@ export const mutations = {
 
   [TURN_SELECT_PLAYER]: (state, player) => {
     state.currentPlayer = player
+  },
+
+  [TURN_SELECT_MODE]: (state, mode) => {
+    state.currentMode = mode
   }
 }
 
@@ -42,5 +47,9 @@ export const actions = {
 
   selectPlayer: ({ commit }, player) => {
     commit(TURN_SELECT_PLAYER, player)
+  },
+
+  selectMode: ({ commit }, mode) => {
+    commit(TURN_SELECT_MODE, mode)
   }
 }
