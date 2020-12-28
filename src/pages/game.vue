@@ -38,7 +38,7 @@ export default {
   mounted () {
     this.setupTiles()
 
-    this.setupBlockedTiles({ numberOfTiles: 5, excludedTiles: [34, 44, 54, 64, 37, 47, 57, 67] })
+    this.setupBlockedTiles({ numberOfTiles: 15, excludedTiles: [34, 44, 54, 64, 37, 47, 57, 67] })
 
     this.controlTiles({
       empire: 'Player 1',
