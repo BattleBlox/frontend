@@ -33,23 +33,25 @@ export const mutations = {
     state.rangedTiles = []
   },
 
-  [TURN_SET_RANGED_TILES]: (state, focusTileIdentifier) => {
+  [TURN_SET_RANGED_TILES]: (state, { selectedTile, hitPoints }) => {
     const rangedTiles = []
 
-    if (focusTileIdentifier < 90) {
-      rangedTiles.push(focusTileIdentifier + 10)
-    }
+    if (hitPoints > 1) {
+      if (selectedTile < 90) {
+        rangedTiles.push(selectedTile + 10)
+      }
 
-    if (focusTileIdentifier % 10 !== 1) {
-      rangedTiles.push(focusTileIdentifier - 1)
-    }
+      if (selectedTile % 10 !== 1) {
+        rangedTiles.push(selectedTile - 1)
+      }
 
-    if (focusTileIdentifier % 10 !== 0) {
-      rangedTiles.push(focusTileIdentifier + 1)
-    }
+      if (selectedTile % 10 !== 0) {
+        rangedTiles.push(selectedTile + 1)
+      }
 
-    if (focusTileIdentifier > 10) {
-      rangedTiles.push(focusTileIdentifier - 10)
+      if (selectedTile > 10) {
+        rangedTiles.push(selectedTile - 10)
+      }
     }
 
     state.rangedTiles = rangedTiles
@@ -82,8 +84,8 @@ export const actions = {
 
     if (state.selectedTile === null || selectedTile !== state.selectedTile) {
       commit(TURN_SET_SELECTED_TILE, selectedTile)
-      commit(TURN_SET_RANGED_TILES, selectedTile)
       commit(TURN_SET_HIT_POINTS, hitPoints)
+      commit(TURN_SET_RANGED_TILES, { selectedTile, hitPoints })
     } else {
       commit(TURN_DESELECT_TILE, selectedTile)
       commit(TURN_SET_HIT_POINTS, 0)
