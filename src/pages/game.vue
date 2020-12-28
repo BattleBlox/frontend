@@ -5,7 +5,7 @@
     <p>Current Player: {{ currentPlayer }} </p>
     <p>Current Mode: {{ currentMode }} </p>
     <p>Ranged Tiles: {{ rangedTiles }} </p>
-    <p>Hit Points: {{ hitPoints }} </p>
+    <p>Hit Points: {{ selectedTileHitPoints }} </p>
     <p>Roll Value: {{ rollValue }} </p>
     <button
       @click="selectMode('attack')">
@@ -31,7 +31,7 @@ export default {
       'currentPlayer',
       'currentMode',
       'rangedTiles',
-      'hitPoints',
+      'selectedTileHitPoints',
       'rollValue'
     ])
   },
@@ -42,13 +42,13 @@ export default {
     this.controlTiles({
       empire: 'Player 1',
       hitPoints: 5,
-      tiles: [1, 2, 11]
+      tiles: [54, 44]
     })
 
     this.controlTiles({
       empire: 'Player 2',
       hitPoints: 5,
-      tiles: [100, 90, 99]
+      tiles: [57, 47]
     })
 
     this.selectPlayer('Player 1')

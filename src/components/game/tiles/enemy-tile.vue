@@ -31,7 +31,11 @@ export default {
 
   computed: {
     ...mapState('players', ['players']),
-    ...mapState('turn', ['currentPlayer', 'selectedTile']),
+    ...mapState('turn', ['currentPlayer', 'selectedTile', 'rangedTiles', 'selectedTileHitPoints']),
+
+    isAttackable () {
+      return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
+    },
 
     tileClass () {
       const controllingPlayer = this.players.find(plr => plr.name === this.empire)
@@ -44,7 +48,11 @@ export default {
         ? 'selected'
         : 'unselected'
 
-      return `c-tile--${tileColour} c-tile--${tileSelectionState}`
+      const attackState = this.isAttackable
+        ? 'c-enemy-tile--attackable'
+        : ''
+
+      return `c-tile--${tileColour} c-tile--${tileSelectionState} ${attackState}`
     },
 
     ownedTile () {
@@ -53,14 +61,46 @@ export default {
   },
 
   methods: {
-    ...mapActions('turn', ['selectTile']),
+    ...mapActions('turn', ['selectTile', 'endTurn']),
+    ...mapActions('tiles', ['controlTile']),
 
     onClick () {
-      if (this.ownedTile) {
-        this.selectTile({
-          selectedTile: this.identifier,
-          empire: this.empire
-        })
+      if (this.isAttackable) {
+        let attackerHitPoints = this.selectedTileHitPoints
+        let defenderHitPoints = this.hitPoints
+
+        while (attackerHitPoints > 1 && defenderHitPoints > 1) {
+          attackerHitPoints--
+          defenderHitPoints--
+        }
+
+        if (attackerHitPoints > defenderHitPoints) {
+          this.controlTile({
+            empire: this.currentPlayer,
+            hitPoints: attackerHitPoints - 1,
+            tileIdentifier: this.identifier
+          })
+
+          this.controlTile({
+            empire: this.currentPlayer,
+            hitPoints: 1,
+            tileIdentifier: this.selectedTile
+          })
+        } else {
+          this.controlTile({
+            empire: this.currentPlayer,
+            hitPoints: 1,
+            tileIdentifier: this.selectedTile
+          })
+
+          this.controlTile({
+            empire: this.empire,
+            hitPoints: defenderHitPoints,
+            tileIdentifier: this.identifier
+          })
+        }
+
+        this.endTurn()
       }
     }
   }
@@ -85,6 +125,10 @@ export default {
   &.c-tile--blue {
     background-color: blue;
     color: white;
+  }
+
+  &.c-enemy-tile--attackable {
+    background-color: orange;
   }
 
   &.c-tile--selected {

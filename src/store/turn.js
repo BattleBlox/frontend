@@ -14,7 +14,7 @@ export const state = () => ({
   currentPlayer: null,
   currentMode: null,
   rangedTiles: [],
-  hitPoints: null,
+  selectedTileHitPoints: null,
   rollValue: 0
 })
 
@@ -36,7 +36,7 @@ export const mutations = {
   },
 
   [TURN_SET_HIT_POINTS]: (state, hitPoints) => {
-    state.hitPoints = hitPoints
+    state.selectedTileHitPoints = hitPoints
   },
 
   [TURN_SET_ROLL_VALUE]: (state, rollValue) => {
@@ -118,7 +118,7 @@ export const actions = {
   },
 
   roll: ({ commit }) => {
-    const roll = Math.floor(Math.random() * 6) + 1
+    const roll = Math.floor(Math.random() * 10) + 1
 
     commit(TURN_SET_ROLL_VALUE, roll)
   }
