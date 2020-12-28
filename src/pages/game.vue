@@ -6,6 +6,7 @@
     <p>Current Mode: {{ currentMode }} </p>
     <p>Ranged Tiles: {{ rangedTiles }} </p>
     <p>Hit Points: {{ hitPoints }} </p>
+    <p>Roll Value: {{ rollValue }} </p>
     <button
       @click="selectMode('attack')">
       Attack
@@ -15,7 +16,7 @@
       Reinforce
     </button>
     <button
-      @click="selectMode('roll')">
+      @click="selectMode('roll'); roll()">
       Roll
     </button>
   </div>
@@ -30,7 +31,8 @@ export default {
       'currentPlayer',
       'currentMode',
       'rangedTiles',
-      'hitPoints'
+      'hitPoints',
+      'rollValue'
     ])
   },
 
@@ -61,7 +63,8 @@ export default {
 
     ...mapActions('turn', [
       'selectPlayer',
-      'selectMode'
+      'selectMode',
+      'roll'
     ])
   }
 }

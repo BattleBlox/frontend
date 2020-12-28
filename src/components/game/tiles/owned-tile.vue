@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
+import { TURN_SET_ROLL_VALUE } from '@/store/mutations.constants'
 
 export default {
   props: {
@@ -31,7 +32,7 @@ export default {
 
   computed: {
     ...mapState('players', ['players']),
-    ...mapState('turn', ['currentPlayer', 'selectedTile']),
+    ...mapState('turn', ['currentPlayer', 'selectedTile', 'currentMode', 'rollValue']),
 
     tileClass () {
       const controllingPlayer = this.players.find(plr => plr.name === this.empire)
@@ -45,14 +46,35 @@ export default {
   },
 
   methods: {
-    ...mapActions('turn', ['selectTile']),
+    ...mapMutations('turn', [TURN_SET_ROLL_VALUE]),
+    ...mapActions('turn', ['selectTile', 'endTurn']),
+    ...mapActions('tiles', ['controlTile']),
 
     onClick () {
-      this.selectTile({
-        selectedTile: this.identifier,
-        empire: this.empire,
-        hitPoints: this.hitPoints
-      })
+      console.log(this.currentMode)
+      if (this.currentMode === 'roll') {
+        console.log(this.rollValue)
+
+        this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
+
+        this.controlTile({
+          empire: this.empire,
+          hitPoints: this.hitPoints + 1,
+          tileIdentifier: this.identifier
+        })
+
+        if (this.rollValue < 1) {
+          this.endTurn()
+        }
+      }
+
+      if (this.currentMode === 'attack') {
+        this.selectTile({
+          selectedTile: this.identifier,
+          empire: this.empire,
+          hitPoints: this.hitPoints
+        })
+      }
     }
   }
 }

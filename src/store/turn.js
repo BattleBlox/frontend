@@ -1,11 +1,21 @@
-import { TURN_SET_SELECTED_TILE, TURN_DESELECT_TILE, TURN_SELECT_PLAYER, TURN_SELECT_MODE, TURN_SET_RANGED_TILES, TURN_SET_HIT_POINTS, TURN_CLEAR_RANGED_TILES } from '@/store/mutations.constants'
+import {
+  TURN_SET_SELECTED_TILE,
+  TURN_DESELECT_TILE,
+  TURN_SELECT_PLAYER,
+  TURN_SELECT_MODE,
+  TURN_SET_RANGED_TILES,
+  TURN_SET_HIT_POINTS,
+  TURN_CLEAR_RANGED_TILES,
+  TURN_SET_ROLL_VALUE
+} from '@/store/mutations.constants'
 
 export const state = () => ({
   selectedTile: null,
   currentPlayer: null,
   currentMode: null,
   rangedTiles: [],
-  hitPoints: null
+  hitPoints: null,
+  rollValue: 0
 })
 
 export const mutations = {
@@ -27,6 +37,10 @@ export const mutations = {
 
   [TURN_SET_HIT_POINTS]: (state, hitPoints) => {
     state.hitPoints = hitPoints
+  },
+
+  [TURN_SET_ROLL_VALUE]: (state, rollValue) => {
+    state.rollValue = rollValue
   },
 
   [TURN_CLEAR_RANGED_TILES]: (state) => {
@@ -85,7 +99,10 @@ export const actions = {
     if (state.selectedTile === null || selectedTile !== state.selectedTile) {
       commit(TURN_SET_SELECTED_TILE, selectedTile)
       commit(TURN_SET_HIT_POINTS, hitPoints)
-      commit(TURN_SET_RANGED_TILES, { selectedTile, hitPoints })
+
+      if (state.currentMode === 'attack') {
+        commit(TURN_SET_RANGED_TILES, { selectedTile, hitPoints })
+      }
     } else {
       commit(TURN_DESELECT_TILE, selectedTile)
       commit(TURN_SET_HIT_POINTS, 0)
@@ -98,5 +115,11 @@ export const actions = {
 
   selectMode: ({ commit }, mode) => {
     commit(TURN_SELECT_MODE, mode)
+  },
+
+  roll: ({ commit }) => {
+    const roll = Math.floor(Math.random() * 6) + 1
+
+    commit(TURN_SET_ROLL_VALUE, roll)
   }
 }
