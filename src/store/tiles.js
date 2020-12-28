@@ -39,5 +39,19 @@ export const actions = {
     }
 
     commit(TILES_SET_TILE, tile)
+  },
+
+  controlTiles: ({ commit }, payload) => {
+    const { empire, hitPoints, tiles } = payload
+
+    tiles.forEach((tile) => {
+      const controlTile = {
+        identifier: tile,
+        empire,
+        hitPoints
+      }
+
+      commit(TILES_SET_TILE, controlTile)
+    })
   }
 }

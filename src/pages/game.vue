@@ -5,8 +5,18 @@
     <p>Current Player: {{ currentPlayer }} </p>
     <p>Current Mode: {{ currentMode }} </p>
 
-    <button @click="selectMode('attack')">Attack</button>
-    <button @click="selectMode('reinforce')">Reinforce</button>
+    <button
+      @click="selectMode('attack')">
+      Attack
+    </button>
+    <button
+      @click="selectMode('reinforce')">
+      Reinforce
+    </button>
+    <button
+      @click="selectMode('roll')">
+      Roll
+    </button>
   </div>
 </template>
 
@@ -24,49 +34,26 @@ export default {
   created () {
     this.setupTiles()
 
-    this.controlTile({
-      tileIdentifier: 1,
+    this.controlTiles({
       empire: 'Player 1',
-      hitPoints: 5
+      hitPoints: 5,
+      tiles: [1, 2, 11]
     })
 
-    this.controlTile({
-      tileIdentifier: 2,
-      empire: 'Player 1',
-      hitPoints: 5
-    })
-
-    this.controlTile({
-      tileIdentifier: 11,
-      empire: 'Player 1',
-      hitPoints: 5
-    })
-
-    this.controlTile({
-      tileIdentifier: 100,
+    this.controlTiles({
       empire: 'Player 2',
-      hitPoints: 5
-    })
-
-    this.controlTile({
-      tileIdentifier: 90,
-      empire: 'Player 2',
-      hitPoints: 5
-    })
-
-    this.controlTile({
-      tileIdentifier: 99,
-      empire: 'Player 2',
-      hitPoints: 5
+      hitPoints: 5,
+      tiles: [100, 90, 99]
     })
 
     this.selectPlayer('Player 1')
+    this.selectMode('attack')
   },
 
   methods: {
     ...mapActions('tiles', [
       'setupTiles',
-      'controlTile'
+      'controlTiles'
     ]),
 
     ...mapActions('turn', [

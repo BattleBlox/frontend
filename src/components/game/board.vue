@@ -1,6 +1,6 @@
 <template>
   <div class="c-board">
-    <tile v-for="tile in tiles" :key="tile.identifier" v-bind="tile" />
+    <tile v-for="tile in tiles" :key="tile.identifier" :tile="tile" />
   </div>
 </template>
 
