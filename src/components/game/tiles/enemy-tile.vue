@@ -70,8 +70,13 @@ export default {
         let defenderHitPoints = this.hitPoints
 
         while (attackerHitPoints > 1 && defenderHitPoints > 1) {
-          attackerHitPoints--
-          defenderHitPoints--
+          const result = Math.floor(Math.random() * 2) + 1
+
+          if (result === 1) {
+            attackerHitPoints--
+          } else {
+            defenderHitPoints--
+          }
         }
 
         if (attackerHitPoints > defenderHitPoints) {
