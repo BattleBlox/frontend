@@ -9,12 +9,14 @@ import { mapState } from 'vuex'
 import OwnedTile from './tiles/owned-tile'
 import EnemyTile from './tiles/enemy-tile'
 import NeutralTile from './tiles/neutral-tile'
+import BlockedTile from './tiles/blocked-tile'
 
 export default {
   components: {
     OwnedTile,
     EnemyTile,
-    NeutralTile
+    NeutralTile,
+    BlockedTile
   },
 
   props: {
@@ -33,6 +35,10 @@ export default {
       // Render a neutral tile
       if (!this.tile.empire) {
         return 'neutral-tile'
+      }
+
+      if (this.tile.empire === 'blocked') {
+        return 'blocked-tile'
       }
 
       // Render the current players tiles

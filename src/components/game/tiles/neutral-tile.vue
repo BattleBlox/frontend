@@ -84,6 +84,7 @@ export default {
 
   &.c-neutral-tile--attackable {
     background-color: orange;
+    border-color: orange;
   }
 }
 </style>

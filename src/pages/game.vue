@@ -2,17 +2,13 @@
   <div class="c-game">
     <board />
 
-    <p>Current Player: {{ currentPlayer }} </p>
     <p>Current Mode: {{ currentMode }} </p>
     <p>Ranged Tiles: {{ rangedTiles }} </p>
     <p>Hit Points: {{ selectedTileHitPoints }} </p>
     <p>Roll Value: {{ rollValue }} </p>
     <p>Bonus Roll Points: {{ bonusRollPoints }} </p>
 
-    <button
-      @click="rollDice">
-      Roll and End Turn
-    </button>
+    <turn-menu />
   </div>
 </template>
 
@@ -42,6 +38,8 @@ export default {
   created () {
     this.setupTiles()
 
+    this.setupBlockedTiles({ numberOfTiles: 10, excludedTiles: [34, 44, 54, 64, 37, 47, 57, 67] })
+
     this.controlTiles({
       empire: 'Player 1',
       hitPoints: 2,
@@ -61,19 +59,14 @@ export default {
   methods: {
     ...mapActions('tiles', [
       'setupTiles',
+      'setupBlockedTiles',
       'controlTiles'
     ]),
 
     ...mapActions('turn', [
       'selectPlayer',
-      'selectMode',
-      'roll'
-    ]),
-
-    rollDice () {
-      this.selectMode('roll')
-      this.roll(this.controlledTiles)
-    }
+      'selectMode'
+    ])
   }
 }
 </script>

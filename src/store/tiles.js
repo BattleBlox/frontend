@@ -34,6 +34,30 @@ export const actions = {
     commit(TILES_SET_ALL_TILES, tiles)
   },
 
+  setupBlockedTiles: ({ commit }, { numberOfTiles, excludedTiles }) => {
+    const blocks = []
+
+    while (blocks.length < numberOfTiles) {
+      const block = Math.floor(Math.random() * 100) + 1
+
+      if (excludedTiles.includes(block)) {
+        continue
+      }
+
+      if (!blocks.some(blk => blk === block)) {
+        blocks.push(block)
+
+        const tile = {
+          identifier: block,
+          empire: 'blocked',
+          hitPoints: 1
+        }
+
+        commit(TILES_SET_TILE, tile)
+      }
+    }
+  },
+
   controlTile: ({ commit }, payload) => {
     const { empire, hitPoints, tileIdentifier } = payload
 
