@@ -57,10 +57,14 @@ export const mutations = {
 }
 
 export const actions = {
-  endTurn: ({ commit }) => {
+  endTurn: ({ commit, state, rootState }) => {
     commit(TURN_DESELECT_TILE)
     commit(TURN_SET_HIT_POINTS, 0)
     commit(TURN_CLEAR_RANGED_TILES)
+    commit(TURN_SELECT_MODE, 'attack')
+
+    const nextPlayer = rootState.players.players.find(plr => plr.name !== state.currentPlayer).name
+    commit(TURN_SELECT_PLAYER, nextPlayer)
   },
 
   selectTile: ({ commit, state }, payload) => {
