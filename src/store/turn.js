@@ -51,7 +51,7 @@ export const mutations = {
     const rangedTiles = []
 
     if (hitPoints > 1) {
-      if (selectedTile < 90) {
+      if (selectedTile < 91) {
         rangedTiles.push(selectedTile + 10)
       }
 

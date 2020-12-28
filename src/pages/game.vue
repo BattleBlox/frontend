@@ -2,7 +2,6 @@
   <div v-if="currentPlayer" class="c-game">
     <board />
 
-    <p>Current Mode: {{ currentMode }} </p>
     <p>Ranged Tiles: {{ rangedTiles }} </p>
     <p>Hit Points: {{ selectedTileHitPoints }} </p>
     <p>Roll Value: {{ rollValue }} </p>
