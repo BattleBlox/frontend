@@ -4,7 +4,8 @@
 
     <p>Current Player: {{ currentPlayer }} </p>
     <p>Current Mode: {{ currentMode }} </p>
-
+    <p>Ranged Tiles: {{ rangedTiles }} </p>
+    <p>Hit Points: {{ hitPoints }} </p>
     <button
       @click="selectMode('attack')">
       Attack
@@ -27,7 +28,9 @@ export default {
   computed: {
     ...mapState('turn', [
       'currentPlayer',
-      'currentMode'
+      'currentMode',
+      'rangedTiles',
+      'hitPoints'
     ])
   },
 

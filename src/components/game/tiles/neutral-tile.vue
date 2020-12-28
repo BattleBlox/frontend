@@ -1,10 +1,12 @@
 <template>
   <div
-    class="c-neutral-tile"
+    :class="`c-neutral-tile ${tileClass}`"
     @click="onClick" />
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   props: {
     identifier: {
@@ -13,12 +15,53 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState('turn', ['currentPlayer', 'selectedTile', 'rangedTiles', 'hitPoints']),
+
+    isAttackable () {
+      return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
+    },
+
+    tileClass () {
+      return this.isAttackable
+        ? 'c-neutral-tile--attackable'
+        : ''
+    }
+  },
+
   methods: {
+    ...mapActions('tiles', [
+      'controlTile'
+    ]),
+
+    ...mapActions('turn', [
+      'endTurn'
+    ]),
+
     onClick () {
-      // If a tile is selected
-      // Attack tile
-      // Control Tile
-      // End Turn
+      if (!this.isAttackable) {
+        return
+      }
+
+      if (!this.hitPoints || this.hitPoints < 2) {
+        return
+      }
+
+      // Conquer Neutral Tile
+      this.controlTile({
+        empire: this.currentPlayer,
+        hitPoints: this.hitPoints - 1,
+        tileIdentifier: this.identifier
+      })
+
+      // Reflect impact on selected tile
+      this.controlTile({
+        empire: this.currentPlayer,
+        hitPoints: 1,
+        tileIdentifier: this.selectedTile
+      })
+
+      this.endTurn()
     }
   }
 }
@@ -30,16 +73,12 @@ export default {
   height: 60px;
   background-color: silver;
   border: 1px solid white;
-  transition: all 0.2s ease-in-out;
   text-align: center;
   border-radius: 10px;
+  transition: all 0.2s ease-in-out;
 
-  &:hover {
-    background-color: gray;
-  }
-
-  &.c-tile--selected {
-    border: 5px solid gold;
+  &.c-neutral-tile--attackable {
+    background-color: orange;
   }
 }
 </style>

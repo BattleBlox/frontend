@@ -50,7 +50,8 @@ export default {
     onClick () {
       this.selectTile({
         selectedTile: this.identifier,
-        empire: this.empire
+        empire: this.empire,
+        hitPoints: this.hitPoints
       })
     }
   }

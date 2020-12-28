@@ -10,7 +10,12 @@ export const mutations = {
   },
 
   [TILES_SET_TILE]: (state, tile) => {
-    state.tiles[tile.identifier - 1] = tile
+    // state.tiles[tile.identifier - 1] = tile
+
+    state.tiles = state.tiles.filter(tle => tle.identifier !== tile.identifier)
+    state.tiles.push(tile)
+
+    state.tiles.sort((a, b) => (a.identifier > b.identifier) ? 1 : -1)
   }
 }
 
