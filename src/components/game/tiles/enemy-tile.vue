@@ -86,6 +86,12 @@ export default {
             hitPoints: 1,
             tileIdentifier: this.selectedTile
           })
+
+          this.selectTile({
+            selectedTile: this.selectedTile,
+            empire: this.currentPlayer,
+            hitPoints: 1
+          })
         } else {
           this.controlTile({
             empire: this.currentPlayer,
@@ -98,9 +104,15 @@ export default {
             hitPoints: defenderHitPoints,
             tileIdentifier: this.identifier
           })
+
+          this.selectTile({
+            selectedTile: this.selectedTile,
+            empire: this.currentPlayer,
+            hitPoints: 1
+          })
         }
 
-        this.endTurn()
+        // this.endTurn()
       }
     }
   }

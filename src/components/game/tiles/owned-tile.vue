@@ -51,10 +51,7 @@ export default {
     ...mapActions('tiles', ['controlTile']),
 
     onClick () {
-      console.log(this.currentMode)
       if (this.currentMode === 'roll') {
-        console.log(this.rollValue)
-
         this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
         this.controlTile({

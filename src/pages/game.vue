@@ -7,17 +7,11 @@
     <p>Ranged Tiles: {{ rangedTiles }} </p>
     <p>Hit Points: {{ selectedTileHitPoints }} </p>
     <p>Roll Value: {{ rollValue }} </p>
+    <p>Bonus Roll Points: {{ bonusRollPoints }} </p>
+
     <button
-      @click="selectMode('attack')">
-      Attack
-    </button>
-    <button
-      @click="selectMode('reinforce')">
-      Reinforce
-    </button>
-    <button
-      @click="selectMode('roll'); roll()">
-      Roll
+      @click="rollDice">
+      Roll and End Turn
     </button>
   </div>
 </template>
@@ -33,7 +27,16 @@ export default {
       'rangedTiles',
       'selectedTileHitPoints',
       'rollValue'
-    ])
+    ]),
+    ...mapState('tiles', [
+      'tiles'
+    ]),
+    controlledTiles () {
+      return this.tiles.filter(x => x.empire === this.currentPlayer).length
+    },
+    bonusRollPoints () {
+      return Math.round(this.controlledTiles / 6)
+    }
   },
 
   created () {
@@ -41,14 +44,14 @@ export default {
 
     this.controlTiles({
       empire: 'Player 1',
-      hitPoints: 5,
-      tiles: [54, 44]
+      hitPoints: 2,
+      tiles: [34, 44, 54, 64]
     })
 
     this.controlTiles({
       empire: 'Player 2',
-      hitPoints: 5,
-      tiles: [57, 47]
+      hitPoints: 2,
+      tiles: [37, 47, 57, 67]
     })
 
     this.selectPlayer('Player 1')
@@ -65,7 +68,12 @@ export default {
       'selectPlayer',
       'selectMode',
       'roll'
-    ])
+    ]),
+
+    rollDice () {
+      this.selectMode('roll')
+      this.roll(this.controlledTiles)
+    }
   }
 }
 </script>

@@ -35,7 +35,8 @@ export default {
     ]),
 
     ...mapActions('turn', [
-      'endTurn'
+      'endTurn',
+      'selectTile'
     ]),
 
     onClick () {
@@ -61,7 +62,11 @@ export default {
         tileIdentifier: this.selectedTile
       })
 
-      this.endTurn()
+      this.selectTile({
+        selectedTile: this.selectedTile,
+        empire: this.currentPlayer,
+        hitPoints: 1
+      })
     }
   }
 }
