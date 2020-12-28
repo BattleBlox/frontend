@@ -33,7 +33,7 @@ export default {
 
     tileType () {
       // Render a neutral tile
-      if (!this.tile.empire) {
+      if (this.tile.empire === null) {
         return 'neutral-tile'
       }
 
@@ -51,7 +51,7 @@ export default {
         return 'enemy-tile'
       }
 
-      return ''
+      return 'owned-tile'
     }
   }
 }

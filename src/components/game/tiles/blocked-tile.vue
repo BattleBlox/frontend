@@ -1,13 +1,26 @@
 <template>
   <div
-    class="c-neutral-tile" />
+    class="c-blocked-tile"
+    title="Blocked Tile" />
 </template>
 
-<style scoped lang="scss">
-.c-neutral-tile {
+<script>
+export default {
+  props: {
+    identifier: {
+      type: Number,
+      required: true
+    }
+  }
+}
+</script>
+
+<style scoped>
+.c-blocked-tile {
   width: 60px;
   height: 60px;
   background-color: black;
+  color: white;
   border: 1px solid white;
   text-align: center;
   border-radius: 10px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="c-game">
+  <div v-if="currentPlayer" class="c-game">
     <board />
 
     <p>Current Mode: {{ currentMode }} </p>
@@ -35,10 +35,10 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
     this.setupTiles()
 
-    this.setupBlockedTiles({ numberOfTiles: 10, excludedTiles: [34, 44, 54, 64, 37, 47, 57, 67] })
+    this.setupBlockedTiles({ numberOfTiles: 5, excludedTiles: [34, 44, 54, 64, 37, 47, 57, 67] })
 
     this.controlTiles({
       empire: 'Player 1',
