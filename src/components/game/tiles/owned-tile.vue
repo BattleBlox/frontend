@@ -1,8 +1,9 @@
 <template>
   <div
-    :class="`c-owned-tile ${tileClass}`"
+    :class="`u-tile c-owned-tile ${tileClass}`"
     @click="onClick">
     <span
+      class="u-tile-hitPoints"
       v-show="hitPoints"
       v-text="hitPoints" />
   </div>
@@ -49,7 +50,7 @@ export default {
         tileStrengthClass = 'c-tile-strength--capital'
       }
 
-      return `c-tile--${controllingPlayer.colour} c-tile--${tileSelectionState} c-tile--${this.currentMode} ${tileStrengthClass}`
+      return `c-tile--${controllingPlayer.colour} u-tile--${tileSelectionState} c-tile--${this.currentMode} ${tileStrengthClass}`
     }
   },
 
@@ -87,13 +88,8 @@ export default {
 
 <style scoped lang="scss">
 .c-owned-tile {
-  width: 60px;
-  height: 60px;
   background-color: lime;
   border: 1px solid white;
-  transition: all 0.3s ease-in-out;
-  text-align: center;
-  border-radius: 10px;
 
   &.c-tile--red {
     background-color: red;
@@ -131,11 +127,12 @@ export default {
     }
   }
 
-  &.c-tile--selected {
+  &.u-tile--selected {
     border: 5px solid gold;
   }
 
   span {
+    flex-grow: 1;
     user-select: none;
   }
 

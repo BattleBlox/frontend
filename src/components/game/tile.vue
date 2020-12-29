@@ -32,26 +32,38 @@ export default {
     ]),
 
     tileType () {
-      if (this.tile.empire === null) {
-        return 'neutral-tile'
+      switch (this.tile.empire) {
+        case null: return 'neutral-tile'
+        case 'blocked': return 'blocked-tile'
+        case this.currentPlayer: return 'owned-tile'
+        default: return 'enemy-tile'
       }
-
-      if (this.tile.empire === 'blocked') {
-        return 'blocked-tile'
-      }
-
-      // Render the current players tiles
-      if (this.tile.empire === this.currentPlayer) {
-        return 'owned-tile'
-      }
-
-      // Render the enemy players tiles
-      if (this.tile.empire !== this.currentPlayer) {
-        return 'enemy-tile'
-      }
-
-      return ''
     }
   }
 }
 </script>
+
+<style lang="scss">
+.u-tile {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  border-radius: 10px;
+
+  &.u-tile--selected {
+    border: 5px solid gold;
+  }
+
+  &.c-tile--roll {
+    border: 5px solid white;
+  }
+}
+
+.u-tile-hitPoints {
+  flex-grow: 1;
+  user-select: none;
+}
+</style>

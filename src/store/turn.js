@@ -122,6 +122,6 @@ export const actions = {
 
     const bonusPoints = Math.round(controlledTiles / 5)
 
-    commit(TURN_SET_ROLL_VALUE, roll + bonusPoints + capitalTiles)
+    commit(TURN_SET_ROLL_VALUE, roll + bonusPoints + Math.round(capitalTiles * 1.5))
   }
 }

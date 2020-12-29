@@ -1,6 +1,6 @@
 <template>
   <div
-    class="c-blocked-tile"
+    class="u-tile c-blocked-tile"
     title="Blocked Tile" />
 </template>
 
@@ -17,13 +17,8 @@ export default {
 
 <style scoped>
 .c-blocked-tile {
-  width: 60px;
-  height: 60px;
   background-color: black;
   color: white;
   border: 1px solid white;
-  text-align: center;
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
 }
 </style>

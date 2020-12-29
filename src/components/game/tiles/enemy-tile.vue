@@ -1,8 +1,9 @@
 <template>
   <div
-    :class="`c-enemy-tile ${tileClass}`"
+    :class="`u-tile c-enemy-tile ${tileClass}`"
     @click="onClick">
     <span
+      class="u-tile-hitPoints"
       v-show="hitPoints"
       v-text="hitPoints" />
   </div>
@@ -126,13 +127,8 @@ export default {
 
 <style scoped lang="scss">
 .c-enemy-tile {
-  width: 60px;
-  height: 60px;
   background-color: lime;
   border: 1px solid white;
-  transition: all 0.3s ease-in-out;
-  text-align: center;
-  border-radius: 10px;
 
   &.c-tile--red {
     background-color: red;
@@ -146,14 +142,6 @@ export default {
 
   &.c-enemy-tile--attackable {
     background-color: orange;
-  }
-
-  &.c-tile--selected {
-    border: 5px solid gold;
-  }
-
-  span {
-    user-select: none;
   }
 }
 </style>

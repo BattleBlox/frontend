@@ -31,7 +31,7 @@ export default {
       return Math.round(this.controlledTiles / 6)
     },
     bonusCapitalPoints () {
-      return this.tiles.filter(x => x.empire === this.currentPlayer && x.hitPoints >= 10).length
+      return Math.round(this.tiles.filter(x => x.empire === this.currentPlayer && x.hitPoints >= 10).length * 1.5)
     }
   },
 
