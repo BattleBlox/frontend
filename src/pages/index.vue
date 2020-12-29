@@ -38,7 +38,7 @@ export default {
   mounted () {
     this.setupBoard()
 
-    this.setupBlockedTiles(15)
+    this.setupBlockedTiles(25)
 
     this.controlTiles({
       empire: 'Player 1',
