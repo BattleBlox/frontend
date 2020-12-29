@@ -10,11 +10,13 @@ export const mutations = {
   },
 
   [TILES_SET_TILE]: (state, tile) => {
-    // state.tiles[tile.identifier - 1] = tile
-
+    // Remove tile
     state.tiles = state.tiles.filter(tle => tle.identifier !== tile.identifier)
+
+    // Add tile
     state.tiles.push(tile)
 
+    // Update tile order
     state.tiles.sort((a, b) => (a.identifier > b.identifier) ? 1 : -1)
   }
 }
@@ -34,26 +36,22 @@ export const actions = {
     commit(TILES_SET_ALL_TILES, tiles)
   },
 
-  setupBlockedTiles: ({ commit }, { numberOfTiles, excludedTiles }) => {
-    const blocks = []
+  setupBlockedTiles: ({ commit, state }, numberOfTiles) => {
+    const tiles = []
 
-    while (blocks.length < numberOfTiles) {
-      const block = Math.floor(Math.random() * 100) + 1
+    while (tiles.length < numberOfTiles) {
+      const tile = Math.floor(Math.random() * 100) + 1
 
-      if (excludedTiles.includes(block)) {
-        continue
-      }
+      if (state.tiles.find(x => x.identifier === tile && x.empire === null)) {
+        tiles.push(tile)
 
-      if (!blocks.some(blk => blk === block)) {
-        blocks.push(block)
-
-        const tile = {
-          identifier: block,
+        const blockedTile = {
+          identifier: tile,
           empire: 'blocked',
           hitPoints: 1
         }
 
-        commit(TILES_SET_TILE, tile)
+        commit(TILES_SET_TILE, blockedTile)
       }
     }
   },

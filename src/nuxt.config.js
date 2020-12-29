@@ -23,10 +23,5 @@ export default {
 
   modules: [
     '@nuxtjs/pwa'
-  ],
-
-  build: {
-    extend (config, ctx) {
-    }
-  }
+  ]
 }
