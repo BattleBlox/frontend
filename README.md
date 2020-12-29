@@ -1,7 +1,7 @@
-# online-empires
+# BattleBlox
 > My splendid Nuxt.js project
 
-![Game Screenshot](https://raw.githubusercontent.com/OnlineEmpires/frontend/master/src/static/marketing_1.png)
+![Game Screenshot](https://raw.githubusercontent.com/BattleBlox/frontend/master/src/static/marketing_1.png)
 
 ## Build Setup
 
