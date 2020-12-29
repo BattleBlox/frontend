@@ -35,7 +35,7 @@ export default {
 .c-board {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black;
+  border: 3px solid black;
   background-color: black;
   width: 606px;
   border-radius: 10px;

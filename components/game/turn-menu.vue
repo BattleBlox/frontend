@@ -18,15 +18,14 @@
       <img
         v-show="currentMode === 'attack'"
         class="c-turn-menu-header-endTurn u-pointer"
-        @click="rollDice"
-        :title="`Bonus Points from Controlled Tiles: ${bonusRollPoints}, Bonus points from Capital Cities: ${bonusCapitalPoints} (10 soldiers or more)`"
-        src="/roll.png">
+        src="/roll.png"
+        @click="rollDice">
 
       <img
         v-show="currentMode === 'roll' && rollValue === 0"
         class="c-turn-menu-header-endTurn u-pointer"
-        @click="rollDice"
-        src="/next.png">
+        src="/next.png"
+        @click="rollDice">
 
       <img
         v-show="currentMode === 'roll' && rollValue > 0"
@@ -148,7 +147,6 @@ export default {
     width: 125px;
     height: 125px;
     border-radius: 50%;
-    cursor: pointer;
     border: 10px solid black;
     transition: all 0.3s ease-in-out;
   }

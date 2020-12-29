@@ -14,11 +14,19 @@ export default {
 
   components: true,
 
+  css: [
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
+
   loading: { color: '#fff' },
 
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxt/components'
+  ],
+
+  plugins: [
+    '~/plugins/fontawesome.plugin.js'
   ],
 
   modules: [

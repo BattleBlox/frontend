@@ -2,6 +2,8 @@
   <div v-if="currentPlayer" class="c-game">
     <board />
     <turn-menu />
+    <bonus-button />
+    <settings-button />
   </div>
 </template>
 
