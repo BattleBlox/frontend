@@ -7,7 +7,7 @@
 
       <p
         v-show="currentMode === 'attack'">
-        Attack
+        Select a tile and attack
       </p>
 
       <p
@@ -16,13 +16,20 @@
       </p>
 
       <img
+        v-show="currentMode === 'attack'"
+        class="c-turn-menu-header-endTurn"
+        @click="rollDice"
+        src="/roll.png">
+
+      <img
+        v-show="currentMode === 'roll'"
         class="c-turn-menu-header-endTurn"
         @click="rollDice"
         src="/dice.png">
     </div>
 
     <div :class="`c-turn-menu-footer ${playerColourClass}`">
-      <p v-text="currentPlayer" />
+      <h3 v-text="currentPlayer" />
     </div>
   </div>
 </template>
@@ -64,15 +71,23 @@ export default {
   methods: {
     ...mapActions('turn', [
       'selectMode',
-      'roll'
+      'roll',
+      'endTurn'
     ]),
 
     rollDice () {
-      this.selectMode('roll')
-      this.roll({
-        controlledTiles: this.controlledTiles,
-        capitalTiles: this.bonusCapitalPoints
-      })
+      switch (this.currentMode) {
+        case 'roll':
+          this.endTurn()
+          break
+        case 'attack':
+          this.selectMode('roll')
+          this.roll({
+            controlledTiles: this.controlledTiles,
+            capitalTiles: this.bonusCapitalPoints
+          })
+          break
+      }
     }
   }
 }
@@ -90,7 +105,7 @@ export default {
 
   .c-turn-menu-header {
     position: relative;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(30, 30, 30, 0.6);
     color: white;
     padding: 20px;
     text-align: center;
@@ -103,6 +118,8 @@ export default {
     text-align: center;
     border-radius: 10px;
     color: white;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid black;
   }
 
   .u-red {
@@ -122,6 +139,7 @@ export default {
     border-radius: 50%;
     cursor: pointer;
     border: 10px solid black;
+    transition: all 0.3s ease-in-out;
   }
 
   .c-turn-menu-header-endTurn {
