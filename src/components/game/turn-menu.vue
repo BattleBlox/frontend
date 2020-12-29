@@ -1,16 +1,29 @@
 <template>
-  <div :class="`c-turn-menu ${playerColourClass}`">
-    <button
-      v-show="currentMode === 'attack'"
-      class="c-turn-menu-endTurn"
-      @click="rollDice">
-      <img src="/dice.png">
-    </button>
+  <div class="c-turn-menu">
+    <div class="c-turn-menu-header">
+      <img
+        :class="`c-turn-menu-header-avatar ${playerColourClass}`"
+        src="/soldier.png">
 
-    <p
-      v-show="currentMode === 'roll'">
-      Spend Points: {{ rollValue }}
-    </p>
+      <p
+        v-show="currentMode === 'attack'">
+        Attack
+      </p>
+
+      <p
+        v-show="currentMode === 'roll'">
+        Spend {{ rollValue }} Points
+      </p>
+
+      <img
+        class="c-turn-menu-header-endTurn"
+        @click="rollDice"
+        src="/dice.png">
+    </div>
+
+    <div :class="`c-turn-menu-footer ${playerColourClass}`">
+      <p v-text="currentPlayer" />
+    </div>
   </div>
 </template>
 
@@ -36,7 +49,7 @@ export default {
     playerColourClass () {
       const player = this.players.find(plr => plr.name === this.currentPlayer)
 
-      return `c-turn-menu--${player.colour}`
+      return `u-${player.colour}`
     },
 
     controlledTiles () {
@@ -68,29 +81,57 @@ export default {
 <style scoped lang="scss">
   .c-turn-menu {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 200px;
-    height: 50px;
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.2s ease-in-out;
-
-    &.c-turn-menu--red {
-      background-color: red;
-    }
-
-    &.c-turn-menu--blue {
-      background-color: blue;
-    }
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 450px;
   }
 
-  .c-turn-menu-endTurn {
-    img {
-      width: 50px;
-      height: 50px;
-    }
+  .c-turn-menu-header {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 450px;
+    margin: 0 auto;
+  }
+
+  .c-turn-menu-footer {
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .u-red {
+    background-color: red;
+  }
+
+  .u-blue {
+    background-color: blue;
+  }
+
+  .c-turn-menu-header-avatar {
+    position: absolute;
+    left: -25px;
+    top: -45px;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 10px solid black;
+  }
+
+  .c-turn-menu-header-endTurn {
+    position: absolute;
+    right: -25px;
+    top: -45px;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 10px solid black;
   }
 </style>
