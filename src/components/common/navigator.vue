@@ -6,7 +6,7 @@
 
 <style scoped>
 .c-navigator {
-  padding: 10px;
+  padding: 15px;
 }
 
 .c-navigator img {

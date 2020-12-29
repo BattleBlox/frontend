@@ -22,10 +22,16 @@
         src="/roll.png">
 
       <img
-        v-show="currentMode === 'roll'"
-        class="c-turn-menu-header-endTurn"
+        v-show="currentMode === 'roll' && rollValue === 0"
+        class="c-turn-menu-header-endTurn u-pointer"
         @click="rollDice"
-        src="/dice.png">
+        src="/next.png">
+
+      <img
+        v-show="currentMode === 'roll' && rollValue > 0"
+        class="c-turn-menu-header-endTurn"
+        title="Please spend your points"
+        src="/next-disabled.png">
     </div>
 
     <div :class="`c-turn-menu-footer ${playerColourClass}`">
@@ -149,7 +155,10 @@ export default {
     width: 125px;
     height: 125px;
     border-radius: 50%;
-    cursor: pointer;
     border: 10px solid black;
+  }
+
+  .u-pointer {
+    cursor: pointer;
   }
 </style>
