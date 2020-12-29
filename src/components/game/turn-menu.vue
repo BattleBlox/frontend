@@ -7,7 +7,10 @@
       <img src="/dice.png">
     </button>
 
-    <p v-show="currentMode === 'roll'">Spend Points: {{ rollValue }} </p>
+    <p
+      v-show="currentMode === 'roll'">
+      Spend Points: {{ rollValue }}
+    </p>
   </div>
 </template>
 
@@ -38,6 +41,10 @@ export default {
 
     controlledTiles () {
       return this.tiles.filter(x => x.empire === this.currentPlayer).length
+    },
+
+    bonusCapitalPoints () {
+      return this.tiles.filter(x => x.empire === this.currentPlayer && x.hitPoints >= 10).length
     }
   },
 
@@ -49,7 +56,7 @@ export default {
 
     rollDice () {
       this.selectMode('roll')
-      this.roll(this.controlledTiles)
+      this.roll(this.controlledTiles + this.bonusCapitalPoints)
     }
   }
 }
@@ -63,6 +70,7 @@ export default {
     width: 200px;
     height: 50px;
     background-color: black;
+    color: white;
     display: flex;
     align-items: center;
     transition: background-color 0.2s ease-in-out;

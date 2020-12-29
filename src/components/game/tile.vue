@@ -41,6 +41,10 @@ export default {
         return 'blocked-tile'
       }
 
+      if (this.tile.empire === 'ability') {
+        return 'ability-tile'
+      }
+
       // Render the current players tiles
       if (this.tile.empire === this.currentPlayer) {
         return 'owned-tile'

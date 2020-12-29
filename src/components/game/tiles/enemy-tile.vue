@@ -130,7 +130,7 @@ export default {
   height: 60px;
   background-color: lime;
   border: 1px solid white;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   text-align: center;
   border-radius: 10px;
 

@@ -80,7 +80,7 @@ export default {
   border: 1px solid white;
   text-align: center;
   border-radius: 10px;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &.c-neutral-tile--attackable {
     background-color: orange;

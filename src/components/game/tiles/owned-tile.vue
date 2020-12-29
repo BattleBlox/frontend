@@ -41,7 +41,15 @@ export default {
         ? 'selected'
         : 'unselected'
 
-      return `c-tile--${controllingPlayer.colour} c-tile--${tileSelectionState} c-tile--${this.currentMode}`
+      let tileStrengthClass = this.hitPoints > 1
+        ? 'c-tile-strength--strong'
+        : 'c-tile-strength--weak'
+
+      if (this.hitPoints >= 10) {
+        tileStrengthClass = 'c-tile-strength--capital'
+      }
+
+      return `c-tile--${controllingPlayer.colour} c-tile--${tileSelectionState} c-tile--${this.currentMode} ${tileStrengthClass}`
     }
   },
 
@@ -83,18 +91,44 @@ export default {
   height: 60px;
   background-color: lime;
   border: 1px solid white;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   text-align: center;
   border-radius: 10px;
 
   &.c-tile--red {
     background-color: red;
     color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
   }
 
   &.c-tile--blue {
     background-color: blue;
     color: white;
+
+    &.c-tile-strength--weak {
+      color: #7F7FFF;
+    }
+
+    &.c-tile-strength--strong {
+      color: white;
+    }
+
+    &.c-tile-strength--capital {
+      color: white;
+      font-weight: bold;
+    }
   }
 
   &.c-tile--selected {

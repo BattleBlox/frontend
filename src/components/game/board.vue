@@ -40,7 +40,7 @@ export default {
   width: 606px;
   border-radius: 10px;
   margin: 20px auto;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &.c-board--red {
     border: 3px solid red;

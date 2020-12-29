@@ -2,7 +2,8 @@
   <div v-if="currentPlayer" class="c-game">
     <board />
 
-    <p>Bonus Roll Points: {{ bonusRollPoints }} </p>
+    <p>Bonus Tile Points: {{ bonusRollPoints }} </p>
+    <p>Bonus Capital Points: {{ bonusCapitalPoints }} </p>
 
     <turn-menu />
   </div>
@@ -28,6 +29,9 @@ export default {
     },
     bonusRollPoints () {
       return Math.round(this.controlledTiles / 6)
+    },
+    bonusCapitalPoints () {
+      return this.tiles.filter(x => x.empire === this.currentPlayer && x.hitPoints >= 10).length
     }
   },
 
@@ -38,13 +42,13 @@ export default {
 
     this.controlTiles({
       empire: 'Player 1',
-      hitPoints: 2,
+      hitPoints: 3,
       tiles: [34, 44, 54, 64]
     })
 
     this.controlTiles({
       empire: 'Player 2',
-      hitPoints: 2,
+      hitPoints: 3,
       tiles: [37, 47, 57, 67]
     })
 
