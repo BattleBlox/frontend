@@ -23,5 +23,9 @@ export default {
 
   modules: [
     '@nuxtjs/pwa'
-  ]
+  ],
+
+  server: {
+    host: '0.0.0.0'
+  },
 }
