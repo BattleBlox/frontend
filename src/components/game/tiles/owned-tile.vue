@@ -41,7 +41,7 @@ export default {
         ? 'selected'
         : 'unselected'
 
-      return `c-tile--${controllingPlayer.colour} c-tile--${tileSelectionState}`
+      return `c-tile--${controllingPlayer.colour} c-tile--${tileSelectionState} c-tile--${this.currentMode}`
     }
   },
 
@@ -103,6 +103,10 @@ export default {
 
   span {
     user-select: none;
+  }
+
+  &.c-tile--roll {
+    border: 5px solid white;
   }
 }
 </style>

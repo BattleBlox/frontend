@@ -93,9 +93,9 @@ export default {
           })
 
           this.selectTile({
-            selectedTile: this.selectedTile,
+            selectedTile: this.identifier,
             empire: this.currentPlayer,
-            hitPoints: 1
+            hitPoints: attackerHitPoints - 1
           })
         } else {
           this.controlTile({

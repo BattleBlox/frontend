@@ -1,9 +1,13 @@
 <template>
   <div :class="`c-turn-menu ${playerColourClass}`">
     <button
+      v-show="currentMode === 'attack'"
+      class="c-turn-menu-endTurn"
       @click="rollDice">
-      Roll and End Turn
+      <img src="/dice.png">
     </button>
+
+    <p v-show="currentMode === 'roll'">Spend Points: {{ rollValue }} </p>
   </div>
 </template>
 
@@ -69,6 +73,13 @@ export default {
 
     &.c-turn-menu--blue {
       background-color: blue;
+    }
+  }
+
+  .c-turn-menu-endTurn {
+    img {
+      width: 50px;
+      height: 50px;
     }
   }
 </style>

@@ -2,9 +2,6 @@
   <div v-if="currentPlayer" class="c-game">
     <board />
 
-    <p>Ranged Tiles: {{ rangedTiles }} </p>
-    <p>Hit Points: {{ selectedTileHitPoints }} </p>
-    <p>Roll Value: {{ rollValue }} </p>
     <p>Bonus Roll Points: {{ bonusRollPoints }} </p>
 
     <turn-menu />

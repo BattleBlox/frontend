@@ -1,5 +1,5 @@
 <template>
-  <div :class="`c-board ${playerColourClass}`">
+  <div :class="`c-board ${additionalClasses}`">
     <tile v-for="tile in tiles" :key="tile.identifier" :tile="tile" />
   </div>
 </template>
@@ -10,7 +10,8 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState('turn', [
-      'currentPlayer'
+      'currentPlayer',
+      'currentMode'
     ]),
 
     ...mapState('players', [
@@ -21,10 +22,10 @@ export default {
       'tiles'
     ]),
 
-    playerColourClass () {
+    additionalClasses () {
       const player = this.players.find(plr => plr.name === this.currentPlayer)
 
-      return `c-board--${player.colour}`
+      return `c-board--${player.colour} c-board--${this.currentMode}`
     }
   }
 }
@@ -39,16 +40,26 @@ export default {
   width: 606px;
   border-radius: 10px;
   margin: 20px auto;
-  transition: border 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &.c-board--red {
     border: 3px solid red;
-    background-color: red;
+
+    &.c-board--attack {
+      background-color: red;
+    }
   }
 
   &.c-board--blue {
     border: 3px solid blue;
-    background-color: blue;
+
+    &.c-board--attack {
+      background-color: blue;
+    }
+  }
+
+  &.c-board--roll {
+    background-color: white;
   }
 }
 </style>
