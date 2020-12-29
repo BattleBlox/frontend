@@ -17,8 +17,9 @@
 
       <img
         v-show="currentMode === 'attack'"
-        class="c-turn-menu-header-endTurn"
+        class="c-turn-menu-header-endTurn u-pointer"
         @click="rollDice"
+        :title="`Bonus Points from Controlled Tiles: ${bonusRollPoints}, Bonus points from Capital Cities: ${bonusCapitalPoints} (10 soldiers or more)`"
         src="/roll.png">
 
       <img
@@ -67,6 +68,10 @@ export default {
 
     controlledTiles () {
       return this.tiles.filter(x => x.empire === this.currentPlayer).length
+    },
+
+    bonusRollPoints () {
+      return Math.round(this.controlledTiles / 6)
     },
 
     bonusCapitalPoints () {
