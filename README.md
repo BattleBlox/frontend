@@ -1,5 +1,6 @@
 # online-empires
 > My splendid Nuxt.js project
+
 ![Game Screenshot](https://raw.githubusercontent.com/OnlineEmpires/frontend/master/src/static/marketing_1.png)
 
 ## Build Setup
