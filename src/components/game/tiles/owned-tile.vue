@@ -90,6 +90,7 @@ export default {
 .c-owned-tile {
   background-color: lime;
   border: 1px solid white;
+  cursor: pointer;
 
   &.c-tile--red {
     background-color: red;
