@@ -32,17 +32,12 @@ export default {
     ]),
 
     tileType () {
-      // Render a neutral tile
       if (this.tile.empire === null) {
         return 'neutral-tile'
       }
 
       if (this.tile.empire === 'blocked') {
         return 'blocked-tile'
-      }
-
-      if (this.tile.empire === 'ability') {
-        return 'ability-tile'
       }
 
       // Render the current players tiles
@@ -55,7 +50,7 @@ export default {
         return 'enemy-tile'
       }
 
-      return 'owned-tile'
+      return ''
     }
   }
 }
