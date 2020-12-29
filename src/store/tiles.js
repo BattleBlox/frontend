@@ -49,29 +49,21 @@ export const actions = {
     }
   },
 
-  controlTile: ({ commit }, payload) => {
-    const { empire, hitPoints, tileIdentifier } = payload
-
-    const tile = {
+  controlTile: ({ commit }, { empire, hitPoints, tileIdentifier }) => {
+    commit(TILES_SET_TILE, {
       identifier: tileIdentifier,
       empire,
       hitPoints
-    }
-
-    commit(TILES_SET_TILE, tile)
+    })
   },
 
-  controlTiles: ({ commit }, payload) => {
-    const { empire, hitPoints, tiles } = payload
-
+  controlTiles: ({ commit }, { empire, hitPoints, tiles }) => {
     tiles.forEach((tile) => {
-      const controlTile = {
+      commit(TILES_SET_TILE, {
         identifier: tile,
         empire,
         hitPoints
-      }
-
-      commit(TILES_SET_TILE, controlTile)
+      })
     })
   }
 }
