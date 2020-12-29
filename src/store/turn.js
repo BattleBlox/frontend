@@ -117,11 +117,11 @@ export const actions = {
     commit(TURN_SELECT_MODE, mode)
   },
 
-  roll: ({ commit }, controlledTiles) => {
+  roll: ({ commit }, { controlledTiles, capitalTiles }) => {
     const roll = Math.floor(Math.random() * 6) + 1
 
     const bonusPoints = Math.round(controlledTiles / 5)
 
-    commit(TURN_SET_ROLL_VALUE, roll + bonusPoints)
+    commit(TURN_SET_ROLL_VALUE, roll + bonusPoints + capitalTiles)
   }
 }

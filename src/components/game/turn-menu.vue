@@ -56,7 +56,10 @@ export default {
 
     rollDice () {
       this.selectMode('roll')
-      this.roll(this.controlledTiles + this.bonusCapitalPoints)
+      this.roll({
+        controlledTiles: this.controlledTiles,
+        capitalTiles: this.bonusCapitalPoints
+      })
     }
   }
 }
