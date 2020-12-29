@@ -115,6 +115,7 @@ export const actions = {
 
   selectMode: ({ commit }, mode) => {
     commit(TURN_SELECT_MODE, mode)
+    commit(TURN_CLEAR_RANGED_TILES)
   },
 
   roll: ({ commit }, { controlledTiles, capitalTiles }) => {
