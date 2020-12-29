@@ -71,9 +71,9 @@ export default {
         let defenderHitPoints = this.hitPoints
 
         while (attackerHitPoints > 1 && defenderHitPoints > 1) {
-          const result = Math.floor(Math.random() * 9) + 1
-
-          if (result < 6) {
+          const result = Math.floor(Math.random() * 5) + 1
+          console.log('result', result)
+          if (result < 3) {
             attackerHitPoints--
           } else {
             defenderHitPoints--
