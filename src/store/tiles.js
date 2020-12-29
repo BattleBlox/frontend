@@ -22,7 +22,7 @@ export const mutations = {
 }
 
 export const actions = {
-  setupTiles: ({ commit }) => {
+  setupBoard: ({ commit }) => {
     const tiles = []
 
     for (let loop = 1; loop <= 100; loop++) {
@@ -37,21 +37,14 @@ export const actions = {
   },
 
   setupBlockedTiles: ({ commit, state }, numberOfTiles) => {
-    const tiles = []
-
-    while (tiles.length < numberOfTiles) {
+    while (state.tiles.filter(x => x.empire === 'blocked').length < numberOfTiles) {
       const tile = Math.floor(Math.random() * 100) + 1
 
       if (state.tiles.find(x => x.identifier === tile && x.empire === null)) {
-        tiles.push(tile)
-
-        const blockedTile = {
+        commit(TILES_SET_TILE, {
           identifier: tile,
-          empire: 'blocked',
-          hitPoints: 1
-        }
-
-        commit(TILES_SET_TILE, blockedTile)
+          empire: 'blocked'
+        })
       }
     }
   },

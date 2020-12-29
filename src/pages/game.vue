@@ -36,7 +36,7 @@ export default {
   },
 
   mounted () {
-    this.setupTiles()
+    this.setupBoard()
 
     this.setupBlockedTiles(15)
 
@@ -58,7 +58,7 @@ export default {
 
   methods: {
     ...mapActions('tiles', [
-      'setupTiles',
+      'setupBoard',
       'setupBlockedTiles',
       'controlTiles'
     ]),
