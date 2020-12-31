@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
+import { TURN_DESELECT_TILE } from '@/store/mutations.constants'
 
 export default {
   props: {
@@ -62,6 +63,9 @@ export default {
   },
 
   methods: {
+    ...mapMutations('turn', [
+      TURN_DESELECT_TILE
+    ]),
     ...mapActions('turn', ['selectTile', 'endTurn']),
     ...mapActions('tiles', ['controlTile']),
 
@@ -110,14 +114,8 @@ export default {
             tileIdentifier: this.identifier
           })
 
-          this.selectTile({
-            selectedTile: this.selectedTile,
-            empire: this.selectedPlayer.name,
-            hitPoints: 1
-          })
+          this.TURN_DESELECT_TILE()
         }
-
-        // this.endTurn()
       }
     }
   }

@@ -108,7 +108,7 @@ export const actions = {
         commit(TURN_SET_RANGED_TILES, { selectedTile, hitPoints })
       }
     } else {
-      commit(TURN_DESELECT_TILE, selectedTile)
+      commit(TURN_DESELECT_TILE)
       commit(TURN_SET_HIT_POINTS, 0)
     }
   },

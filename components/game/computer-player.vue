@@ -35,9 +35,7 @@ export default {
 
   watch: {
     '$store.state.turn.selectedPlayer' () {
-      this.$nextTick(() => {
-        this.detectPlayerChange()
-      })
+      this.detectPlayerChange()
     }
   },
 
@@ -81,24 +79,22 @@ export default {
     play () {
       // Attack Phase
       for (let loop = 0; loop < 10; loop++) {
-        this.playerTiles.forEach((tile, i) => {
+        this.playerTiles.filter(x => x.hitPoints > 1).forEach((tile, i) => {
           this.processTile(tile)
         })
       }
 
       // Roll Phase
       this.selectMode('roll')
+
       this.roll({
         controlledTiles: this.playerTiles.length,
         capitalTiles: this.bonusCapitalPoints
       })
 
-      // Spend Phase
       this.spendPoints()
 
-      if (this.rollValue === 0) {
-        this.endTurn()
-      }
+      this.endTurn()
     },
 
     processTile (tile) {
