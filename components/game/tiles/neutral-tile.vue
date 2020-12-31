@@ -16,7 +16,7 @@ export default {
   },
 
   computed: {
-    ...mapState('turn', ['selectedPlayer', 'selectedTile', 'rangedTiles', 'selectedTileHitPoints']),
+    ...mapState('turn', ['selectedPlayer', 'selectedTile', 'rangedTiles']),
 
     isAttackable () {
       return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
@@ -44,14 +44,14 @@ export default {
         return
       }
 
-      if (!this.selectedTileHitPoints || this.selectedTileHitPoints < 2) {
+      if (!this.selectedTile.hitPoints || this.selectedTile.hitPoints < 2) {
         return
       }
 
       // Conquer Neutral Tile
       this.controlTile({
         empire: this.selectedPlayer.name,
-        hitPoints: this.selectedTileHitPoints - 1,
+        hitPoints: this.selectedTile.hitPoints - 1,
         tileIdentifier: this.identifier
       })
 
@@ -59,13 +59,13 @@ export default {
       this.controlTile({
         empire: this.selectedPlayer.name,
         hitPoints: 1,
-        tileIdentifier: this.selectedTile
+        tileIdentifier: this.selectedTile.identifier
       })
 
       this.selectTile({
-        selectedTile: this.identifier,
+        identifier: this.identifier,
         empire: this.selectedPlayer.name,
-        hitPoints: this.selectedTileHitPoints - 1
+        hitPoints: this.selectedTile.hitPoints - 1
       })
     }
   }

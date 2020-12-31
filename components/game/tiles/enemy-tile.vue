@@ -33,7 +33,7 @@ export default {
 
   computed: {
     ...mapState('players', ['players']),
-    ...mapState('turn', ['selectedPlayer', 'selectedTile', 'rangedTiles', 'selectedTileHitPoints']),
+    ...mapState('turn', ['selectedPlayer', 'selectedTile', 'rangedTiles']),
 
     isAttackable () {
       return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
@@ -46,7 +46,7 @@ export default {
         ? controllingPlayer.colour
         : 'gray'
 
-      const tileSelectionState = (this.selectedTile === this.identifier)
+      const tileSelectionState = (this.selectedTile && this.selectedTile.identifier === this.identifier)
         ? 'selected'
         : 'unselected'
 
@@ -71,7 +71,7 @@ export default {
 
     onClick () {
       if (this.isAttackable) {
-        let attackerHitPoints = this.selectedTileHitPoints
+        let attackerHitPoints = this.selectedTile.hitPoints
         let defenderHitPoints = this.hitPoints
 
         while (attackerHitPoints > 1 && defenderHitPoints > 1) {
@@ -93,11 +93,11 @@ export default {
           this.controlTile({
             empire: this.selectedPlayer.name,
             hitPoints: 1,
-            tileIdentifier: this.selectedTile
+            tileIdentifier: this.selectedTile.identifier
           })
 
           this.selectTile({
-            selectedTile: this.identifier,
+            identifier: this.identifier,
             empire: this.selectedPlayer.name,
             hitPoints: attackerHitPoints - 1
           })
@@ -105,7 +105,7 @@ export default {
           this.controlTile({
             empire: this.selectedPlayer.name,
             hitPoints: 1,
-            tileIdentifier: this.selectedTile
+            tileIdentifier: this.selectedTile.identifier
           })
 
           this.controlTile({

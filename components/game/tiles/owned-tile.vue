@@ -38,7 +38,7 @@ export default {
     tileClass () {
       const controllingPlayer = this.players.find(plr => plr.name === this.empire)
 
-      const tileSelectionState = (this.selectedTile === this.identifier)
+      const tileSelectionState = (this.selectedTile && this.selectedTile.identifier === this.identifier)
         ? 'selected'
         : 'unselected'
 
@@ -76,7 +76,7 @@ export default {
 
       if (this.currentMode === 'attack') {
         this.selectTile({
-          selectedTile: this.identifier,
+          identifier: this.identifier,
           empire: this.empire,
           hitPoints: this.hitPoints
         })

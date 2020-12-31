@@ -33,7 +33,6 @@ export default {
     ...mapState('turn', [
       'currentMode',
       'rangedTiles',
-      'selectedTileHitPoints',
       'rollValue'
     ]),
     ...mapState('tiles', [
@@ -66,7 +65,7 @@ export default {
         [{
           name: 'Player 1',
           colour: 'red',
-          isComputer: false,
+          isComputer: true,
           index: 1
         },
         {
