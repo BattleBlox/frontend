@@ -32,7 +32,7 @@ export default {
 
   computed: {
     ...mapState('players', ['players']),
-    ...mapState('turn', ['currentPlayer', 'selectedTile', 'rangedTiles', 'selectedTileHitPoints']),
+    ...mapState('turn', ['selectedPlayer', 'selectedTile', 'rangedTiles', 'selectedTileHitPoints']),
 
     isAttackable () {
       return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
@@ -57,7 +57,7 @@ export default {
     },
 
     ownedTile () {
-      return (this.empire && this.empire === this.currentPlayer)
+      return (this.empire && this.empire === this.selectedPlayer.name)
     }
   },
 
@@ -81,25 +81,25 @@ export default {
 
         if (attackerHitPoints > defenderHitPoints) {
           this.controlTile({
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: attackerHitPoints - 1,
             tileIdentifier: this.identifier
           })
 
           this.controlTile({
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: 1,
             tileIdentifier: this.selectedTile
           })
 
           this.selectTile({
             selectedTile: this.identifier,
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: attackerHitPoints - 1
           })
         } else {
           this.controlTile({
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: 1,
             tileIdentifier: this.selectedTile
           })
@@ -112,7 +112,7 @@ export default {
 
           this.selectTile({
             selectedTile: this.selectedTile,
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: 1
           })
         }

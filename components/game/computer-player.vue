@@ -9,7 +9,7 @@ import { TURN_SET_ROLL_VALUE } from '@/store/mutations.constants'
 export default {
   computed: {
     ...mapState('turn', [
-      'currentPlayer',
+      'selectedPlayer',
       'rangedTiles',
       'selectedTile',
       'selectedTileHitPoints',
@@ -25,16 +25,16 @@ export default {
     ]),
 
     playerTiles () {
-      return this.tiles.filter(x => x.empire === this.currentPlayer)
+      return this.tiles.filter(x => x.empire === this.selectedPlayer.name)
     },
 
     bonusCapitalPoints () {
-      return this.tiles.filter(x => x.empire === this.currentPlayer && x.hitPoints >= 10).length
+      return this.tiles.filter(x => x.empire === this.selectedPlayer.name && x.hitPoints >= 10).length
     }
   },
 
   watch: {
-    '$store.state.turn.currentPlayer' () {
+    '$store.state.turn.selectedPlayer' () {
       this.$nextTick(() => {
         this.detectPlayerChange()
       })
@@ -60,12 +60,11 @@ export default {
     ]),
 
     detectPlayerChange () {
-      const player = this.players.find(x => x.name === this.currentPlayer)
       const self = this
-      if (player.isComputer) {
+      if (this.selectedPlayer.isComputer) {
         if (this.playerTiles.length > 0) {
           // eslint-disable-next-line no-console
-          console.log('Computer Controlled Turn', player.name)
+          console.log('Computer Controlled Turn', this.selectedPlayer.name)
           setTimeout(function () { self.play() }, 2000)
         } else {
           this.endTurn()
@@ -111,7 +110,7 @@ export default {
         })
 
         if (this.rangedTiles) {
-          const defendingTiles = this.tiles.filter(x => x.empire !== 'blocked' && x.empire !== this.currentPlayer && this.rangedTiles.includes(x.identifier))
+          const defendingTiles = this.tiles.filter(x => x.empire !== 'blocked' && x.empire !== this.selectedPlayer.name && this.rangedTiles.includes(x.identifier))
 
           let defendingTile = null
 
@@ -156,13 +155,13 @@ export default {
 
     claimTile (attackerHitPoints, tileIdentifier) {
       this.controlTile({
-        empire: this.currentPlayer,
+        empire: this.selectedPlayer.name,
         hitPoints: attackerHitPoints - 1,
         tileIdentifier
       })
 
       this.controlTile({
-        empire: this.currentPlayer,
+        empire: this.selectedPlayer.name,
         hitPoints: 1,
         tileIdentifier: this.selectedTile
       })
@@ -170,7 +169,7 @@ export default {
 
     loseBattle (defendingTile, defenderHitPoints) {
       this.controlTile({
-        empire: this.currentPlayer,
+        empire: this.selectedPlayer.name,
         hitPoints: 1,
         tileIdentifier: this.selectedTile
       })
@@ -193,18 +192,18 @@ export default {
 
           this.selectTile({
             selectedTile: tile.identifier,
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: tile.hitPoints
           })
 
           for (const enemyTileId of this.rangedTiles) {
-            const enemyTile = this.tiles.find(x => x.identifier === enemyTileId && x.empire !== this.currentPlayer && x.empire !== 'blocked')
+            const enemyTile = this.tiles.find(x => x.identifier === enemyTileId && x.empire !== this.selectedPlayer.name && x.empire !== 'blocked')
 
             if (enemyTile && enemyTile.hitPoints >= tile.hitPoints && enemyTile.hitPoints > 1 && tile.hitPoints < 21) {
               this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
               this.controlTile({
-                empire: this.currentPlayer,
+                empire: this.selectedPlayer.name,
                 hitPoints: tile.hitPoints + 1,
                 tileIdentifier: tile.identifier
               })
@@ -230,7 +229,7 @@ export default {
           }
           this.selectTile({
             selectedTile: tile.identifier,
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: tile.hitPoints
           })
 
@@ -240,7 +239,7 @@ export default {
             this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
             this.controlTile({
-              empire: this.currentPlayer,
+              empire: this.selectedPlayer.name,
               hitPoints: tile.hitPoints + 1,
               tileIdentifier: tile.identifier
             })
@@ -265,18 +264,18 @@ export default {
           }
           this.selectTile({
             selectedTile: tile.identifier,
-            empire: this.currentPlayer,
+            empire: this.selectedPlayer.name,
             hitPoints: tile.hitPoints
           })
 
           for (const enemyTileId of this.rangedTiles) {
-            const enemyTile = this.tiles.find(x => x.identifier === enemyTileId && x.empire !== this.currentPlayer && x.empire !== 'blocked')
+            const enemyTile = this.tiles.find(x => x.identifier === enemyTileId && x.empire !== this.selectedPlayer.name && x.empire !== 'blocked')
 
             if (enemyTile && enemyTile.hitPoints <= tile.hitPoints && tile.hitPoints < 21) {
               this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
               this.controlTile({
-                empire: this.currentPlayer,
+                empire: this.selectedPlayer.name,
                 hitPoints: tile.hitPoints + 1,
                 tileIdentifier: tile.identifier
               })
@@ -302,14 +301,14 @@ export default {
 
         this.selectTile({
           selectedTile: tile.identifier,
-          empire: this.currentPlayer,
+          empire: this.selectedPlayer.name,
           hitPoints: tile.hitPoints
         })
 
         this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
         this.controlTile({
-          empire: this.currentPlayer,
+          empire: this.selectedPlayer.name,
           hitPoints: tile.hitPoints + 1,
           tileIdentifier: tile.identifier
         })

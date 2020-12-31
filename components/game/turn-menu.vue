@@ -47,7 +47,7 @@
     </div>
 
     <div :class="`c-turn-menu-footer ${playerColourClass}`">
-      <h3 v-text="currentPlayer" />
+      <h3 v-text="selectedPlayer.name" />
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapState('turn', [
-      'currentPlayer',
+      'selectedPlayer',
       'currentMode',
       'rollValue'
     ]),
@@ -72,19 +72,19 @@ export default {
     ]),
 
     isComputerPlayer () {
-      const player = this.players.find(plr => plr.name === this.currentPlayer)
+      const player = this.players.find(plr => plr.name === this.selectedPlayer.name)
 
       return player.isComputer
     },
 
     playerColourClass () {
-      const player = this.players.find(plr => plr.name === this.currentPlayer)
+      const player = this.players.find(plr => plr.name === this.selectedPlayer.name)
 
       return `u-${player.colour}`
     },
 
     controlledTiles () {
-      return this.tiles.filter(x => x.empire === this.currentPlayer).length
+      return this.tiles.filter(x => x.empire === this.selectedPlayer.name).length
     },
 
     bonusRollPoints () {
@@ -92,7 +92,7 @@ export default {
     },
 
     bonusCapitalPoints () {
-      return this.tiles.filter(x => x.empire === this.currentPlayer && x.hitPoints >= 10).length
+      return this.tiles.filter(x => x.empire === this.selectedPlayer.name && x.hitPoints >= 10).length
     }
   },
 

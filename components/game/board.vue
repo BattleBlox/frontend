@@ -10,7 +10,7 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState('turn', [
-      'currentPlayer',
+      'selectedPlayer',
       'currentMode'
     ]),
 
@@ -23,13 +23,11 @@ export default {
     ]),
 
     additionalClasses () {
-      const player = this.players.find(plr => plr.name === this.currentPlayer)
-
-      const isBoardEnabled = player.isComputer
+      const isBoardEnabled = this.selectedPlayer.isComputer
         ? 'c-board--disabled'
         : ''
 
-      return `c-board--${player.colour} c-board--${this.currentMode} ${isBoardEnabled}`
+      return `c-board--${this.selectedPlayer.colour} c-board--${this.currentMode} ${isBoardEnabled}`
     }
   }
 }

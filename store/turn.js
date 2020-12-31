@@ -11,8 +11,7 @@ import {
 
 export const state = () => ({
   selectedTile: null,
-  currentPlayer: null,
-  currentPlayerObj: null,
+  selectedPlayer: null,
   currentMode: null,
   rangedTiles: [],
   selectedTileHitPoints: null,
@@ -29,8 +28,7 @@ export const mutations = {
   },
 
   [TURN_SELECT_PLAYER]: (state, player) => {
-    state.currentPlayer = player.name
-    state.currentPlayerObj = player
+    state.selectedPlayer = player
   },
 
   [TURN_SELECT_MODE]: (state, mode) => {
@@ -52,7 +50,7 @@ export const mutations = {
   [TURN_SET_RANGED_TILES]: (state, { selectedTile, hitPoints }) => {
     const rangedTiles = []
 
-    if (hitPoints > 1 || state.currentPlayerObj.isComputer) {
+    if (hitPoints > 1 || state.selectedPlayer.isComputer) {
       if (selectedTile < 91) {
         rangedTiles.push(selectedTile + 10)
       }
@@ -81,8 +79,8 @@ export const actions = {
     commit(TURN_CLEAR_RANGED_TILES)
     commit(TURN_SELECT_MODE, 'attack')
 
-    const nextPlayerIndex = (state.currentPlayerObj.index + 1 <= rootState.players.players.length)
-      ? state.currentPlayerObj.index + 1
+    const nextPlayerIndex = (state.selectedPlayer.index + 1 <= rootState.players.players.length)
+      ? state.selectedPlayer.index + 1
       : 1
 
     const nextPlayer = rootState.players.players.find(x => x.index === nextPlayerIndex)
@@ -98,7 +96,7 @@ export const actions = {
     }
 
     // PREVENT: Selection of other player tiles
-    if (empire !== state.currentPlayer) {
+    if (empire !== state.selectedPlayer.name) {
       return
     }
 
@@ -106,7 +104,7 @@ export const actions = {
       commit(TURN_SET_SELECTED_TILE, selectedTile)
       commit(TURN_SET_HIT_POINTS, hitPoints)
 
-      if (state.currentMode === 'attack' || state.currentPlayerObj.isComputer) {
+      if (state.currentMode === 'attack' || state.selectedPlayer.isComputer) {
         commit(TURN_SET_RANGED_TILES, { selectedTile, hitPoints })
       }
     } else {

@@ -33,7 +33,7 @@ export default {
 
   computed: {
     ...mapState('players', ['players']),
-    ...mapState('turn', ['currentPlayer', 'selectedTile', 'currentMode', 'rollValue']),
+    ...mapState('turn', ['selectedTile', 'currentMode', 'rollValue']),
 
     tileClass () {
       const controllingPlayer = this.players.find(plr => plr.name === this.empire)

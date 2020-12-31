@@ -31,7 +31,6 @@ export default {
   },
   computed: {
     ...mapState('turn', [
-      'currentPlayer',
       'currentMode',
       'rangedTiles',
       'selectedTileHitPoints',
@@ -67,7 +66,7 @@ export default {
         [{
           name: 'Player 1',
           colour: 'red',
-          isComputer: false,
+          isComputer: true,
           index: 1
         },
         {

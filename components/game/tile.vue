@@ -28,14 +28,14 @@ export default {
 
   computed: {
     ...mapState('turn', [
-      'currentPlayer'
+      'selectedPlayer'
     ]),
 
     tileType () {
       switch (this.tile.empire) {
         case null: return 'neutral-tile'
         case 'blocked': return 'blocked-tile'
-        case this.currentPlayer: return 'owned-tile'
+        case this.selectedPlayer.name: return 'owned-tile'
         default: return 'enemy-tile'
       }
     }
