@@ -30,7 +30,7 @@ export const mutations = {
 
   [TURN_SELECT_PLAYER]: (state, player) => {
     state.currentPlayer = player.name
-    state.currentPlayerObj = player.isComputer
+    state.currentPlayerObj = player
   },
 
   [TURN_SELECT_MODE]: (state, mode) => {
@@ -81,7 +81,11 @@ export const actions = {
     commit(TURN_CLEAR_RANGED_TILES)
     commit(TURN_SELECT_MODE, 'attack')
 
-    const nextPlayer = rootState.players.players.find(plr => plr.name !== state.currentPlayer)
+    const nextPlayerIndex = (state.currentPlayerObj.index + 1 <= rootState.players.players.length)
+      ? state.currentPlayerObj.index + 1
+      : 1
+
+    const nextPlayer = rootState.players.players.find(x => x.index === nextPlayerIndex)
     commit(TURN_SELECT_PLAYER, nextPlayer)
   },
 

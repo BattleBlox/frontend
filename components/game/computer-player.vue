@@ -63,8 +63,13 @@ export default {
       const player = this.players.find(x => x.name === this.currentPlayer)
       const self = this
       if (player.isComputer) {
-        console.log('Computer Controlled Turn', player.name)
-        setTimeout(function () { self.play() }, 2000)
+        if (this.playerTiles.length > 0) {
+          // eslint-disable-next-line no-console
+          console.log('Computer Controlled Turn', player.name)
+          setTimeout(function () { self.play() }, 2000)
+        } else {
+          this.endTurn()
+        }
       }
     },
 

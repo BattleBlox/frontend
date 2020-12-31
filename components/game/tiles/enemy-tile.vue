@@ -3,8 +3,8 @@
     :class="`u-tile c-enemy-tile ${tileClass}`"
     @click="onClick">
     <span
-      class="u-tile-hitPoints"
       v-show="hitPoints"
+      class="u-tile-hitPoints"
       v-text="hitPoints" />
   </div>
 </template>
@@ -72,7 +72,6 @@ export default {
 
         while (attackerHitPoints > 1 && defenderHitPoints > 1) {
           const result = Math.floor(Math.random() * 5) + 1
-          console.log('result', result)
           if (result < 3) {
             attackerHitPoints--
           } else {
@@ -137,6 +136,16 @@ export default {
 
   &.c-tile--blue {
     background-color: blue;
+    color: white;
+  }
+
+  &.c-tile--purple {
+    background-color: purple;
+    color: white;
+  }
+
+  &.c-tile--brown {
+    background-color: brown;
     color: white;
   }
 

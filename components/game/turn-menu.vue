@@ -158,6 +158,14 @@ export default {
     background-color: blue;
   }
 
+  .u-purple {
+    background-color: purple;
+  }
+
+  .u-brown {
+    background-color: brown;
+  }
+
   .c-turn-menu-header-avatar {
     position: absolute;
     left: -25px;

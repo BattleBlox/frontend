@@ -128,6 +128,42 @@ export default {
     }
   }
 
+    &.c-tile--purple {
+    background-color: purple;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
+    &.c-tile--brown {
+    background-color: brown;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
   &.u-tile--selected {
     border: 5px solid gold;
   }
