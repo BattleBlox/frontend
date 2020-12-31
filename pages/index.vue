@@ -21,6 +21,9 @@ export default {
     ]),
     ...mapState('tiles', [
       'tiles'
+    ]),
+    ...mapState('players', [
+      'players'
     ])
   },
 
@@ -41,8 +44,8 @@ export default {
       tiles: [37, 47, 57, 67]
     })
 
-    this.selectPlayer('Player 1')
     this.selectMode('attack')
+    this.selectPlayer(this.players.find(x => x.name === 'Player 1'))
   },
 
   methods: {

@@ -1,34 +1,46 @@
 <template>
   <div class="c-turn-menu">
     <div class="c-turn-menu-header">
+      <computer-player />
+
       <img
         :class="`c-turn-menu-header-avatar ${playerColourClass}`"
         src="/soldier.png">
 
       <p
-        v-show="currentMode === 'attack'">
+        v-show="isComputerPlayer">
+        Waiting for Computer player...
+      </p>
+
+      <p
+        v-show="!isComputerPlayer && currentMode === 'attack'">
         Select a tile and attack
       </p>
 
       <p
-        v-show="currentMode === 'roll'">
+        v-show="!isComputerPlayer && currentMode === 'roll'">
         Spend {{ rollValue }} Points
       </p>
 
+      <c-icon
+        v-show="isComputerPlayer"
+        class="c-turn-menu-header-spinner fa-spin"
+        icon="spinner" />
+
       <img
-        v-show="currentMode === 'attack'"
+        v-show="!isComputerPlayer && currentMode === 'attack'"
         class="c-turn-menu-header-endTurn u-pointer"
         src="/roll.png"
         @click="rollDice">
 
       <img
-        v-show="currentMode === 'roll' && rollValue === 0"
+        v-show="!isComputerPlayer && currentMode === 'roll' && rollValue === 0"
         class="c-turn-menu-header-endTurn u-pointer"
         src="/next.png"
         @click="rollDice">
 
       <img
-        v-show="currentMode === 'roll' && rollValue > 0"
+        v-show="isComputerPlayer && currentMode === 'roll' && rollValue > 0"
         class="c-turn-menu-header-endTurn"
         title="Please spend your points"
         src="/next-disabled.png">
@@ -58,6 +70,12 @@ export default {
     ...mapState('tiles', [
       'tiles'
     ]),
+
+    isComputerPlayer () {
+      const player = this.players.find(plr => plr.name === this.currentPlayer)
+
+      return player.isComputer
+    },
 
     playerColourClass () {
       const player = this.players.find(plr => plr.name === this.currentPlayer)
@@ -159,6 +177,18 @@ export default {
     height: 125px;
     border-radius: 50%;
     border: 10px solid black;
+  }
+
+  .c-turn-menu-header-spinner {
+    position: absolute;
+    right: -25px;
+    top: -45px;
+    width: 125px;
+    height: 125px;
+    padding: 20px;
+    border-radius: 50%;
+    border: 10px solid black;
+    background-color: black;
   }
 
   .u-pointer {

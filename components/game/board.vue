@@ -25,7 +25,11 @@ export default {
     additionalClasses () {
       const player = this.players.find(plr => plr.name === this.currentPlayer)
 
-      return `c-board--${player.colour} c-board--${this.currentMode}`
+      const isBoardEnabled = player.isComputer
+        ? 'c-board--disabled'
+        : ''
+
+      return `c-board--${player.colour} c-board--${this.currentMode} ${isBoardEnabled}`
     }
   }
 }
@@ -41,6 +45,10 @@ export default {
   border-radius: 10px;
   margin: 20px auto;
   transition: all 0.3s ease-in-out;
+
+  &.c-board--disabled {
+    pointer-events: none;
+  }
 
   &.c-board--red {
     border: 3px solid red;

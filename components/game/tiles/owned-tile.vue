@@ -3,8 +3,8 @@
     :class="`u-tile c-owned-tile ${tileClass}`"
     @click="onClick">
     <span
-      class="u-tile-hitPoints"
       v-show="hitPoints"
+      class="u-tile-hitPoints"
       v-text="hitPoints" />
   </div>
 </template>

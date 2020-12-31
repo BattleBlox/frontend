@@ -12,6 +12,7 @@ import {
 export const state = () => ({
   selectedTile: null,
   currentPlayer: null,
+  currentPlayerObj: null,
   currentMode: null,
   rangedTiles: [],
   selectedTileHitPoints: null,
@@ -28,7 +29,8 @@ export const mutations = {
   },
 
   [TURN_SELECT_PLAYER]: (state, player) => {
-    state.currentPlayer = player
+    state.currentPlayer = player.name
+    state.currentPlayerObj = player.isComputer
   },
 
   [TURN_SELECT_MODE]: (state, mode) => {
@@ -50,7 +52,7 @@ export const mutations = {
   [TURN_SET_RANGED_TILES]: (state, { selectedTile, hitPoints }) => {
     const rangedTiles = []
 
-    if (hitPoints > 1) {
+    if (hitPoints > 1 || state.currentPlayerObj.isComputer) {
       if (selectedTile < 91) {
         rangedTiles.push(selectedTile + 10)
       }
@@ -79,7 +81,7 @@ export const actions = {
     commit(TURN_CLEAR_RANGED_TILES)
     commit(TURN_SELECT_MODE, 'attack')
 
-    const nextPlayer = rootState.players.players.find(plr => plr.name !== state.currentPlayer).name
+    const nextPlayer = rootState.players.players.find(plr => plr.name !== state.currentPlayer)
     commit(TURN_SELECT_PLAYER, nextPlayer)
   },
 
@@ -100,7 +102,7 @@ export const actions = {
       commit(TURN_SET_SELECTED_TILE, selectedTile)
       commit(TURN_SET_HIT_POINTS, hitPoints)
 
-      if (state.currentMode === 'attack') {
+      if (state.currentMode === 'attack' || state.currentPlayerObj.isComputer) {
         commit(TURN_SET_RANGED_TILES, { selectedTile, hitPoints })
       }
     } else {
