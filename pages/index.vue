@@ -65,7 +65,7 @@ export default {
         [{
           name: 'Player 1',
           colour: 'red',
-          isComputer: true,
+          isComputer: false,
           index: 1
         },
         {
