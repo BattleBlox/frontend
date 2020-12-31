@@ -183,7 +183,7 @@ export default {
     },
 
     spendPoints () {
-      // Defensive Placement
+      // Spend on Defence
       let loop = 0
       while (this.rollValue > 0) {
         for (const tile of this.playerTiles) {
@@ -221,6 +221,7 @@ export default {
         }
       }
 
+      // Spend on Exploration
       loop = 0
       while (this.rollValue > 0) {
         for (const tile of this.playerTiles) {
@@ -255,6 +256,44 @@ export default {
         }
       }
 
+      // Spend on Attacks
+      loop = 0
+      while (this.rollValue > 0) {
+        for (const tile of this.playerTiles) {
+          if (this.rollValue === 0) {
+            return
+          }
+          this.selectTile({
+            selectedTile: tile.identifier,
+            empire: this.currentPlayer,
+            hitPoints: tile.hitPoints
+          })
+
+          for (const enemyTileId of this.rangedTiles) {
+            const enemyTile = this.tiles.find(x => x.identifier === enemyTileId && x.empire !== this.currentPlayer && x.empire !== 'blocked')
+
+            if (enemyTile && enemyTile.hitPoints <= tile.hitPoints && tile.hitPoints < 21) {
+              this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
+
+              this.controlTile({
+                empire: this.currentPlayer,
+                hitPoints: tile.hitPoints + 1,
+                tileIdentifier: tile.identifier
+              })
+
+              break
+            }
+          }
+        }
+
+        loop++
+
+        if (loop > 20) {
+          break
+        }
+      }
+
+      // Randomly Spend Points
       loop = 0
       while (this.rollValue > 0) {
         const randomTile = Math.floor(Math.random() * this.playerTiles.length) + 1
