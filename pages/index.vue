@@ -1,10 +1,21 @@
 <template>
-  <div v-if="currentPlayer" class="c-game">
-    <board />
-    <turn-menu />
-    <bonus-button />
-    <settings-button />
-  </div>
+  <form
+    class="c-setup"
+    @submit.prevent="startGame">
+    <label>
+      Blocked Tiles
+      <input v-model="blockedTileCount" type="number" required>
+    </label>
+
+    <label>
+      Starting Points
+      <input v-model="startingPoints" type="number" required>
+    </label>
+
+    <button type="submit">
+      Start Game
+    </button>
+  </form>
 </template>
 
 <script>
@@ -12,6 +23,12 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 import { PLAYERS_SET_PLAYERS } from '@/store/mutations.constants'
 
 export default {
+  data () {
+    return {
+      startingPoints: 3,
+      blockedTileCount: 25
+    }
+  },
   computed: {
     ...mapState('turn', [
       'currentPlayer',
@@ -27,11 +44,6 @@ export default {
       'players'
     ])
   },
-
-  mounted () {
-    this.setupOneVOne()
-  },
-
   methods: {
     ...mapMutations('players', [
       PLAYERS_SET_PLAYERS
@@ -47,10 +59,9 @@ export default {
       'selectMode'
     ]),
 
-    setupOneVOne () {
+    startGame () {
       this.setupBoard()
-
-      this.setupBlockedTiles(25)
+      this.setupBlockedTiles(this.blockedTileCount)
 
       this.PLAYERS_SET_PLAYERS(
         [{
@@ -69,81 +80,31 @@ export default {
 
       this.controlTiles({
         empire: 'Player 1',
-        hitPoints: 3,
+        hitPoints: parseInt(this.startingPoints),
         tiles: [34, 44, 54, 64]
       })
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 3,
+        hitPoints: parseInt(this.startingPoints),
         tiles: [37, 47, 57, 67]
       })
 
       this.selectMode('attack')
-      this.selectPlayer(this.players.find(x => x.name === 'Player 1'))
-    },
-    setupFourPlayer () {
-      this.setupBoard()
+      this.selectPlayer(this.players[0])
 
-      this.PLAYERS_SET_PLAYERS(
-        [{
-          name: 'Player 1',
-          colour: 'red',
-          isComputer: true,
-          index: 1
-        },
-        {
-          name: 'Player 2',
-          colour: 'blue',
-          isComputer: true,
-          index: 2
-        },
-        {
-          name: 'Player 3',
-          colour: 'purple',
-          isComputer: true,
-          index: 3
-        },
-        {
-          name: 'Player 4',
-          colour: 'brown',
-          isComputer: true,
-          index: 4
-        }]
-      )
-
-      this.setupBlockedTiles(10)
-
-      this.controlTiles({
-        empire: 'Player 1',
-        hitPoints: 3,
-        tiles: [1, 2, 11]
-      })
-
-      this.controlTiles({
-        empire: 'Player 2',
-        hitPoints: 3,
-        tiles: [90, 99, 100]
-      })
-
-      this.controlTiles({
-        empire: 'Player 3',
-        hitPoints: 3,
-        tiles: [81, 91, 92]
-      })
-
-      this.controlTiles({
-        empire: 'Player 4',
-        hitPoints: 3,
-        tiles: [9, 10, 20]
-      })
-
-      this.selectMode('attack')
-      this.selectPlayer(this.players.find(x => x.name === 'Player 1'))
+      this.$router.push({ path: '/play' })
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.c-setup {
+  color: white;
+
+  label {
+    display: block;
+  }
+}
 </style>
