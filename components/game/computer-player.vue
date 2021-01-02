@@ -12,7 +12,8 @@ export default {
       'selectedPlayer',
       'rangedTiles',
       'selectedTile',
-      'rollValue'
+      'rollValue',
+      'gameOver'
     ]),
 
     ...mapState('players', [
@@ -34,7 +35,9 @@ export default {
 
   watch: {
     '$store.state.turn.selectedPlayer' () {
-      this.detectPlayerChange()
+      if (!this.gameOver) {
+        this.detectPlayerChange()
+      }
     }
   },
 

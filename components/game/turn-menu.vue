@@ -8,39 +8,44 @@
         src="/soldier.png">
 
       <p
-        v-show="isComputerPlayer">
+        v-show="!gameOver && isComputerPlayer">
         Waiting for Computer player...
       </p>
 
       <p
-        v-show="!isComputerPlayer && currentMode === 'attack'">
+        v-show="!gameOver && !isComputerPlayer && currentMode === 'attack'">
         Select a tile and attack
       </p>
 
       <p
-        v-show="!isComputerPlayer && currentMode === 'roll'">
+        v-show="!gameOver && !isComputerPlayer && currentMode === 'roll'">
         Spend {{ rollValue }} Points
       </p>
 
+      <p
+        v-show="gameOver">
+        Game won by {{ selectedPlayer.name }}!
+      </p>
+
       <c-icon
-        v-show="isComputerPlayer"
+        v-show="!gameOver && isComputerPlayer"
         class="c-turn-menu-header-spinner fa-spin"
         icon="spinner" />
 
       <img
-        v-show="!isComputerPlayer && currentMode === 'attack'"
+        v-show="!gameOver && !isComputerPlayer && currentMode === 'attack'"
         class="c-turn-menu-header-endTurn u-pointer"
         src="/roll.png"
         @click="rollDice">
 
       <img
-        v-show="!isComputerPlayer && currentMode === 'roll' && rollValue === 0"
+        v-show="!gameOver && !isComputerPlayer && currentMode === 'roll' && rollValue === 0"
         class="c-turn-menu-header-endTurn u-pointer"
         src="/next.png"
         @click="rollDice">
 
       <img
-        v-show="isComputerPlayer && currentMode === 'roll' && rollValue > 0"
+        v-show="!gameOver && isComputerPlayer && currentMode === 'roll' && rollValue > 0"
         class="c-turn-menu-header-endTurn"
         title="Please spend your points"
         src="/next-disabled.png">
@@ -60,7 +65,8 @@ export default {
     ...mapState('turn', [
       'selectedPlayer',
       'currentMode',
-      'rollValue'
+      'rollValue',
+      'gameOver'
     ]),
 
     ...mapState('players', [
@@ -96,10 +102,23 @@ export default {
     }
   },
 
+  watch: {
+    '$store.state.tiles.tiles' () {
+      let remainingPlayers = this.tiles.filter(x => x.empire !== null && x.empire !== 'blocked').map(x => x.empire)
+      remainingPlayers = [...new Set(remainingPlayers)]
+
+      if (remainingPlayers.length === 1) {
+        const winner = this.players.find(x => x.name === remainingPlayers[0])
+        this.setGameOver(winner)
+      }
+    }
+  },
+
   methods: {
     ...mapActions('turn', [
       'roll',
-      'endTurn'
+      'endTurn',
+      'setGameOver'
     ]),
 
     rollDice () {

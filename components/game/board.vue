@@ -11,7 +11,8 @@ export default {
   computed: {
     ...mapState('turn', [
       'selectedPlayer',
-      'currentMode'
+      'currentMode',
+      'gameOver'
     ]),
 
     ...mapState('players', [
@@ -23,7 +24,7 @@ export default {
     ]),
 
     additionalClasses () {
-      const isBoardEnabled = this.selectedPlayer.isComputer
+      const isBoardEnabled = this.selectedPlayer.isComputer || this.gameOver
         ? 'c-board--disabled'
         : ''
 
@@ -41,7 +42,7 @@ export default {
   background-color: black;
   width: 606px;
   border-radius: 10px;
-  margin: 0px auto;
+  margin: 0 auto;
   transition: all 0.3s ease-in-out;
   max-width: 100%;
 

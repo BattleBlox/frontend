@@ -5,7 +5,8 @@ import {
   TURN_SELECT_MODE,
   TURN_SET_RANGED_TILES,
   TURN_CLEAR_RANGED_TILES,
-  TURN_SET_ROLL_VALUE
+  TURN_SET_ROLL_VALUE,
+  TURN_SET_GAME_OVER
 } from '@/store/mutations.constants'
 
 export const state = () => ({
@@ -13,10 +14,15 @@ export const state = () => ({
   selectedPlayer: null,
   currentMode: null,
   rangedTiles: [],
-  rollValue: 0
+  rollValue: 0,
+  gameOver: false
 })
 
 export const mutations = {
+  [TURN_SET_GAME_OVER]: (state, value) => {
+    state.gameOver = value
+  },
+
   [TURN_SET_SELECTED_TILE]: (state, selectedTile) => {
     state.selectedTile = selectedTile
   },
@@ -98,10 +104,17 @@ export const actions = {
     }
   },
 
+  setGameOver: ({ commit }, player) => {
+    commit(TURN_SET_GAME_OVER, true)
+    commit(TURN_SELECT_PLAYER, player)
+    commit(TURN_DESELECT_TILE)
+  },
+
   selectPlayer: ({ commit }, player) => {
     commit(TURN_SELECT_PLAYER, player)
     commit(TURN_SELECT_MODE, 'attack')
     commit(TURN_CLEAR_RANGED_TILES)
+    commit(TURN_SET_GAME_OVER, false)
   },
 
   roll: ({ commit }, { controlledTiles, capitalTiles }) => {
