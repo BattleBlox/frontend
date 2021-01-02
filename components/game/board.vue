@@ -41,7 +41,7 @@ export default {
   background-color: black;
   width: 606px;
   border-radius: 10px;
-  margin: 20px auto;
+  margin: 0px auto;
   transition: all 0.3s ease-in-out;
   max-width: 100%;
 

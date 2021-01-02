@@ -9,6 +9,7 @@
 <style scoped>
 .c-navigator {
   padding: 15px;
+  text-align:center;
 }
 
 .c-navigator img {

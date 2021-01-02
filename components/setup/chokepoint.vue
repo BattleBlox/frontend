@@ -86,7 +86,7 @@ export default {
 
       this.selectPlayer(this.players[0])
 
-      this.$router.push({ path: '/play' })
+      this.$router.push({ path: '/play?type=Chokepoint' })
     }
   }
 }

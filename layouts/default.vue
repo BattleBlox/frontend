@@ -24,6 +24,7 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   background-color: black;
+  color: white;
 }
 
 body, h1, h2, h3, p, button, a {
