@@ -6,6 +6,7 @@
       <h2>Quick Match</h2>
       <p>1v1 player versus computer. Try to conquer the map</p>
       <button class="c-menu-button" @click="quickMatch()">
+        <c-icon icon="play-circle" />
         Start Quick Match
       </button>
     </div>
@@ -14,7 +15,17 @@
       <h2>Blitz Mode</h2>
       <p>You versus 3 computer players, duel to the death in a congested map</p>
       <button class="c-menu-button" @click="startBlitzGame()">
+        <c-icon icon="fist-raised" />
         Start Blitz Mode
+      </button>
+    </div>
+
+    <div class="c-game">
+      <h2>AI Spectacle</h2>
+      <p>Watch 10 computers fight to the death. No human players</p>
+      <button class="c-menu-button" @click="startSpectacle()">
+        <c-icon icon="brain" />
+        Start Spectacle
       </button>
     </div>
   </div>
@@ -152,6 +163,138 @@ export default {
       this.selectPlayer(this.players[0])
 
       this.$router.push({ path: '/play' })
+    },
+
+    startSpectacle () {
+      this.setupBoard()
+      this.setupBlockedTiles(10)
+
+      this.PLAYERS_SET_PLAYERS(
+        [{
+          name: 'Player 1',
+          colour: 'red',
+          isComputer: true,
+          index: 1
+        },
+        {
+          name: 'Player 2',
+          colour: 'blue',
+          isComputer: true,
+          index: 2
+        },
+        {
+          name: 'Player 3',
+          colour: 'purple',
+          isComputer: true,
+          index: 3
+        },
+        {
+          name: 'Player 4',
+          colour: 'brown',
+          isComputer: true,
+          index: 4
+        },
+        {
+          name: 'Player 5',
+          colour: 'yellow',
+          isComputer: true,
+          index: 5
+        },
+        {
+          name: 'Player 6',
+          colour: 'green',
+          isComputer: true,
+          index: 6
+        },
+        {
+          name: 'Player 7',
+          colour: 'pink',
+          isComputer: true,
+          index: 7
+        },
+        {
+          name: 'Player 8',
+          colour: 'skyblue',
+          isComputer: true,
+          index: 8
+        },
+        {
+          name: 'Player 9',
+          colour: 'lightred',
+          isComputer: true,
+          index: 9
+        },
+        {
+          name: 'Player 10',
+          colour: 'orange',
+          isComputer: true,
+          index: 10
+        }]
+      )
+
+      this.controlTiles({
+        empire: 'Player 1',
+        hitPoints: 1,
+        tiles: [1]
+      })
+
+      this.controlTiles({
+        empire: 'Player 2',
+        hitPoints: 1,
+        tiles: [3]
+      })
+
+      this.controlTiles({
+        empire: 'Player 3',
+        hitPoints: 1,
+        tiles: [5]
+      })
+
+      this.controlTiles({
+        empire: 'Player 4',
+        hitPoints: 1,
+        tiles: [7]
+      })
+
+      this.controlTiles({
+        empire: 'Player 5',
+        hitPoints: 1,
+        tiles: [9]
+      })
+
+      this.controlTiles({
+        empire: 'Player 6',
+        hitPoints: 1,
+        tiles: [92]
+      })
+
+      this.controlTiles({
+        empire: 'Player 7',
+        hitPoints: 1,
+        tiles: [94]
+      })
+
+      this.controlTiles({
+        empire: 'Player 8',
+        hitPoints: 1,
+        tiles: [96]
+      })
+
+      this.controlTiles({
+        empire: 'Player 9',
+        hitPoints: 1,
+        tiles: [98]
+      })
+
+      this.controlTiles({
+        empire: 'Player 10',
+        hitPoints: 1,
+        tiles: [100]
+      })
+
+      this.selectPlayer(this.players[0])
+
+      this.$router.push({ path: '/play' })
     }
   }
 }
@@ -189,6 +332,10 @@ export default {
     cursor: pointer;
     text-decoration: none;
     margin: 0 auto;
+
+    svg {
+      margin-right: 3px;
+    }
 
     &:hover {
       text-decoration: underline;

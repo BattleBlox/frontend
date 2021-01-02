@@ -164,6 +164,30 @@ export default {
     background-color: brown;
   }
 
+  .u-yellow {
+    background-color: #D8B100;
+  }
+
+  .u-pink {
+    background-color: #D64F8B;
+  }
+
+  .u-green {
+    background-color: green;
+  }
+
+  .u-skyblue {
+    background-color: #3288D3;
+  }
+
+  .u-lightred {
+    background-color: lightcoral;
+  }
+
+  .u-orange {
+    background-color: orange;
+  }
+
   .c-turn-menu-header-avatar {
     position: absolute;
     left: -25px;

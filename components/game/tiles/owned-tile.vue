@@ -164,6 +164,114 @@ export default {
       }
   }
 
+    &.c-tile--pink {
+    background-color: #D64F8B;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
+      &.c-tile--green {
+    background-color: green;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
+      &.c-tile--yellow {
+    background-color: #D8B100;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
+      &.c-tile--skyblue {
+    background-color: #3288D3;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
+      &.c-tile--lightred {
+    background-color: #FF7CB0;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
+      &.c-tile--orange {
+    background-color: #FF7459;
+    color: white;
+
+      &.c-tile-strength--weak {
+        color: #FF7F7F;
+      }
+
+      &.c-tile-strength--strong {
+        color: white;
+      }
+
+      &.c-tile-strength--capital {
+        color: white;
+        font-weight: bold;
+      }
+  }
+
   &.u-tile--selected {
     border: 5px solid gold;
   }

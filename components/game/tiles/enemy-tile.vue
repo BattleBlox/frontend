@@ -147,6 +147,36 @@ export default {
     color: white;
   }
 
+  &.c-tile--pink {
+    background-color: #D64F8B;
+    color: white;
+  }
+
+  &.c-tile--green {
+    background-color: green;
+    color: white;
+  }
+
+  &.c-tile--yellow {
+    background-color: #D8B100;
+    color: white;
+  }
+
+  &.c-tile--skyblue {
+    background-color: #3288D3;
+    color: white;
+  }
+
+  &.c-tile--lightred {
+    background-color: #FF7CB0;
+    color: white;
+  }
+
+  &.c-tile--orange {
+    background-color: #FF7459;
+    color: white;
+  }
+
   &.c-enemy-tile--attackable {
     background-color: orange;
   }
