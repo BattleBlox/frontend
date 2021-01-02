@@ -1,7 +1,7 @@
 
 export default {
   head: {
-    title: 'BattleBlox',
+    title: 'BattleBlox | A challenging turn based strategy game',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0' },
