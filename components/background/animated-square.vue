@@ -36,13 +36,13 @@ export default {
 
   methods: {
     setup () {
-      this.size = randomiser.generateRandomNumber(25, 150)
+      this.size = randomiser.generateRandomNumber(30, 100)
       this.startTop = randomiser.generateRandomNumber(-25, 125)
       this.startLeft = randomiser.generateRandomNumber(-25, 125)
-      this.speed = randomiser.generateRandomNumber(20, 90)
+      this.speed = randomiser.generateRandomNumber(10, 70)
 
       const animationVariant = randomiser.generateRandomNumber(1, 10)
-      this.animationVariant = animationVariant < 6 ? 1 : 2
+      this.animationVariant = animationVariant < 7 ? 1 : 2
 
       this.isLoaded = true
     }

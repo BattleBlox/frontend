@@ -1,30 +1,18 @@
 <template>
-  <div class="c-menu">
-    <img class="c-menu-logo" src="/logo-square.png">
-    <game-carousel />
+  <div class="c-slide">
+    <slot />
   </div>
 </template>
 
-<style scoped lang="scss">
-  .c-menu {
-    color: white;
-    width: 600px;
-    max-width: 100%;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .c-menu-logo {
-    margin: 80px;
-    margin-bottom: 40px;
-    height: 150px;
-  }
-
-  .c-game {
+<style lang="scss">
+  .c-slide {
     padding: 30px;
 
-    p {
+    h1, h2 {
       margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 20px;
     }
   }
 
@@ -32,7 +20,7 @@
     display: block;
     color: white;
     border: 1px solid white;
-    padding: 10px;
+    padding: 15px;
     background-color: transparent;
     cursor: pointer;
     text-decoration: none;
