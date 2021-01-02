@@ -4,7 +4,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
-import { TURN_SET_ROLL_VALUE } from '@/store/mutations.constants'
+import { TURN_DESELECT_TILE, TURN_SET_ROLL_VALUE } from '@/store/mutations.constants'
 
 export default {
   computed: {
@@ -43,7 +43,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations('turn', [TURN_SET_ROLL_VALUE]),
+    ...mapMutations('turn', [TURN_SET_ROLL_VALUE, TURN_DESELECT_TILE]),
 
     ...mapActions('turn', [
       'selectTile',
@@ -62,6 +62,7 @@ export default {
         if (this.playerTiles.length > 0) {
           // eslint-disable-next-line no-console
           console.log('Computer Controlled Turn', this.selectedPlayer.name)
+
           setTimeout(function () { self.play() }, 2000)
         } else {
           this.endTurn()
@@ -72,12 +73,14 @@ export default {
     makeDecision () {
       const result = Math.floor(Math.random() * 9) + 1
 
-      return result <= 3
+      return result <= 2
     },
 
     play () {
       // Attack Phase
       for (let loop = 0; loop < 10; loop++) {
+        // Prevent a bug which causes a tile to be selected and then deselected on subsequent loops
+        this.TURN_DESELECT_TILE()
         this.playerTiles.filter(x => x.hitPoints > 1).forEach((tile, i) => {
           this.processTile(tile)
         })
@@ -97,25 +100,24 @@ export default {
     },
 
     processTile (tile) {
-      if (tile.hitPoints > 1) {
-        this.selectTile(tile)
+      if (tile.hitPoints < 2) { return }
 
-        if (this.rangedTiles) {
-          const defendingTiles = this.tiles.filter(x => x.empire !== 'blocked' && x.empire !== this.selectedPlayer.name && this.rangedTiles.includes(x.identifier))
+      this.selectTile(tile)
 
-          let defendingTile = null
+      // Select one tile to attack
+      const defendingTile = this.tiles.find(x =>
+        // Filter only enemy or neutral tiles
+        x.empire !== 'blocked' && x.empire !== this.selectedPlayer.name &&
 
-          for (const targetTile of defendingTiles) {
-            if (targetTile.hitPoints < (this.selectedTile.hitPoints + 1) || (this.makeDecision() && targetTile.hitPoints < (this.selectedTile.hitPoints + 3))) {
-              defendingTile = targetTile
-              break
-            }
-          }
+        // Filter only tiles within range
+        this.rangedTiles.includes(x.identifier) &&
 
-          if (defendingTile) {
-            this.attackTile(defendingTile)
-          }
-        }
+        // Filter only tiles the computer wants to attack
+        (x.hitPoints < (this.selectedTile.hitPoints + 1) || (this.makeDecision() && x.hitPoints < (this.selectedTile.hitPoints + 3)))
+      )
+
+      if (defendingTile) {
+        this.attackTile(defendingTile)
       }
     },
 

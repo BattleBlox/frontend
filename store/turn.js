@@ -77,28 +77,24 @@ export const actions = {
       : 1
 
     const nextPlayer = rootState.players.players.find(x => x.index === nextPlayerIndex)
+
     commit(TURN_SELECT_PLAYER, nextPlayer)
   },
 
   selectTile: ({ commit, state }, tile) => {
-    // PREVENT: Selection of free tiles
-    if (tile.empire === null) {
+    // PREVENT: Selection of tiles the player doesn't own
+    if (tile.empire === null || tile.empire !== state.selectedPlayer.name) {
       return
     }
 
-    // PREVENT: Selection of other player tiles
-    if (tile.empire !== state.selectedPlayer.name) {
-      return
-    }
-
-    if (state.selectedTile === null || tile.identifier !== state.selectedTile.identifier) {
+    if (state.selectedTile && state.selectedTile.identifier === tile.identifier) {
+      commit(TURN_DESELECT_TILE)
+    } else {
       commit(TURN_SET_SELECTED_TILE, tile)
 
       if (state.currentMode === 'attack' || state.selectedPlayer.isComputer) {
         commit(TURN_SET_RANGED_TILES)
       }
-    } else {
-      commit(TURN_DESELECT_TILE)
     }
   },
 
