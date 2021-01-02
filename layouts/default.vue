@@ -71,4 +71,14 @@ svg {
     background: rgba(30, 30, 30, 0.8);
   }
 }
+
+p {
+  svg {
+    margin-right: 5px;
+  }
+}
+
+a {
+  color: white;
+}
 </style>

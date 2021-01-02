@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>Quick Match</h1>
-    <p>1v1 player versus computer. Try to conquer the map</p>
+    <h1>How to Play</h1>
+    <p>BattleBlox is a free turn based board game, the aim is to wipe out all opposing players and control the map.</p>
+    <p>Each turn has an Attack, Roll and Spend phase, choose your moves carefully.</p>
+
     <button class="c-menu-button" @click="quickMatch()">
       <c-icon icon="play-circle" />
       Start Quick Match

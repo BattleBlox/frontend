@@ -9,10 +9,10 @@
     padding: 30px;
 
     h1, h2 {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     p {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
   }
 
@@ -21,6 +21,7 @@
     color: white;
     border: 1px solid white;
     padding: 15px;
+    font-size: 1rem;
     background-color: transparent;
     cursor: pointer;
     text-decoration: none;

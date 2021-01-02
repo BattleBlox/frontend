@@ -2,6 +2,8 @@
   <div class="c-menu">
     <img class="c-menu-logo" src="/logo-square.png">
     <game-carousel />
+
+    <p><c-icon icon="code" />Built by <a href="https://www.tommcclean.me" target="_blank">Thomas William McClean</a></p>
   </div>
 </template>
 
