@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>1 versus 1</h2>
-    <p>Try taking on a friend, only human players</p>
+    <h2>Split Screen Multiplayer</h2>
+    <p>Take on a friend on the same device in a one versus one format.</p>
     <button class="c-menu-button" @click="play()">
       <c-icon icon="play-circle" />
-      Start Human 1v1
+      Start Split Screen
     </button>
   </div>
 </template>

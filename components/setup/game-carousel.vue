@@ -1,7 +1,9 @@
 <template>
   <div class="c-gameCarousel">
     <div class="c-gameCarousel-arrow c-gameCarousel--left" @click="slide--">
-      <c-icon icon="chevron-left" />
+      <div class="c-gameCarousel-arrow-inner">
+        <c-icon icon="chevron-left" class="fa-fw" />
+      </div>
     </div>
 
     <div class="c-gameCarousel-inner">
@@ -23,7 +25,9 @@
     </div>
 
     <div class="c-gameCarousel-arrow c-gameCarousel--right" @click="slide++">
-      <c-icon icon="chevron-right" />
+      <div class="c-gameCarousel-arrow-inner">
+        <c-icon icon="chevron-right" />
+      </div>
     </div>
   </div>
 </template>
@@ -66,20 +70,28 @@ export default {
 
 .c-gameCarousel-arrow {
   margin: 10px;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 10px;
   text-align: center;
   cursor: pointer;
+  font-size: 20px;
   transition: all 0.2s ease-in-out;
 
-  &:hover {
-    background-color: white;
+  .c-gameCarousel-arrow-inner {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
 
     svg {
-      color: black;
-      font-size: 20px;
+      flex-grow: 1;
+    }
+
+    &:hover {
+      background-color: white;
+
+      svg {
+        color: black;
+      }
     }
   }
 }

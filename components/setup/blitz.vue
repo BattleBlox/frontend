@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h2>Blitz Mode</h2>
-    <p>You versus 3 computer players, duel to the death in a congested map</p>
+    <h2>Play Blitz</h2>
+    <p>Blitz is a high speed game mode where you face up against 3 computer players in a congested map.</p>
+    <p>Use bonuses to survive, the last one alive wins.</p>
     <button class="c-menu-button" @click="startBlitzGame()">
       <c-icon icon="fist-raised" />
-      Start Blitz Mode
+      Start Blitz
     </button>
   </div>
 </template>
