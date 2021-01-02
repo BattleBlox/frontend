@@ -156,7 +156,7 @@ export default {
       this.controlTiles({
         empire: 'blocked',
         hitPoints: 0,
-        tiles: [5, 6, 15, 16, 24, 25, 26, 27, 44, 45, 46, 47, 54, 55, 56, 57, 64, 65, 66, 67, 84, 85, 86, 87, 95, 96]
+        tiles: [5, 6, 15, 16, 24, 25, 26, 27, 34, 35, 36, 37, 44, 45, 46, 47, 64, 65, 66, 67, 74, 75, 76, 77, 85, 86, 95, 96]
       })
 
       this.selectPlayer(this.players[0])

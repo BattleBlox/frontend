@@ -50,90 +50,62 @@ export default {
   }
 
   &.c-board--red {
-    border: 3px solid red;
-
     &.c-board--attack {
       background-color: red;
     }
   }
 
   &.c-board--blue {
-    border: 3px solid blue;
-
     &.c-board--attack {
       background-color: blue;
     }
   }
 
     &.c-board--purple {
-    border: 3px solid purple;
-
     &.c-board--attack {
       background-color: purple;
     }
   }
 
     &.c-board--brown {
-    border: 3px solid brown;
-
     &.c-board--attack {
       background-color: brown;
     }
   }
 
     &.c-board--yellow {
-    border: 3px solid #D8B100;
-
     &.c-board--attack {
       background-color: #D8B100;
     }
   }
 
   &.c-board--pink {
-    border: 3px solid #D64F8B;
-
     &.c-board--attack {
       background-color: #D64F8B;
     }
   }
 
   &.c-board--green {
-    border: 3px solid green;
-
     &.c-board--attack {
       background-color: green;
     }
   }
 
     &.c-board--skyblue {
-    border: 3px solid #3288D3;
-
     &.c-board--attack {
       background-color: #3288D3;
     }
   }
 
     &.c-board--lightred {
-    border: 3px solid lightcoral;
-
     &.c-board--attack {
       background-color: lightcoral;
     }
   }
 
     &.c-board--orange {
-    border: 3px solid orange;
-
     &.c-board--attack {
       background-color: orange;
-    }
-  }
-
-    &.c-board--red {
-    border: 3px solid red;
-
-    &.c-board--attack {
-      background-color: red;
     }
   }
 

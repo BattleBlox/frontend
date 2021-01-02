@@ -76,6 +76,7 @@ export default {
 .c-neutral-tile {
   background-color: silver;
   border: 1px solid white;
+  opacity: 0.75;
 
   &.c-neutral-tile--attackable {
     background-color: orange;

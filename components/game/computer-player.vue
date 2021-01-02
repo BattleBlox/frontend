@@ -59,9 +59,6 @@ export default {
       const self = this
       if (this.selectedPlayer.isComputer) {
         if (this.playerTiles.length > 0) {
-          // eslint-disable-next-line no-console
-          console.log('Computer Controlled Turn', this.selectedPlayer.name)
-
           setTimeout(function () { self.play() }, 2000)
         } else {
           this.endTurn()
@@ -311,8 +308,6 @@ export default {
         const tile = this.playerTiles[randomTile - 1]
 
         this.selectTile(tile)
-
-        console.log('random')
 
         this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
