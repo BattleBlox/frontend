@@ -12,6 +12,15 @@
     </div>
 
     <div class="c-game">
+      <h2>1 versus 1</h2>
+      <p>Try taking on a friend, only human players</p>
+      <button class="c-menu-button" @click="quickMatch(false)">
+        <c-icon icon="play-circle" />
+        Start Human 1v1
+      </button>
+    </div>
+
+    <div class="c-game">
       <h2>Blitz Mode</h2>
       <p>You versus 3 computer players, duel to the death in a congested map</p>
       <button class="c-menu-button" @click="startBlitzGame()">
@@ -69,7 +78,7 @@ export default {
       'selectPlayer'
     ]),
 
-    quickMatch () {
+    quickMatch (isPlayer2Computer = true) {
       this.setupBoard()
       this.setupBlockedTiles(25)
 
@@ -83,7 +92,7 @@ export default {
         {
           name: 'Player 2',
           colour: 'blue',
-          isComputer: true,
+          isComputer: isPlayer2Computer,
           index: 2
         }]
       )
