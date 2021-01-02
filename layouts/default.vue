@@ -1,8 +1,17 @@
 <template>
   <div>
-    <nuxt />
+    <background />
+    <div class="page">
+      <nuxt />
+    </div>
   </div>
 </template>
+
+<script>
+import '@/styles/animations.scss'
+
+export default {}
+</script>
 
 <style lang="scss">
 html {
@@ -16,6 +25,15 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   background-color: black;
+}
+
+.page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
 }
 
 *,
