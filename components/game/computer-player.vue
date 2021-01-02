@@ -47,7 +47,6 @@ export default {
 
     ...mapActions('turn', [
       'selectTile',
-      'selectMode',
       'roll',
       'endTurn'
     ]),
@@ -82,13 +81,11 @@ export default {
         // Prevent a bug which causes a tile to be selected and then deselected on subsequent loops
         this.TURN_DESELECT_TILE()
         this.playerTiles.filter(x => x.hitPoints > 1).forEach((tile, i) => {
-          this.processTile(tile)
+          this.processAttacks(tile)
         })
       }
 
       // Roll Phase
-      this.selectMode('roll')
-
       this.roll({
         controlledTiles: this.playerTiles.length,
         capitalTiles: this.bonusCapitalPoints
@@ -99,7 +96,7 @@ export default {
       this.endTurn()
     },
 
-    processTile (tile) {
+    processAttacks (tile) {
       if (tile.hitPoints < 2) { return }
 
       this.selectTile(tile)

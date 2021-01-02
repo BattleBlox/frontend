@@ -98,7 +98,6 @@ export default {
 
   methods: {
     ...mapActions('turn', [
-      'selectMode',
       'roll',
       'endTurn'
     ]),
@@ -109,7 +108,6 @@ export default {
           this.endTurn()
           break
         case 'attack':
-          this.selectMode('roll')
           this.roll({
             controlledTiles: this.controlledTiles,
             capitalTiles: this.bonusCapitalPoints

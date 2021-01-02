@@ -100,14 +100,14 @@ export const actions = {
 
   selectPlayer: ({ commit }, player) => {
     commit(TURN_SELECT_PLAYER, player)
-  },
-
-  selectMode: ({ commit }, mode) => {
-    commit(TURN_SELECT_MODE, mode)
+    commit(TURN_SELECT_MODE, 'attack')
     commit(TURN_CLEAR_RANGED_TILES)
   },
 
   roll: ({ commit }, { controlledTiles, capitalTiles }) => {
+    commit(TURN_SELECT_MODE, 'roll')
+    commit(TURN_CLEAR_RANGED_TILES)
+
     const roll = Math.floor(Math.random() * 6) + 1
 
     const bonusPoints = Math.round(controlledTiles / 5)

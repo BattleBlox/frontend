@@ -53,8 +53,7 @@ export default {
     ]),
 
     ...mapActions('turn', [
-      'selectPlayer',
-      'selectMode'
+      'selectPlayer'
     ]),
 
     startGame () {
@@ -88,7 +87,6 @@ export default {
         tiles: [37, 47, 57, 67]
       })
 
-      this.selectMode('attack')
       this.selectPlayer(this.players[0])
 
       this.$router.push({ path: '/play' })
