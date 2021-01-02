@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navigator />
+    <compact-navigator />
     <div v-if="players.length > 0" class="c-game">
       <board />
 

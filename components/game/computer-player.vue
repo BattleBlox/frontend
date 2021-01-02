@@ -101,7 +101,7 @@ export default {
       this.selectTile(tile)
 
       // Select one tile to attack
-      const defendingTile = this.tiles.find(x =>
+      const potentialTargets = this.tiles.filter(x =>
         // Filter only enemy or neutral tiles
         x.empire !== 'blocked' && x.empire !== this.selectedPlayer.name &&
 
@@ -112,8 +112,9 @@ export default {
         (x.hitPoints < (this.selectedTile.hitPoints + 1) || (this.makeDecision() && x.hitPoints < (this.selectedTile.hitPoints + 3)))
       )
 
-      if (defendingTile) {
-        this.attackTile(defendingTile)
+      if (potentialTargets.length > 0) {
+        const randomTarget = Math.floor(Math.random() * potentialTargets.length) + 1
+        this.attackTile(potentialTargets[randomTarget - 1])
       }
     },
 
