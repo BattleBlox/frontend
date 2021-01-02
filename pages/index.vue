@@ -37,6 +37,15 @@
         Start Spectacle
       </button>
     </div>
+
+    <div class="c-game">
+      <h2>Chokepoint</h2>
+      <p>Human versus computer, with small chokepoints</p>
+      <button class="c-menu-button" @click="startChokepoint()">
+        <c-icon icon="brain" />
+        Start Chokepoint
+      </button>
+    </div>
   </div>
 </template>
 
@@ -107,6 +116,47 @@ export default {
         empire: 'Player 2',
         hitPoints: 3,
         tiles: [37, 47, 57, 67]
+      })
+
+      this.selectPlayer(this.players[0])
+
+      this.$router.push({ path: '/play' })
+    },
+
+    startChokepoint () {
+      this.setupBoard()
+
+      this.PLAYERS_SET_PLAYERS(
+        [{
+          name: 'You',
+          colour: 'red',
+          isComputer: false,
+          index: 1
+        },
+        {
+          name: 'Player 2',
+          colour: 'blue',
+          isComputer: true,
+          index: 2
+        }]
+      )
+
+      this.controlTiles({
+        empire: 'You',
+        hitPoints: 2,
+        tiles: [1, 2, 11, 81, 91, 92]
+      })
+
+      this.controlTiles({
+        empire: 'Player 2',
+        hitPoints: 2,
+        tiles: [9, 10, 20, 90, 99, 100]
+      })
+
+      this.controlTiles({
+        empire: 'blocked',
+        hitPoints: 0,
+        tiles: [5, 6, 15, 16, 24, 25, 26, 27, 44, 45, 46, 47, 54, 55, 56, 57, 64, 65, 66, 67, 84, 85, 86, 87, 95, 96]
       })
 
       this.selectPlayer(this.players[0])
@@ -319,9 +369,9 @@ export default {
   }
 
   .c-menu-logo {
-    margin: 30px;
-    margin-bottom: 0;
-    height: 300px;
+    margin: 80px;
+    margin-bottom: 40px;
+    height: 150px;
   }
 
   .c-game {
