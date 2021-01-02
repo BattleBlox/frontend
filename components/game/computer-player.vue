@@ -76,16 +76,15 @@ export default {
     },
 
     play () {
-      // Attack Phase
-      for (let loop = 0; loop < 10; loop++) {
+      for (let attackLoop = 0; attackLoop < 10; attackLoop++) {
         // Prevent a bug which causes a tile to be selected and then deselected on subsequent loops
         this.TURN_DESELECT_TILE()
-        this.playerTiles.filter(x => x.hitPoints > 1).forEach((tile, i) => {
+
+        this.playerTiles.filter(x => x.hitPoints > 1).forEach((tile) => {
           this.processAttacks(tile)
         })
       }
 
-      // Roll Phase
       this.roll({
         controlledTiles: this.playerTiles.length,
         capitalTiles: this.bonusCapitalPoints
@@ -122,34 +121,38 @@ export default {
       let attackerHitPoints = this.selectedTile.hitPoints
       let defenderHitPoints = defendingTile.hitPoints
 
+      // Neutral tiles don't put up a fight
       if (defenderHitPoints < 1) {
         this.claimTile(attackerHitPoints, defendingTile.identifier)
-      } else {
-        while (attackerHitPoints > 1 && defenderHitPoints > 1) {
-          const result = Math.floor(Math.random() * 5) + 1
+        return
+      }
 
-          if (result < 3) {
-            attackerHitPoints--
-          } else {
-            defenderHitPoints--
-          }
-        }
+      while (attackerHitPoints > 1 && defenderHitPoints > 1) {
+        const result = Math.floor(Math.random() * 10) + 1
 
-        if (attackerHitPoints > defenderHitPoints) {
-          this.claimTile(attackerHitPoints, defendingTile.identifier)
+        if (result <= 4) {
+          attackerHitPoints--
         } else {
-          this.loseBattle(defendingTile, defenderHitPoints)
+          defenderHitPoints--
         }
+      }
+
+      if (attackerHitPoints > defenderHitPoints) {
+        this.claimTile(attackerHitPoints, defendingTile.identifier)
+      } else {
+        this.loseBattle(defendingTile, defenderHitPoints)
       }
     },
 
     claimTile (attackerHitPoints, tileIdentifier) {
+      // Steal tile
       this.controlTile({
         empire: this.selectedPlayer.name,
         hitPoints: attackerHitPoints - 1,
         tileIdentifier
       })
 
+      // Update attacking tile
       this.controlTile({
         empire: this.selectedPlayer.name,
         hitPoints: 1,
@@ -158,12 +161,14 @@ export default {
     },
 
     loseBattle (defendingTile, defenderHitPoints) {
+      // Update attacking tile
       this.controlTile({
         empire: this.selectedPlayer.name,
         hitPoints: 1,
         tileIdentifier: this.selectedTile.identifier
       })
 
+      // Update defending tile
       this.controlTile({
         empire: defendingTile.empire,
         hitPoints: defenderHitPoints,
@@ -180,44 +185,24 @@ export default {
             return
           }
 
+          if (tile.hitPoints > 20) {
+            continue
+          }
+
           this.selectTile(tile)
 
-          for (const enemyTileId of this.rangedTiles) {
-            const enemyTile = this.tiles.find(x => x.identifier === enemyTileId && x.empire !== this.selectedPlayer.name && x.empire !== 'blocked')
+          const enemyTiles = this.tiles.filter(enemyTile =>
+            // Identify enemy tiles
+            this.rangedTiles.includes(enemyTile.identifier) &&
+            enemyTile.empire !== this.selectedPlayer.name &&
+            enemyTile.empire !== 'blocked' &&
+            enemyTile.empire !== null &&
 
-            if (enemyTile && enemyTile.hitPoints >= tile.hitPoints && enemyTile.hitPoints > 1 && tile.hitPoints < 21) {
-              this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
+            // Identify tiles which challenge the selected tile
+            enemyTile.hitPoints >= tile.hitPoints
+          )
 
-              this.controlTile({
-                empire: this.selectedPlayer.name,
-                hitPoints: tile.hitPoints + 1,
-                tileIdentifier: tile.identifier
-              })
-
-              break
-            }
-          }
-        }
-
-        loop++
-
-        if (loop > 20) {
-          break
-        }
-      }
-
-      // Spend on Exploration
-      loop = 0
-      while (this.rollValue > 0) {
-        for (const tile of this.playerTiles) {
-          if (this.rollValue === 0) {
-            return
-          }
-          this.selectTile(tile)
-
-          const neutralTiles = this.tiles.filter(x => this.rangedTiles.includes(x.identifier) && x.empire === null)
-
-          if (neutralTiles && neutralTiles.length > 0 && tile.hitPoints === 1) {
+          if (enemyTiles.length > 0) {
             this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
             this.controlTile({
@@ -237,6 +222,45 @@ export default {
         }
       }
 
+      // Spend on Exploration
+      loop = 0
+      while (this.rollValue > 0) {
+        for (const tile of this.playerTiles) {
+          if (this.rollValue === 0) {
+            return
+          }
+
+          if (tile.hitPoints > 1) {
+            continue
+          }
+
+          this.selectTile(tile)
+
+          const neutralTiles = this.tiles.filter(x =>
+            this.rangedTiles.includes(x.identifier) &&
+            x.empire === null
+          )
+
+          if (neutralTiles.length > 0) {
+            this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
+
+            this.controlTile({
+              empire: this.selectedPlayer.name,
+              hitPoints: tile.hitPoints + 1,
+              tileIdentifier: tile.identifier
+            })
+
+            break
+          }
+        }
+
+        loop++
+
+        if (loop > 30) {
+          break
+        }
+      }
+
       // Spend on Attacks
       loop = 0
       while (this.rollValue > 0) {
@@ -244,28 +268,36 @@ export default {
           if (this.rollValue === 0) {
             return
           }
+
+          if (tile.hitPoints > 20) {
+            continue
+          }
+
           this.selectTile(tile)
 
-          for (const enemyTileId of this.rangedTiles) {
-            const enemyTile = this.tiles.find(x => x.identifier === enemyTileId && x.empire !== this.selectedPlayer.name && x.empire !== 'blocked')
+          const enemyTiles = this.tiles.filter(x =>
+            this.rangedTiles.includes(x) &&
+            x.empire !== this.selectedPlayer.name &&
+            x.empire !== 'blocked' &&
+            x.hitPoints >= tile.hitPoints
+          )
 
-            if (enemyTile && enemyTile.hitPoints <= tile.hitPoints && tile.hitPoints < 21) {
-              this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
+          if (enemyTiles.length > 0) {
+            this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
-              this.controlTile({
-                empire: this.selectedPlayer.name,
-                hitPoints: tile.hitPoints + 1,
-                tileIdentifier: tile.identifier
-              })
+            this.controlTile({
+              empire: this.selectedPlayer.name,
+              hitPoints: tile.hitPoints + 1,
+              tileIdentifier: tile.identifier
+            })
 
-              break
-            }
+            break
           }
         }
 
         loop++
 
-        if (loop > 20) {
+        if (loop > 30) {
           break
         }
       }
@@ -278,6 +310,8 @@ export default {
         const tile = this.playerTiles[randomTile - 1]
 
         this.selectTile(tile)
+
+        console.log('random')
 
         this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
