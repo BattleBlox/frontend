@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Artificial Intelligence</h2>
+    <h2>Watch Artificial Intelligence</h2>
     <p>Watch 10 computers fight to the death. No human players are harmed in this game mode.</p>
     <button class="c-menu-button" @click="startSpectacle()">
       <c-icon icon="brain" />

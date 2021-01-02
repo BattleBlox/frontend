@@ -30,8 +30,15 @@ export default {
   ],
 
   modules: [
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'nuxt-webfontloader'
   ],
+
+  webfontloader: {
+    google: {
+      families: ['Alegreya Sans SC:400,400&display=swap']
+    }
+  },
 
   server: {
     host: '0.0.0.0'
