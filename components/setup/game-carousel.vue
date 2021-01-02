@@ -22,6 +22,12 @@
       <slide v-show="slide === 5">
         <chokepoint />
       </slide>
+      <slide v-show="slide === 6">
+        <overload />
+      </slide>
+      <slide v-show="slide === 7">
+        <golden-fields />
+      </slide>
     </div>
 
     <div class="c-gameCarousel-arrow c-gameCarousel--right" @click="slide++">
@@ -42,10 +48,10 @@ export default {
   watch: {
     slide () {
       if (this.slide < 1) {
-        this.slide = 5
+        this.slide = 7
       }
 
-      if (this.slide > 5) {
+      if (this.slide > 7) {
         this.slide = 1
       }
     }
