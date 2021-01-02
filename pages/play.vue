@@ -1,10 +1,13 @@
 <template>
-  <div v-if="players.length > 0" class="c-game">
-    <board />
+  <div>
+    <navigator />
+    <div v-if="players.length > 0" class="c-game">
+      <board />
 
-    <turn-menu />
-    <bonus-button />
-    <settings-button />
+      <turn-menu />
+      <bonus-button />
+      <settings-button />
+    </div>
   </div>
 </template>
 

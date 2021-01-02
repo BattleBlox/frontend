@@ -1,6 +1,8 @@
 <template>
   <div class="c-navigator">
-    <img src="/logo.png">
+    <nuxt-link to="/">
+      <img src="/logo.png">
+    </nuxt-link>
   </div>
 </template>
 
