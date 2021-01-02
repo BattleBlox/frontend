@@ -53,6 +53,11 @@ export default {
   text-align: center;
   border-radius: 10px;
 
+  @media (max-width: 768px) {
+    width: 53px;
+    height: 53px;
+  }
+
   &.u-tile--selected {
     border: 5px solid gold;
   }

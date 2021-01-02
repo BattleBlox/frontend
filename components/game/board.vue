@@ -43,6 +43,7 @@ export default {
   border-radius: 10px;
   margin: 20px auto;
   transition: all 0.3s ease-in-out;
+  max-width: 100%;
 
   &.c-board--disabled {
     pointer-events: none;
