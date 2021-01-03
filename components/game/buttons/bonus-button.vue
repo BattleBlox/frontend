@@ -95,5 +95,6 @@ export default {
 .c-bonus-button {
   right: 70px;
   top: 10px;
+  z-index: 11;
 }
 </style>
