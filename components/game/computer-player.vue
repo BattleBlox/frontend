@@ -62,7 +62,7 @@ export default {
       const self = this
       if (this.selectedPlayer.isComputer) {
         if (this.playerTiles.length > 0) {
-          setTimeout(function () { self.play() }, 2000)
+          setTimeout(function () { self.play() }, 3000)
         } else {
           this.endTurn()
         }
@@ -85,14 +85,18 @@ export default {
         })
       }
 
-      this.roll({
-        controlledTiles: this.playerTiles.length,
-        capitalTiles: this.bonusCapitalPoints
-      })
+      const self = this
 
-      this.spendPoints()
+      setTimeout(function () {
+        self.roll({
+          controlledTiles: self.playerTiles.length,
+          capitalTiles: self.bonusCapitalPoints
+        })
 
-      this.endTurn()
+        self.spendPoints()
+
+        self.endTurn()
+      }, 3000)
     },
 
     processAttacks (tile) {

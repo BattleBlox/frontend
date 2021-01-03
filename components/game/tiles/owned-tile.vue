@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`u-tile c-owned-tile ${tileClass}`"
+    :class="`u-tile a-bounceIn c-owned-tile ${tileClass}`"
     @click="onClick">
     <span
       v-show="hitPoints"
@@ -50,7 +50,7 @@ export default {
         tileStrengthClass = 'c-tile-strength--capital'
       }
 
-      return `c-tile--${controllingPlayer.colour} u-tile--${tileSelectionState} c-tile--${this.currentMode} ${tileStrengthClass}`
+      return `u-background--${controllingPlayer.colour} u-tile--${tileSelectionState} c-tile--${this.currentMode} ${tileStrengthClass}`
     }
   },
 
@@ -88,201 +88,34 @@ export default {
 
 <style scoped lang="scss">
 .c-owned-tile {
-  background-color: lime;
   border: 1px solid white;
+  color: white;
   cursor: pointer;
 
-  &.c-tile--red {
-    background-color: red;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
+  &.c-tile-strength--weak {
+    color: lightgray;
   }
 
-  &.c-tile--blue {
-    background-color: blue;
+  &.c-tile-strength--strong {
     color: white;
-
-    &.c-tile-strength--weak {
-      color: #7F7FFF;
-    }
-
-    &.c-tile-strength--strong {
-      color: white;
-    }
-
-    &.c-tile-strength--capital {
-      color: white;
-      font-weight: bold;
-    }
   }
 
-    &.c-tile--purple {
-    background-color: purple;
+  &.c-tile-strength--capital {
     color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
-  }
-
-    &.c-tile--brown {
-    background-color: brown;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
-  }
-
-    &.c-tile--pink {
-    background-color: #D64F8B;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
-  }
-
-      &.c-tile--green {
-    background-color: green;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
-  }
-
-      &.c-tile--yellow {
-    background-color: #D8B100;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
-  }
-
-      &.c-tile--skyblue {
-    background-color: #3288D3;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
-  }
-
-      &.c-tile--lightred {
-    background-color: #FF7CB0;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
-  }
-
-      &.c-tile--orange {
-    background-color: #FF7459;
-    color: white;
-
-      &.c-tile-strength--weak {
-        color: #FF7F7F;
-      }
-
-      &.c-tile-strength--strong {
-        color: white;
-      }
-
-      &.c-tile-strength--capital {
-        color: white;
-        font-weight: bold;
-      }
+    font-weight: bold;
   }
 
   &.u-tile--selected {
     border: 5px solid gold;
   }
 
+  &.c-tile--roll {
+    border: 5px solid white;
+  }
+
   span {
     flex-grow: 1;
     user-select: none;
-  }
-
-  &.c-tile--roll {
-    border: 5px solid white;
   }
 }
 </style>

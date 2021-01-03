@@ -28,7 +28,7 @@ export default {
         ? 'c-board--disabled'
         : ''
 
-      return `c-board--${this.selectedPlayer.colour} c-board--${this.currentMode} ${isBoardEnabled}`
+      return `u-background--${this.selectedPlayer.colour} c-board--${this.currentMode} ${isBoardEnabled}`
     }
   }
 }
@@ -39,7 +39,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   border: 3px solid black;
-  background-color: black;
   width: 606px;
   border-radius: 10px;
   margin: 0 auto;
@@ -48,66 +47,6 @@ export default {
 
   &.c-board--disabled {
     pointer-events: none;
-  }
-
-  &.c-board--red {
-    &.c-board--attack {
-      background-color: red;
-    }
-  }
-
-  &.c-board--blue {
-    &.c-board--attack {
-      background-color: blue;
-    }
-  }
-
-    &.c-board--purple {
-    &.c-board--attack {
-      background-color: purple;
-    }
-  }
-
-    &.c-board--brown {
-    &.c-board--attack {
-      background-color: brown;
-    }
-  }
-
-    &.c-board--yellow {
-    &.c-board--attack {
-      background-color: #D8B100;
-    }
-  }
-
-  &.c-board--pink {
-    &.c-board--attack {
-      background-color: #D64F8B;
-    }
-  }
-
-  &.c-board--green {
-    &.c-board--attack {
-      background-color: green;
-    }
-  }
-
-    &.c-board--skyblue {
-    &.c-board--attack {
-      background-color: #3288D3;
-    }
-  }
-
-    &.c-board--lightred {
-    &.c-board--attack {
-      background-color: lightcoral;
-    }
-  }
-
-    &.c-board--orange {
-    &.c-board--attack {
-      background-color: orange;
-    }
   }
 
   &.c-board--roll {

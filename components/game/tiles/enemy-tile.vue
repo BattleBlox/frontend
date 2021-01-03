@@ -54,7 +54,7 @@ export default {
         ? 'c-enemy-tile--attackable'
         : ''
 
-      return `c-tile--${tileColour} c-tile--${tileSelectionState} ${attackState}`
+      return `u-background--${tileColour} c-tile--${tileSelectionState} ${attackState}`
     },
 
     ownedTile () {
@@ -124,58 +124,7 @@ export default {
 
 <style scoped lang="scss">
 .c-enemy-tile {
-  background-color: lime;
   border: 1px solid white;
-
-  &.c-tile--red {
-    background-color: red;
-    color: white;
-  }
-
-  &.c-tile--blue {
-    background-color: blue;
-    color: white;
-  }
-
-  &.c-tile--purple {
-    background-color: purple;
-    color: white;
-  }
-
-  &.c-tile--brown {
-    background-color: brown;
-    color: white;
-  }
-
-  &.c-tile--pink {
-    background-color: #D64F8B;
-    color: white;
-  }
-
-  &.c-tile--green {
-    background-color: green;
-    color: white;
-  }
-
-  &.c-tile--yellow {
-    background-color: #D8B100;
-    color: white;
-  }
-
-  &.c-tile--skyblue {
-    background-color: #3288D3;
-    color: white;
-  }
-
-  &.c-tile--lightred {
-    background-color: #FF7CB0;
-    color: white;
-  }
-
-  &.c-tile--orange {
-    background-color: #FF7459;
-    color: white;
-  }
 
   &.c-enemy-tile--attackable {
     background-color: orange;

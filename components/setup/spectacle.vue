@@ -116,61 +116,61 @@ export default {
 
       this.controlTiles({
         empire: 'Player 1',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [1]
       })
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [3]
       })
 
       this.controlTiles({
         empire: 'Player 3',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [5]
       })
 
       this.controlTiles({
         empire: 'Player 4',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [7]
       })
 
       this.controlTiles({
         empire: 'Player 5',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [9]
       })
 
       this.controlTiles({
         empire: 'Player 6',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [92]
       })
 
       this.controlTiles({
         empire: 'Player 7',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [94]
       })
 
       this.controlTiles({
         empire: 'Player 8',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [96]
       })
 
       this.controlTiles({
         empire: 'Player 9',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [98]
       })
 
       this.controlTiles({
         empire: 'Player 10',
-        hitPoints: 1,
+        hitPoints: 2,
         tiles: [100]
       })
 

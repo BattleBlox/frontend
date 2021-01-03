@@ -45,7 +45,7 @@
         @click="rollDice">
 
       <img
-        v-show="!gameOver && isComputerPlayer && currentMode === 'roll' && rollValue > 0"
+        v-show="!gameOver && !isComputerPlayer && currentMode === 'roll' && rollValue > 0"
         class="c-turn-menu-header-endTurn"
         title="Please spend your points"
         src="/next-disabled.png">
@@ -86,7 +86,7 @@ export default {
     playerColourClass () {
       const player = this.players.find(plr => plr.name === this.selectedPlayer.name)
 
-      return `u-${player.colour}`
+      return `u-background--${player.colour}`
     },
 
     controlledTiles () {
@@ -166,46 +166,6 @@ export default {
     color: white;
     transition: all 0.3s ease-in-out;
     border: 2px solid black;
-  }
-
-  .u-red {
-    background-color: red;
-  }
-
-  .u-blue {
-    background-color: blue;
-  }
-
-  .u-purple {
-    background-color: purple;
-  }
-
-  .u-brown {
-    background-color: brown;
-  }
-
-  .u-yellow {
-    background-color: #D8B100;
-  }
-
-  .u-pink {
-    background-color: #D64F8B;
-  }
-
-  .u-green {
-    background-color: green;
-  }
-
-  .u-skyblue {
-    background-color: #3288D3;
-  }
-
-  .u-lightred {
-    background-color: lightcoral;
-  }
-
-  .u-orange {
-    background-color: orange;
   }
 
   .c-turn-menu-header-avatar {

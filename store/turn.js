@@ -120,6 +120,7 @@ export const actions = {
   roll: ({ commit }, { controlledTiles, capitalTiles }) => {
     commit(TURN_SELECT_MODE, 'roll')
     commit(TURN_CLEAR_RANGED_TILES)
+    commit(TURN_DESELECT_TILE)
 
     const roll = Math.floor(Math.random() * 6) + 1
 

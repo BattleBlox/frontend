@@ -9,6 +9,7 @@
 
 <script>
 import '@/styles/animations.scss'
+import '@/styles/colours.scss'
 
 export default {}
 </script>
@@ -87,9 +88,5 @@ p {
 
 a {
   color: white;
-}
-
-.u-text-red {
-  color: red;
 }
 </style>
