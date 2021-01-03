@@ -6,8 +6,8 @@
       <board />
 
       <turn-menu />
-      <!-- <bonus-button />
-      <settings-button /> -->
+      <!-- <bonus-button /> -->
+      <surrender-button />
     </div>
   </div>
 </template>
