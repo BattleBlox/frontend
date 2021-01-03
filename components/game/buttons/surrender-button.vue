@@ -23,5 +23,6 @@ export default {
 .c-surrender-button {
   right: 10px;
   top: 10px;
+  z-index: 10;
 }
 </style>

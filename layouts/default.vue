@@ -85,4 +85,8 @@ p {
 a {
   color: white;
 }
+
+.u-text-red {
+  color: red;
+}
 </style>

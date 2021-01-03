@@ -6,7 +6,7 @@
       <board />
 
       <turn-menu />
-      <!-- <bonus-button /> -->
+      <bonus-button />
       <surrender-button />
     </div>
   </div>
