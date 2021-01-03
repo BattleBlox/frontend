@@ -68,8 +68,11 @@ svg {
   border-radius: 10px;
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
   transition: all 0.3s ease-in-out;
+
+  svg {
+    font-size: 1.5rem;
+  }
 
   &:hover {
     background: rgba(30, 30, 30, 0.8);

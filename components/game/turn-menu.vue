@@ -146,6 +146,7 @@ export default {
     left: 0;
     margin: 0 auto;
     width: 450px;
+    z-index: 250;
   }
 
   .c-turn-menu-header {
