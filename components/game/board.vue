@@ -44,6 +44,7 @@ export default {
   margin: 0 auto;
   transition: all 0.3s ease-in-out;
   max-width: 100%;
+  user-select: none;
 
   &.c-board--disabled {
     pointer-events: none;

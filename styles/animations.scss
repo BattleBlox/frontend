@@ -64,9 +64,9 @@ page-enter-active,
 }
 
 // From Animate.CSS
-.a-fadeIn, .a-fadeInDown, .a-slideInUp, .a-bounceIn, .a-shake {
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
+.a-fadeIn, .a-bounceIn {
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -94,70 +94,6 @@ page-enter-active,
 .a-fadeIn {
   -webkit-animation-name: a-fadeIn;
   animation-name: a-fadeIn;
-}
-
-@-webkit-keyframes a-fadeInDown {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes a-fadeInDown {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.a-fadeInDown {
-  -webkit-animation-name: a-fadeInDown;
-  animation-name: a-fadeInDown;
-}
-
-@-webkit-keyframes a-slideInUp {
-  from {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    visibility: visible;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes a-slideInUp {
-  from {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    visibility: visible;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.a-slideInUp {
-  -webkit-animation-name: a-slideInUp;
-  animation-name: a-slideInUp;
 }
 
 @-webkit-keyframes a-bounceIn {
@@ -253,65 +189,8 @@ page-enter-active,
 }
 
 .a-bounceIn {
-  -webkit-animation-duration: 0.75s;
-  animation-duration: 0.75s;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
   -webkit-animation-name: a-bounceIn;
   animation-name: a-bounceIn;
-}
-
-@-webkit-keyframes a-shake {
-
-  from,
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    -webkit-transform: translate3d(-10px, 0, 0);
-    transform: translate3d(-10px, 0, 0);
-  }
-
-  20%,
-  40%,
-  60%,
-  80% {
-    -webkit-transform: translate3d(10px, 0, 0);
-    transform: translate3d(10px, 0, 0);
-  }
-}
-
-@keyframes a-shake {
-
-  from,
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    -webkit-transform: translate3d(-10px, 0, 0);
-    transform: translate3d(-10px, 0, 0);
-  }
-
-  20%,
-  40%,
-  60%,
-  80% {
-    -webkit-transform: translate3d(10px, 0, 0);
-    transform: translate3d(10px, 0, 0);
-  }
-}
-
-.a-shake {
-  -webkit-animation-name: a-shake;
-  animation-name: a-shake;
 }

@@ -4,7 +4,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
-import { TURN_DESELECT_TILE, TURN_SET_ROLL_VALUE } from '@/store/mutations.constants'
+import { TURN_DESELECT_TILE, TURN_SET_ROLL_VALUE, TURN_SELECT_MODE } from '@/store/mutations.constants'
 
 export default {
   computed: {
@@ -46,7 +46,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations('turn', [TURN_SET_ROLL_VALUE, TURN_DESELECT_TILE]),
+    ...mapMutations('turn', [TURN_SET_ROLL_VALUE, TURN_DESELECT_TILE, TURN_SELECT_MODE]),
 
     ...mapActions('turn', [
       'selectTile',
@@ -62,7 +62,7 @@ export default {
       const self = this
       if (this.selectedPlayer.isComputer) {
         if (this.playerTiles.length > 0) {
-          setTimeout(function () { self.play() }, 3000)
+          setTimeout(function () { self.play() }, 2000)
         } else {
           this.endTurn()
         }
@@ -85,6 +85,7 @@ export default {
         })
       }
 
+      this.TURN_DESELECT_TILE()
       const self = this
 
       setTimeout(function () {
@@ -95,8 +96,12 @@ export default {
 
         self.spendPoints()
 
-        self.endTurn()
-      }, 3000)
+        self.TURN_DESELECT_TILE()
+        self.TURN_SELECT_MODE('end')
+        setTimeout(function () {
+          self.endTurn()
+        }, 2000)
+      }, 2000)
     },
 
     processAttacks (tile) {

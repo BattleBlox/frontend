@@ -1,5 +1,5 @@
 <template>
-  <div class="c-modal">
+  <div class="c-modal a-fadeIn">
     <div class="c-modal-header" @click="$emit('close')">
       <c-icon icon="chevron-circle-left" class="fa-fw" />
       <h2 v-text="heading" />
