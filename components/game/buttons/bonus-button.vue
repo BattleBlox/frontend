@@ -32,9 +32,9 @@
       <br>
 
       <h4>Capital Bonus Points</h4>
-      <p>Gain an extra point for every tile you own which has 10 or higher points.</p>
+      <p>Gain an extra 2 points for every tile you own which has 10 or higher points.</p>
       <p class="u-text-red">
-        You have <strong>{{ totalCapitalTiles }}</strong> tile(s) with 10 or greater points resulting in a bonus of <strong>{{ bonusCapitalPoints }}</strong> point(s)
+        You have <strong>{{ totalCapitalTiles }}</strong> tile(s) with 10 or greater points resulting in a bonus of <strong>{{ bonusCapitalPoints }}</strong> points
       </p>
     </modal>
   </div>
@@ -64,7 +64,7 @@ export default {
     },
 
     playerTilesBonus () {
-      return Math.round(this.totalPlayerTiles / 5)
+      return Math.floor(this.totalPlayerTiles / 4)
     },
 
     totalCapitalTiles () {
@@ -72,7 +72,7 @@ export default {
     },
 
     bonusCapitalPoints () {
-      return Math.round(this.totalCapitalTiles * 1.5)
+      return Math.floor(this.totalCapitalTiles * 2)
     },
 
     totalBonusPoints () {

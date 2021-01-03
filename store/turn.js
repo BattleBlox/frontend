@@ -123,8 +123,8 @@ export const actions = {
 
     const roll = Math.floor(Math.random() * 6) + 1
 
-    const bonusPoints = Math.round(controlledTiles / 5)
+    const bonusPoints = Math.floor(controlledTiles / 4)
 
-    commit(TURN_SET_ROLL_VALUE, roll + bonusPoints + Math.round(capitalTiles * 1.5))
+    commit(TURN_SET_ROLL_VALUE, roll + bonusPoints + Math.floor(capitalTiles * 2))
   }
 }
