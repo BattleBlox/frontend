@@ -4,7 +4,7 @@
     @click="onClick">
     <span
       class="u-tile-hitPoints"
-      v-text="hitPoints" />
+      v-text="tile.hitPoints" />
   </div>
 </template>
 
@@ -14,18 +14,8 @@ import { TURN_DESELECT_TILE } from '@/store/mutations.constants'
 
 export default {
   props: {
-    identifier: {
-      type: Number,
-      required: true
-    },
-
-    empire: {
-      type: String,
-      default: null
-    },
-
-    hitPoints: {
-      type: Number,
+    tile: {
+      type: Object,
       required: true
     }
   },
@@ -35,11 +25,11 @@ export default {
     ...mapState('turn', ['selectedPlayer', 'selectedTile', 'rangedTiles']),
 
     isAttackable () {
-      return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
+      return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.tile.identifier))
     },
 
     tileClass () {
-      const controllingPlayer = this.players.find(plr => plr.name === this.empire)
+      const controllingPlayer = this.players.find(plr => plr.name === this.tile.empire)
 
       const tileColourClass = (controllingPlayer)
         ? `u-background--${controllingPlayer.colour}`
@@ -53,7 +43,7 @@ export default {
     },
 
     ownedTile () {
-      return (this.empire === this.selectedPlayer.name)
+      return (this.tile.empire === this.selectedPlayer.name)
     }
   },
 
@@ -73,7 +63,7 @@ export default {
     onClick () {
       if (this.isAttackable) {
         let attackerHitPoints = this.selectedTile.hitPoints
-        let defenderHitPoints = this.hitPoints
+        let defenderHitPoints = this.tile.hitPoints
 
         while (attackerHitPoints > 1 && defenderHitPoints > 1) {
           const result = Math.floor(Math.random() * 10) + 1
@@ -88,7 +78,7 @@ export default {
           this.controlTile({
             empire: this.selectedPlayer.name,
             hitPoints: attackerHitPoints - 1,
-            tileIdentifier: this.identifier
+            tileIdentifier: this.tile.identifier
           })
 
           this.controlTile({
@@ -98,7 +88,7 @@ export default {
           })
 
           this.selectTile({
-            identifier: this.identifier,
+            identifier: this.tile.identifier,
             empire: this.selectedPlayer.name,
             hitPoints: attackerHitPoints - 1
           })
@@ -110,9 +100,9 @@ export default {
           })
 
           this.controlTile({
-            empire: this.empire,
+            empire: this.tile.empire,
             hitPoints: defenderHitPoints,
-            tileIdentifier: this.identifier
+            tileIdentifier: this.tile.identifier
           })
 
           this.TURN_DESELECT_TILE()

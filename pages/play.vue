@@ -35,6 +35,7 @@ export default {
   width: 606px;
   margin: 20px auto;
   max-width: 100%;
+  user-select: none;
 
   h3 {
     margin-left: 10px;

@@ -1,5 +1,12 @@
 import { TILES_SET_ALL_TILES, TILES_SET_TILE } from '@/store/mutations.constants'
 
+// eslint-disable-next-line no-unused-vars
+const tile = {
+  identifier: 1,
+  empire: 'Player Name',
+  hitPoints: 1
+}
+
 export const state = () => ({
   tiles: []
 })

@@ -7,23 +7,19 @@
         :class="`c-turn-menu-header-avatar ${playerColourClass}`"
         src="/soldier.png">
 
-      <p
-        v-show="!gameOver && isComputerPlayer">
+      <p v-show="!gameOver && isComputerPlayer">
         Waiting for Computer player...
       </p>
 
-      <p
-        v-show="!gameOver && !isComputerPlayer && currentMode === 'attack'">
+      <p v-show="!gameOver && !isComputerPlayer && currentMode === 'attack'">
         Select a tile and attack
       </p>
 
-      <p
-        v-show="!gameOver && !isComputerPlayer && currentMode === 'roll'">
+      <p v-show="!gameOver && !isComputerPlayer && currentMode === 'roll'">
         Spend {{ rollValue }} Points
       </p>
 
-      <p
-        v-show="gameOver">
+      <p v-show="gameOver">
         Game won by {{ selectedPlayer.name }}!
       </p>
 

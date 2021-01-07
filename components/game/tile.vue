@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tileType"
-    v-bind="tile" />
+    :tile="tile" />
 </template>
 
 <script>

@@ -9,8 +9,8 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   props: {
-    identifier: {
-      type: Number,
+    tile: {
+      type: Object,
       required: true
     }
   },
@@ -23,7 +23,7 @@ export default {
     ]),
 
     isAttackable () {
-      return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
+      return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.tile.identifier))
     },
 
     tileClass () {
@@ -51,7 +51,7 @@ export default {
       this.controlTile({
         empire: this.selectedPlayer.name,
         hitPoints: this.selectedTile.hitPoints - 1,
-        tileIdentifier: this.identifier
+        tileIdentifier: this.tile.identifier
       })
 
       // Reflect impact on selected tile
@@ -62,7 +62,7 @@ export default {
       })
 
       this.selectTile({
-        identifier: this.identifier,
+        identifier: this.tile.identifier,
         empire: this.selectedPlayer.name,
         hitPoints: this.selectedTile.hitPoints - 1
       })
