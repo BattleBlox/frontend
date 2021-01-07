@@ -1,7 +1,9 @@
 # BattleBlox
-> My splendid Nuxt.js project
+> Play our free turn based strategy game and conquer the map!
 
-![Game Screenshot](https://raw.githubusercontent.com/BattleBlox/frontend/master/src/static/marketing_1.png)
+## Welcome Contributions
+- Reporting Issues: Please report issues for any bugs you find within the game
+- Contributing Code: Please feel free to tackle any open issues and submit a PR
 
 ## Build Setup
 
@@ -15,9 +17,4 @@ $ yarn dev
 # build for production and launch server
 $ yarn build
 $ yarn start
-
-# generate static project
-$ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

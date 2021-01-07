@@ -1,5 +1,6 @@
 <template>
   <div :class="`c-board ${additionalClasses}`">
+    <computer-player />
     <tile v-for="tile in tiles" :key="tile.identifier" :tile="tile" />
   </div>
 </template>

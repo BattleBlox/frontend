@@ -1,8 +1,6 @@
 <template>
   <div class="c-turn-menu">
     <div class="c-turn-menu-header">
-      <computer-player />
-
       <img
         :class="`c-turn-menu-header-avatar ${playerColourClass}`"
         src="/soldier.png">

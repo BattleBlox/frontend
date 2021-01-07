@@ -1,7 +1,7 @@
 {
   "name": "battleblox",
   "version": "1.0.0",
-  "description": "My splendid Nuxt.js project",
+  "description": "Play our free turn based strategy game and conquer the map!",
   "author": "Thomas William McClean",
   "private": true,
   "scripts": {
