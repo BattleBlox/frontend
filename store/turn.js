@@ -117,15 +117,19 @@ export const actions = {
     commit(TURN_SET_GAME_OVER, false)
   },
 
-  roll: ({ commit }, { controlledTiles, capitalTiles }) => {
+  roll: ({ commit, state, rootState }) => {
     commit(TURN_SELECT_MODE, 'roll')
     commit(TURN_CLEAR_RANGED_TILES)
     commit(TURN_DESELECT_TILE)
 
+    const capitalTiles = rootState.tiles.tiles.filter(x => x.empire === state.selectedPlayer.name && x.hitPoints >= 10).length
+    const capitalBonusPoints = Math.floor(capitalTiles * 2)
+
+    const controlledTiles = rootState.tiles.tiles.filter(x => x.empire === state.selectedPlayer.name).length
+    const expansionBonusPoints = Math.floor(controlledTiles / 4)
+
     const roll = Math.floor(Math.random() * 6) + 1
 
-    const bonusPoints = Math.floor(controlledTiles / 4)
-
-    commit(TURN_SET_ROLL_VALUE, roll + bonusPoints + Math.floor(capitalTiles * 2))
+    commit(TURN_SET_ROLL_VALUE, roll + expansionBonusPoints + capitalBonusPoints)
   }
 }

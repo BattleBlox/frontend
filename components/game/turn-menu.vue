@@ -81,18 +81,6 @@ export default {
       const player = this.players.find(plr => plr.name === this.selectedPlayer.name)
 
       return `u-background--${player.colour}`
-    },
-
-    controlledTiles () {
-      return this.tiles.filter(x => x.empire === this.selectedPlayer.name).length
-    },
-
-    bonusRollPoints () {
-      return Math.round(this.controlledTiles / 6)
-    },
-
-    bonusCapitalPoints () {
-      return this.tiles.filter(x => x.empire === this.selectedPlayer.name && x.hitPoints >= 10).length
     }
   },
 
@@ -121,10 +109,7 @@ export default {
           this.endTurn()
           break
         case 'attack':
-          this.roll({
-            controlledTiles: this.controlledTiles,
-            capitalTiles: this.bonusCapitalPoints
-          })
+          this.roll()
           break
       }
     }

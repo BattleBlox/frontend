@@ -4,7 +4,11 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
-import { TURN_DESELECT_TILE, TURN_SET_ROLL_VALUE, TURN_SELECT_MODE } from '@/store/mutations.constants'
+import {
+  TURN_DESELECT_TILE,
+  TURN_SET_ROLL_VALUE,
+  TURN_SELECT_MODE
+} from '@/store/mutations.constants'
 
 export default {
   computed: {
@@ -26,10 +30,6 @@ export default {
 
     playerTiles () {
       return this.tiles.filter(x => x.empire === this.selectedPlayer.name)
-    },
-
-    bonusCapitalPoints () {
-      return this.tiles.filter(x => x.empire === this.selectedPlayer.name && x.hitPoints >= 10).length
     }
   },
 
@@ -46,7 +46,11 @@ export default {
   },
 
   methods: {
-    ...mapMutations('turn', [TURN_SET_ROLL_VALUE, TURN_DESELECT_TILE, TURN_SELECT_MODE]),
+    ...mapMutations('turn', [
+      TURN_SET_ROLL_VALUE,
+      TURN_DESELECT_TILE,
+      TURN_SELECT_MODE
+    ]),
 
     ...mapActions('turn', [
       'selectTile',
@@ -59,20 +63,14 @@ export default {
     ]),
 
     detectPlayerChange () {
-      const self = this
       if (this.selectedPlayer.isComputer) {
-        if (this.playerTiles.length > 0) {
-          setTimeout(function () { self.play() }, 2000)
-        } else {
+        if (this.playerTiles.length === 0) {
           this.endTurn()
+          return
         }
+
+        setTimeout(() => { this.play() }, 2000)
       }
-    },
-
-    makeDecision () {
-      const result = Math.floor(Math.random() * 9) + 1
-
-      return result <= 2
     },
 
     play () {
@@ -86,20 +84,16 @@ export default {
       }
 
       this.TURN_DESELECT_TILE()
-      const self = this
 
-      setTimeout(function () {
-        self.roll({
-          controlledTiles: self.playerTiles.length,
-          capitalTiles: self.bonusCapitalPoints
-        })
+      setTimeout(() => {
+        this.roll()
 
-        self.spendPoints()
+        this.spendPoints()
 
-        self.TURN_DESELECT_TILE()
-        self.TURN_SELECT_MODE('end')
-        setTimeout(function () {
-          self.endTurn()
+        this.TURN_DESELECT_TILE()
+        this.TURN_SELECT_MODE('end')
+        setTimeout(() => {
+          this.endTurn()
         }, 2000)
       }, 2000)
     },
@@ -108,6 +102,8 @@ export default {
       if (tile.hitPoints < 2) { return }
 
       this.selectTile(tile)
+
+      const ambitionOverride = ((Math.floor(Math.random() * 9) + 1) <= 2)
 
       // Select one tile to attack
       const potentialTargets = this.tiles.filter(x =>
@@ -118,7 +114,7 @@ export default {
         this.rangedTiles.includes(x.identifier) &&
 
         // Filter only tiles the computer wants to attack
-        (x.hitPoints < (this.selectedTile.hitPoints + 1) || (this.makeDecision() && x.hitPoints < (this.selectedTile.hitPoints + 3)))
+        (x.hitPoints < (this.selectedTile.hitPoints + 1) || (ambitionOverride && x.hitPoints < (this.selectedTile.hitPoints + 3)))
       )
 
       if (potentialTargets.length > 0) {
