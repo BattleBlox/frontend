@@ -69,38 +69,44 @@ export default {
           return
         }
 
-        setTimeout(() => { this.play() }, 2000)
+        setTimeout(() => {
+          this.processAttackPhase()
+
+          setTimeout(() => {
+            this.processRollPhase()
+
+            setTimeout(() => { this.endTurn() }, 1500)
+          }, 1500)
+        }, 1500)
       }
     },
 
-    play () {
-      for (let attackLoop = 0; attackLoop < 10; attackLoop++) {
+    processAttackPhase () {
+      const maxHitPoints = Math.max.apply(Math, this.playerTiles.map((x) => { return x.hitPoints }))
+
+      for (let attackLoop = 0; attackLoop < maxHitPoints; attackLoop++) {
         // Prevent a bug which causes a tile to be selected and then deselected on subsequent loops
         this.TURN_DESELECT_TILE()
 
+        // Process each tile with attacking capability
         this.playerTiles.filter(x => x.hitPoints > 1).forEach((tile) => {
-          this.processAttacks(tile)
+          this.processTileAttacks(tile)
         })
+
+        // Break loop when no attacking capability remains
+        if (!this.playerTiles.some(x => x.hitPoints > 1)) {
+          break
+        }
       }
-
-      this.TURN_DESELECT_TILE()
-
-      setTimeout(() => {
-        this.roll()
-
-        this.spendPoints()
-
-        this.TURN_DESELECT_TILE()
-        this.TURN_SELECT_MODE('end')
-        setTimeout(() => {
-          this.endTurn()
-        }, 2000)
-      }, 2000)
     },
 
-    processAttacks (tile) {
-      if (tile.hitPoints < 2) { return }
+    processRollPhase () {
+      this.roll()
+      this.spendPoints()
+      this.TURN_SELECT_MODE('end')
+    },
 
+    processTileAttacks (tile) {
       this.selectTile(tile)
 
       const ambitionOverride = ((Math.floor(Math.random() * 9) + 1) <= 2)
@@ -183,18 +189,20 @@ export default {
     },
 
     spendPoints () {
-      // Spend on Defence
+      this.spendOnDefence()
+
+      this.spendOnDefence()
+
+      this.spendOnExploration()
+
+      this.spendRandomly()
+    },
+
+    spendOnDefence () {
       let loop = 0
       while (this.rollValue > 0) {
         for (const tile of this.playerTiles) {
-          if (this.rollValue === 0) {
-            return
-          }
-
-          if (tile.hitPoints > 20) {
-            continue
-          }
-
+          // Temporary - Ranged tiles are currently only set on selection - I intend to change that
           this.selectTile(tile)
 
           const enemyTiles = this.tiles.filter(enemyTile =>
@@ -217,19 +225,22 @@ export default {
               tileIdentifier: tile.identifier
             })
 
+            if (this.rollValue === 0) {
+              return
+            }
+
             break
           }
         }
 
         loop++
 
-        if (loop > 20) {
-          break
-        }
+        if (loop > 20) { break }
       }
+    },
 
-      // Spend on Exploration
-      loop = 0
+    spendOnExploration () {
+      let loop = 0
       while (this.rollValue > 0) {
         for (const tile of this.playerTiles) {
           if (this.rollValue === 0) {
@@ -266,17 +277,14 @@ export default {
           break
         }
       }
+    },
 
-      // Spend on Attacks
-      loop = 0
+    spendOnAttacks () {
+      let loop = 0
       while (this.rollValue > 0) {
         for (const tile of this.playerTiles) {
           if (this.rollValue === 0) {
             return
-          }
-
-          if (tile.hitPoints > 20) {
-            continue
           }
 
           this.selectTile(tile)
@@ -303,33 +311,22 @@ export default {
 
         loop++
 
-        if (loop > 30) {
-          break
-        }
+        if (loop > 30) { break }
       }
+    },
 
-      // Randomly Spend Points
-      loop = 0
+    spendRandomly () {
       while (this.rollValue > 0) {
         const randomTile = Math.floor(Math.random() * this.playerTiles.length) + 1
-
         const tile = this.playerTiles[randomTile - 1]
-
-        this.selectTile(tile)
 
         this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
         this.controlTile({
-          empire: this.selectedPlayer.name,
+          empire: tile.empire,
           hitPoints: tile.hitPoints + 1,
           tileIdentifier: tile.identifier
         })
-
-        loop++
-
-        if (loop > 20) {
-          break
-        }
       }
     }
   }
