@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <div class="c-navigator">
     <nuxt-link to="/">
       <img src="/logo.png">

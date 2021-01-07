@@ -16,23 +16,17 @@
 import { mapState } from 'vuex'
 
 export default {
-  data () {
-    return {
-      gameType: null
+  computed: {
+    ...mapState('players', [
+      'players'
+    ]),
+
+    gameType () {
+      return this.$route.query.type
     }
   },
 
-  computed: mapState('players', [
-    'players'
-  ]),
-
-  mounted () {
-    if (this.players.length === 0) {
-      this.$router.push({ path: '/' })
-    }
-
-    this.gameType = this.$route.query.type
-  }
+  middleware: 'game-detector'
 }
 </script>
 
