@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`u-tile a-bounceIn c-owned-tile ${tileClass}`"
+    :class="`u-tile u-pointer a-bounceIn c-owned-tile ${tileClass}`"
     @click="onClick">
     <span
       v-show="hitPoints"
@@ -55,9 +55,18 @@ export default {
   },
 
   methods: {
-    ...mapMutations('turn', [TURN_SET_ROLL_VALUE]),
-    ...mapActions('turn', ['selectTile', 'endTurn']),
-    ...mapActions('tiles', ['controlTile']),
+    ...mapMutations('turn', [
+      TURN_SET_ROLL_VALUE
+    ]),
+
+    ...mapActions('turn', [
+      'selectTile',
+      'endTurn'
+    ]),
+
+    ...mapActions('tiles', [
+      'controlTile'
+    ]),
 
     onClick () {
       if (this.currentMode === 'roll') {
@@ -88,10 +97,6 @@ export default {
 
 <style scoped lang="scss">
 .c-owned-tile {
-  border: 1px solid white;
-  color: white;
-  cursor: pointer;
-
   &.c-tile-strength--weak {
     color: lightgray;
   }

@@ -3,7 +3,6 @@
     :class="`u-tile c-enemy-tile ${tileClass}`"
     @click="onClick">
     <span
-      v-show="hitPoints"
       class="u-tile-hitPoints"
       v-text="hitPoints" />
   </div>
@@ -42,23 +41,19 @@ export default {
     tileClass () {
       const controllingPlayer = this.players.find(plr => plr.name === this.empire)
 
-      const tileColour = (controllingPlayer)
-        ? controllingPlayer.colour
-        : 'gray'
+      const tileColourClass = (controllingPlayer)
+        ? `u-background--${controllingPlayer.colour}`
+        : 'u-background--gray'
 
-      const tileSelectionState = (this.selectedTile && this.selectedTile.identifier === this.identifier)
-        ? 'selected'
-        : 'unselected'
-
-      const attackState = this.isAttackable
-        ? 'c-enemy-tile--attackable'
+      const attackStateClass = this.isAttackable
+        ? 'c-tile--attackable u-pointer'
         : ''
 
-      return `u-background--${tileColour} c-tile--${tileSelectionState} ${attackState}`
+      return `${tileColourClass} ${attackStateClass}`
     },
 
     ownedTile () {
-      return (this.empire && this.empire === this.selectedPlayer.name)
+      return (this.empire === this.selectedPlayer.name)
     }
   },
 
@@ -66,8 +61,14 @@ export default {
     ...mapMutations('turn', [
       TURN_DESELECT_TILE
     ]),
-    ...mapActions('turn', ['selectTile', 'endTurn']),
-    ...mapActions('tiles', ['controlTile']),
+
+    ...mapActions('turn', [
+      'selectTile'
+    ]),
+
+    ...mapActions('tiles', [
+      'controlTile'
+    ]),
 
     onClick () {
       if (this.isAttackable) {
@@ -121,13 +122,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.c-enemy-tile {
-  border: 1px solid white;
-
-  &.c-enemy-tile--attackable {
-    background-color: orange;
-  }
-}
-</style>

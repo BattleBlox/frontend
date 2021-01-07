@@ -16,7 +16,11 @@ export default {
   },
 
   computed: {
-    ...mapState('turn', ['selectedPlayer', 'selectedTile', 'rangedTiles']),
+    ...mapState('turn', [
+      'selectedPlayer',
+      'selectedTile',
+      'rangedTiles'
+    ]),
 
     isAttackable () {
       return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.identifier))
@@ -24,7 +28,7 @@ export default {
 
     tileClass () {
       return this.isAttackable
-        ? 'c-neutral-tile--attackable'
+        ? 'c-tile--attackable u-pointer'
         : ''
     }
   },
@@ -35,16 +39,11 @@ export default {
     ]),
 
     ...mapActions('turn', [
-      'endTurn',
       'selectTile'
     ]),
 
     onClick () {
       if (!this.isAttackable) {
-        return
-      }
-
-      if (!this.selectedTile.hitPoints || this.selectedTile.hitPoints < 2) {
         return
       }
 
@@ -75,12 +74,6 @@ export default {
 <style scoped lang="scss">
 .c-neutral-tile {
   background-color: silver;
-  border: 1px solid white;
-  opacity: 0.75;
-
-  &.c-neutral-tile--attackable {
-    background-color: orange;
-    border-color: orange;
-  }
+  opacity: 0.7;
 }
 </style>

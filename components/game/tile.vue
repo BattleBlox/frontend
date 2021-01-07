@@ -52,6 +52,8 @@ export default {
   transition: all 0.3s ease-in-out;
   text-align: center;
   border-radius: 10px;
+  border: 1px solid white;
+  cursor: not-allowed;
 
   @media (max-width: 768px) {
     width: 53px;
@@ -64,6 +66,11 @@ export default {
 
   &.c-tile--roll {
     border: 5px solid white;
+  }
+
+  &.c-tile--attackable {
+    background-color: orange;
+    border: 1px solid orange;
   }
 }
 

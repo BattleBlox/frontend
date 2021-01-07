@@ -28,9 +28,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 200;
+  z-index: 20;
   background-color: black;
-  padding: 20px;
+  padding: 30px;
   overflow: auto;
 }
 
@@ -39,7 +39,7 @@ export default {
   align-items: center;
 
   svg {
-    font-size: 35px;
+    font-size: 40px;
     margin-right: 10px;
   }
 

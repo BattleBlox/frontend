@@ -58,7 +58,7 @@ svg {
 }
 
 .u-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .u-game-button {
