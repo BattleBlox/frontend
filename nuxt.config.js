@@ -26,7 +26,7 @@ export default {
   ],
 
   plugins: [
-    '~/plugins/fontawesome.plugin.js'
+    '~/plugins/fontawesome.plugin.client.js'
   ],
 
   modules: [
