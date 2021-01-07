@@ -98,12 +98,15 @@ export default {
           break
         }
       }
+
+      this.TURN_DESELECT_TILE()
     },
 
     processRollPhase () {
       this.roll()
       this.spendPoints()
       this.TURN_SELECT_MODE('end')
+      this.TURN_DESELECT_TILE()
     },
 
     processTileAttacks (tile) {
