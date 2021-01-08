@@ -13,7 +13,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
-import { PLAYERS_SET_PLAYERS } from '@/store/mutations.constants'
+import { PLAYERS_SET_PLAYERS, SETTINGS_SET_COMPUTER_SPEED } from '@/store/mutations.constants'
 
 export default {
   computed: {
@@ -32,6 +32,11 @@ export default {
     ...mapMutations('players', [
       PLAYERS_SET_PLAYERS
     ]),
+
+    ...mapMutations('settings', [
+      SETTINGS_SET_COMPUTER_SPEED
+    ]),
+
     ...mapActions('tiles', [
       'setupBoard',
       'setupBlockedTiles',
@@ -44,6 +49,8 @@ export default {
 
     start () {
       this.setupBoard()
+
+      this.SETTINGS_SET_COMPUTER_SPEED(1500)
 
       this.PLAYERS_SET_PLAYERS(
         [{
