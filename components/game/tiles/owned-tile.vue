@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="`u-tile u-pointer a-bounceIn c-owned-tile ${tileClass}`"
+    :class="`c-tile u-pointer a-bounceIn c-owned-tile ${tileClass}`"
     @click="onClick">
     <span
-      class="u-tile-hitPoints"
+      class="c-tile-hitPoints"
       v-text="tile.hitPoints" />
   </div>
 </template>
@@ -39,7 +39,7 @@ export default {
         tileStrengthClass = 'c-tile-strength--capital'
       }
 
-      return `u-background--${controllingPlayer.colour} u-tile--${tileSelectionState} c-tile--${this.currentMode} ${tileStrengthClass}`
+      return `u-background--${controllingPlayer.colour} c-tile--${tileSelectionState} c-tile--${this.currentMode} ${tileStrengthClass}`
     }
   },
 
@@ -95,7 +95,7 @@ export default {
     font-weight: bold;
   }
 
-  &.u-tile--selected {
+  &.c-tile--selected {
     border: 5px solid gold;
   }
 

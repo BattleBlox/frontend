@@ -10,6 +10,7 @@
 <script>
 import '@/styles/animations.scss'
 import '@/styles/colours.scss'
+import '@/styles/utilities.scss'
 
 export default {}
 </script>
@@ -28,7 +29,7 @@ html {
   color: white;
 }
 
-body, h1, h2, h3, p, button, a {
+body {
   font-family: 'Alegreya Sans SC', sans-serif;
 }
 
@@ -51,33 +52,6 @@ body, h1, h2, h3, p, button, a {
 svg {
   font-size: 3rem;
   color: white;
-}
-
-.u-flex-grow {
-  flex-grow: 1;
-}
-
-.u-pointer {
-  cursor: pointer !important;
-}
-
-.u-game-button {
-  position: fixed;
-  height: 50px;
-  width: 50px;
-  background: rgba(30, 30, 30, 0.5);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease-in-out;
-
-  svg {
-    font-size: 1.5rem;
-  }
-
-  &:hover {
-    background: rgba(30, 30, 30, 0.8);
-  }
 }
 
 p {

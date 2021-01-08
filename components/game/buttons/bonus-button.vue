@@ -1,6 +1,6 @@
 <template>
   <div
-    class="c-bonus-button u-game-button u-pointer"
+    class="c-bonus-button u-pointer"
     title="View Bonus Points">
     <c-icon
       icon="trophy"
@@ -92,9 +92,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .c-bonus-button {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  background: rgba(30, 30, 30, 0.5);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
   right: 70px;
   top: 10px;
   z-index: 11;
+
+  svg {
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    background: rgba(30, 30, 30, 0.8);
+  }
 }
 </style>

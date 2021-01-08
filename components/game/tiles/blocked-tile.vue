@@ -1,6 +1,6 @@
 <template functional>
   <div
-    class="u-tile c-blocked-tile"
+    class="c-tile c-blocked-tile"
     title="Blocked Tile" />
 </template>
 

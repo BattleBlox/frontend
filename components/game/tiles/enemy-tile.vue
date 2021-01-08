@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="`u-tile c-enemy-tile ${tileClass}`"
+    :class="`c-tile c-enemy-tile ${tileClass}`"
     @click="onClick">
     <span
-      class="u-tile-hitPoints"
+      class="c-tile-hitPoints"
       v-text="tile.hitPoints" />
   </div>
 </template>

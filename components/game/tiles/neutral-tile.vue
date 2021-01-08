@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`u-tile c-neutral-tile ${tileClass}`"
+    :class="`c-tile c-neutral-tile ${tileClass}`"
     @click="onClick" />
 </template>
 

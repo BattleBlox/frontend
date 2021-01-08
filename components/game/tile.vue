@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-.u-tile {
+.c-tile {
   width: 60px;
   height: 60px;
   display: flex;
@@ -60,7 +60,7 @@ export default {
     height: 53px;
   }
 
-  &.u-tile--selected {
+  &.c-tile--selected {
     border: 5px solid gold;
   }
 
@@ -74,7 +74,7 @@ export default {
   }
 }
 
-.u-tile-hitPoints {
+.c-tile-hitPoints {
   flex-grow: 1;
   user-select: none;
 }
