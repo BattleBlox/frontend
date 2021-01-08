@@ -31,7 +31,11 @@ export default {
     ]),
 
     isAttackable () {
-      return (this.selectedTile && this.selectedTile.rangedTiles && this.selectedTile.rangedTiles.some(x => x === this.tile.identifier))
+      return (
+        this.selectedTile &&
+        this.selectedTile.hitPoints > 1 &&
+        this.selectedTile.rangedTiles &&
+        this.selectedTile.rangedTiles.some(x => x === this.tile.identifier))
     },
 
     tileClass () {
