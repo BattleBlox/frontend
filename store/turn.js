@@ -43,6 +43,10 @@ export const mutations = {
 
 export const actions = {
   endTurn: ({ commit, state, rootState }) => {
+    if (state.gameOver) {
+      return
+    }
+
     commit(TURN_DESELECT_TILE)
     commit(TURN_SELECT_MODE, 'attack')
 
