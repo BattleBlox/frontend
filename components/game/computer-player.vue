@@ -168,7 +168,6 @@ export default {
 
       // Update attacking tile
       this.controlTile({
-        empire: this.selectedPlayer.name,
         hitPoints: 1,
         tileIdentifier: attackingTile.identifier
       })
@@ -177,14 +176,12 @@ export default {
     loseBattle (attackingTile, defendingTile, defenderHitPoints) {
       // Update attacking tile
       this.controlTile({
-        empire: this.selectedPlayer.name,
         hitPoints: 1,
         tileIdentifier: attackingTile.identifier
       })
 
       // Update defending tile
       this.controlTile({
-        empire: defendingTile.empire,
         hitPoints: defenderHitPoints,
         tileIdentifier: defendingTile.identifier
       })
@@ -219,7 +216,6 @@ export default {
             this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
             this.controlTile({
-              empire: this.selectedPlayer.name,
               hitPoints: tile.hitPoints + 1,
               tileIdentifier: tile.identifier
             })
@@ -259,7 +255,6 @@ export default {
             this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
             this.controlTile({
-              empire: this.selectedPlayer.name,
               hitPoints: tile.hitPoints + 1,
               tileIdentifier: tile.identifier
             })
@@ -295,7 +290,6 @@ export default {
             this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
             this.controlTile({
-              empire: this.selectedPlayer.name,
               hitPoints: tile.hitPoints + 1,
               tileIdentifier: tile.identifier
             })
@@ -318,7 +312,6 @@ export default {
         this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
         this.controlTile({
-          empire: tile.empire,
           hitPoints: tile.hitPoints + 1,
           tileIdentifier: tile.identifier
         })

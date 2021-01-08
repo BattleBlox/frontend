@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`c-tile c-enemy-tile ${tileClass}`"
+    :class="`c-tile c-enemyTile ${tileClass}`"
     @click="onClick">
     <span
       class="c-tile-hitPoints"
@@ -50,10 +50,6 @@ export default {
         : ''
 
       return `${tileColourClass} ${attackStateClass}`
-    },
-
-    ownedTile () {
-      return (this.tile.empire === this.selectedPlayer.name)
     }
   },
 
@@ -92,7 +88,6 @@ export default {
           })
 
           this.controlTile({
-            empire: this.selectedPlayer.name,
             hitPoints: 1,
             tileIdentifier: this.selectedTile.identifier
           })
@@ -105,13 +100,11 @@ export default {
           })
         } else {
           this.controlTile({
-            empire: this.selectedPlayer.name,
             hitPoints: 1,
             tileIdentifier: this.selectedTile.identifier
           })
 
           this.controlTile({
-            empire: this.tile.empire,
             hitPoints: defenderHitPoints,
             tileIdentifier: this.tile.identifier
           })

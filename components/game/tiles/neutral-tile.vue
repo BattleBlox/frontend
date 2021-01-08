@@ -60,7 +60,6 @@ export default {
 
       // Reflect impact on selected tile
       this.controlTile({
-        empire: this.selectedPlayer.name,
         hitPoints: 1,
         tileIdentifier: this.selectedTile.identifier
       })

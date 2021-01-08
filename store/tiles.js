@@ -71,8 +71,8 @@ export const actions = {
       ...state.tiles.find(x => x.identifier === tileIdentifier)
     }
 
-    tile.empire = empire
-    tile.hitPoints = hitPoints
+    tile.empire = empire || tile.empire
+    tile.hitPoints = hitPoints || tile.hitPoints
 
     commit(TILES_SET_TILE, tile)
   },
