@@ -1,7 +1,7 @@
 {
   "name": "battleblox",
   "version": "1.0.0",
-  "description": "Play our free turn based strategy game and conquer the map!",
+  "description": "Play BattleBlox online | A challenging turn based strategy game where you aim to conquer the map!",
   "author": "Thomas William McClean",
   "private": true,
   "scripts": {

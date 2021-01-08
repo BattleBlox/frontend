@@ -33,12 +33,6 @@
         @click="rollDice">
 
       <img
-        v-show="!gameOver && !isComputerPlayer && currentMode === 'roll' && rollValue === 0"
-        class="c-turn-menu-header-endTurn u-pointer"
-        src="/next.png"
-        @click="rollDice">
-
-      <img
         v-show="!gameOver && !isComputerPlayer && currentMode === 'roll' && rollValue > 0"
         class="c-turn-menu-header-endTurn"
         title="Please spend your points"

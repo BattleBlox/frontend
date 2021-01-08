@@ -49,11 +49,6 @@ body {
   margin: 0;
 }
 
-svg {
-  font-size: 3rem;
-  color: white;
-}
-
 p {
   svg {
     margin-right: 5px;

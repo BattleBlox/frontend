@@ -5,7 +5,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0' },
-      { hid: 'description', name: 'description', content: 'Play our free turn based strategy game and conquer the map!' || '' }
+      { hid: 'description', name: 'description', content: 'Play BattleBlox online | A challenging turn based strategy game where you aim to conquer the map!' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -33,6 +33,18 @@ export default {
     '@nuxtjs/pwa',
     'nuxt-webfontloader'
   ],
+
+  pwa: {
+    manifest: {
+      name: 'BattleBlox',
+      short_name: 'BattleBlox',
+      description: 'Play BattleBlox online | A challenging turn based strategy game where you aim to conquer the map!',
+      lang: 'en',
+      display: 'standalone',
+      background_color: '#000000',
+      theme_color: '#000000'
+    }
+  },
 
   webfontloader: {
     google: {
