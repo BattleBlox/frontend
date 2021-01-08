@@ -5,3 +5,20 @@
 .u-pointer {
   cursor: pointer !important;
 }
+
+.u-badge-outer {
+  padding-top: 10px;
+}
+
+.u-badge {
+  display: flex;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+
+  svg {
+    margin-right: 5px;
+  }
+}

@@ -40,7 +40,11 @@
     </div>
 
     <div :class="`c-turn-menu-footer ${playerColourClass}`">
+      <expansion-bonus-indicator />
+
       <h3 v-text="selectedPlayer.name" />
+
+      <capital-bonus-indicator />
     </div>
   </div>
 </template>
@@ -134,12 +138,18 @@ export default {
   }
 
   .c-turn-menu-footer {
-    padding: 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
     text-align: center;
     border-radius: 10px;
     color: white;
     transition: all 0.3s ease-in-out;
     border: 2px solid black;
+
+    h3 {
+      flex-grow: 1;
+    }
   }
 
   .c-turn-menu-header-avatar {
