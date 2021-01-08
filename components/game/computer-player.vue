@@ -194,7 +194,7 @@ export default {
 
       this.spendOnExploration()
 
-      this.spendRandomly()
+      this.spendOnCapitals()
     },
 
     spendOnDefence () {
@@ -304,10 +304,15 @@ export default {
       }
     },
 
-    spendRandomly () {
+    spendOnCapitals () {
       while (this.rollValue > 0) {
-        const randomTile = Math.floor(Math.random() * this.playerTiles.length) + 1
-        const tile = this.playerTiles[randomTile - 1]
+        const capitalGrowthTargets = this.playerTiles
+          .filter(x => x.hitPoints < 10)
+          .sort((a, b) => (a.hitPoints < b.hitPoints) ? 1 : -1)
+
+        const tile = capitalGrowthTargets.length > 0
+          ? capitalGrowthTargets[0]
+          : this.playerTiles[0]
 
         this.TURN_SET_ROLL_VALUE(this.rollValue - 1)
 
