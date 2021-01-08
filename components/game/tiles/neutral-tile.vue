@@ -18,12 +18,16 @@ export default {
   computed: {
     ...mapState('turn', [
       'selectedPlayer',
-      'selectedTile',
-      'rangedTiles'
+      'selectedTile'
     ]),
 
     isAttackable () {
-      return (this.selectedTile && this.rangedTiles && this.rangedTiles.some(x => x === this.tile.identifier))
+      return (
+        this.selectedTile &&
+        this.selectedTile.hitPoints > 1 &&
+        this.selectedTile.rangedTiles &&
+        this.selectedTile.rangedTiles.some(x => x === this.tile.identifier)
+      )
     },
 
     tileClass () {
@@ -64,7 +68,8 @@ export default {
       this.selectTile({
         identifier: this.tile.identifier,
         empire: this.selectedPlayer.name,
-        hitPoints: this.selectedTile.hitPoints - 1
+        hitPoints: this.selectedTile.hitPoints - 1,
+        rangedTiles: this.tile.rangedTiles
       })
     }
   }

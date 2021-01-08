@@ -24,7 +24,6 @@ export default {
   computed: {
     ...mapState('turn', [
       'currentMode',
-      'rangedTiles',
       'rollValue'
     ]),
     ...mapState('tiles', [

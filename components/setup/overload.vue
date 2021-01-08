@@ -19,7 +19,6 @@ export default {
   computed: {
     ...mapState('turn', [
       'currentMode',
-      'rangedTiles',
       'rollValue'
     ]),
     ...mapState('tiles', [
@@ -45,7 +44,6 @@ export default {
 
     start () {
       this.setupBoard()
-      this.setupBlockedTiles(10)
 
       this.PLAYERS_SET_PLAYERS(
         [{
@@ -73,6 +71,8 @@ export default {
         hitPoints: 10,
         tiles: [40, 50, 60, 70]
       })
+
+      this.setupBlockedTiles(10)
 
       this.selectPlayer(this.players[0])
 

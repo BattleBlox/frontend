@@ -3,8 +3,6 @@ import {
   TURN_DESELECT_TILE,
   TURN_SELECT_PLAYER,
   TURN_SELECT_MODE,
-  TURN_SET_RANGED_TILES,
-  TURN_CLEAR_RANGED_TILES,
   TURN_SET_ROLL_VALUE,
   TURN_SET_GAME_OVER
 } from '@/store/mutations.constants'
@@ -13,7 +11,6 @@ export const state = () => ({
   selectedTile: null,
   selectedPlayer: null,
   currentMode: null,
-  rangedTiles: [],
   rollValue: 0,
   gameOver: false
 })
@@ -41,41 +38,12 @@ export const mutations = {
 
   [TURN_SET_ROLL_VALUE]: (state, rollValue) => {
     state.rollValue = rollValue
-  },
-
-  [TURN_CLEAR_RANGED_TILES]: (state) => {
-    state.rangedTiles = []
-  },
-
-  [TURN_SET_RANGED_TILES]: (state) => {
-    const rangedTiles = []
-
-    if (state.selectedTile.hitPoints > 1 || state.selectedPlayer.isComputer) {
-      if (state.selectedTile.identifier < 91) {
-        rangedTiles.push(state.selectedTile.identifier + 10)
-      }
-
-      if (state.selectedTile.identifier % 10 !== 1) {
-        rangedTiles.push(state.selectedTile.identifier - 1)
-      }
-
-      if (state.selectedTile.identifier % 10 !== 0) {
-        rangedTiles.push(state.selectedTile.identifier + 1)
-      }
-
-      if (state.selectedTile.identifier > 10) {
-        rangedTiles.push(state.selectedTile.identifier - 10)
-      }
-    }
-
-    state.rangedTiles = rangedTiles
   }
 }
 
 export const actions = {
   endTurn: ({ commit, state, rootState }) => {
     commit(TURN_DESELECT_TILE)
-    commit(TURN_CLEAR_RANGED_TILES)
     commit(TURN_SELECT_MODE, 'attack')
 
     const nextPlayerIndex = (state.selectedPlayer.index + 1 <= rootState.players.players.length)
@@ -97,10 +65,6 @@ export const actions = {
       commit(TURN_DESELECT_TILE)
     } else {
       commit(TURN_SET_SELECTED_TILE, tile)
-
-      if (state.currentMode === 'attack' || state.selectedPlayer.isComputer) {
-        commit(TURN_SET_RANGED_TILES)
-      }
     }
   },
 
@@ -113,13 +77,11 @@ export const actions = {
   selectPlayer: ({ commit }, player) => {
     commit(TURN_SELECT_PLAYER, player)
     commit(TURN_SELECT_MODE, 'attack')
-    commit(TURN_CLEAR_RANGED_TILES)
     commit(TURN_SET_GAME_OVER, false)
   },
 
   roll: ({ commit, state, rootState }) => {
     commit(TURN_SELECT_MODE, 'roll')
-    commit(TURN_CLEAR_RANGED_TILES)
     commit(TURN_DESELECT_TILE)
 
     const capitalTiles = rootState.tiles.tiles.filter(x => x.empire === state.selectedPlayer.name && x.hitPoints >= 10).length

@@ -24,7 +24,6 @@ export default {
   computed: {
     ...mapState('turn', [
       'currentMode',
-      'rangedTiles',
       'rollValue'
     ]),
     ...mapState('tiles', [
@@ -50,7 +49,6 @@ export default {
 
     startBlitzGame () {
       this.setupBoard()
-      this.setupBlockedTiles(15)
 
       this.PLAYERS_SET_PLAYERS(
         [{
@@ -102,6 +100,8 @@ export default {
         hitPoints: 3,
         tiles: [90, 99, 100]
       })
+
+      this.setupBlockedTiles(18)
 
       this.selectPlayer(this.players[0])
 

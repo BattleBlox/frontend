@@ -1,3 +1,4 @@
+/* eslint-disable curly */
 import { TILES_SET_ALL_TILES, TILES_SET_TILE } from '@/store/mutations.constants'
 
 // eslint-disable-next-line no-unused-vars
@@ -32,11 +33,18 @@ export const actions = {
   setupBoard: ({ commit }) => {
     const tiles = []
 
-    for (let loop = 1; loop <= 100; loop++) {
+    for (let identifier = 1; identifier <= 100; identifier++) {
+      const rangedTiles = []
+      if (identifier < 91) rangedTiles.push(identifier + 10)
+      if (identifier % 10 !== 1) rangedTiles.push(identifier - 1)
+      if (identifier % 10 !== 0) rangedTiles.push(identifier + 1)
+      if (identifier > 10) rangedTiles.push(identifier - 10)
+
       tiles.push({
-        identifier: loop,
+        identifier,
         empire: null,
-        hitPoints: 0
+        hitPoints: 0,
+        rangedTiles
       })
     }
 
@@ -50,27 +58,35 @@ export const actions = {
       if (state.tiles.find(x => x.identifier === tile && x.empire === null)) {
         commit(TILES_SET_TILE, {
           identifier: tile,
-          empire: 'blocked'
+          empire: 'blocked',
+          hitPoints: 0,
+          rangedTiles: []
         })
       }
     }
   },
 
-  controlTile: ({ commit }, { empire, hitPoints, tileIdentifier }) => {
-    commit(TILES_SET_TILE, {
-      identifier: tileIdentifier,
-      empire,
-      hitPoints
-    })
+  controlTile: ({ commit, state }, { empire, hitPoints, tileIdentifier }) => {
+    const tile = {
+      ...state.tiles.find(x => x.identifier === tileIdentifier)
+    }
+
+    tile.empire = empire
+    tile.hitPoints = hitPoints
+
+    commit(TILES_SET_TILE, tile)
   },
 
-  controlTiles: ({ commit }, { empire, hitPoints, tiles }) => {
-    tiles.forEach((tile) => {
-      commit(TILES_SET_TILE, {
-        identifier: tile,
-        empire,
-        hitPoints
-      })
+  controlTiles: ({ commit, state }, { empire, hitPoints, tiles }) => {
+    tiles.forEach((controlledTile) => {
+      const tile = {
+        ...state.tiles.find(x => x.identifier === controlledTile)
+      }
+
+      tile.empire = empire || 'blocked'
+      tile.hitPoints = hitPoints
+
+      commit(TILES_SET_TILE, tile)
     })
   }
 }

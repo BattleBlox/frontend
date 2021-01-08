@@ -19,7 +19,6 @@ export default {
   computed: {
     ...mapState('turn', [
       'currentMode',
-      'rangedTiles',
       'rollValue'
     ]),
     ...mapState('tiles', [
@@ -45,7 +44,6 @@ export default {
 
     quickMatch () {
       this.setupBoard()
-      this.setupBlockedTiles(25)
 
       this.PLAYERS_SET_PLAYERS(
         [{
@@ -73,6 +71,8 @@ export default {
         hitPoints: 3,
         tiles: [37, 47, 57, 67]
       })
+
+      this.setupBlockedTiles(25)
 
       this.selectPlayer(this.players[0])
 

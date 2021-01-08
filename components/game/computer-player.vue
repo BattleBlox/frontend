@@ -14,8 +14,6 @@ export default {
   computed: {
     ...mapState('turn', [
       'selectedPlayer',
-      'rangedTiles',
-      'selectedTile',
       'rollValue',
       'gameOver'
     ]),
@@ -26,6 +24,10 @@ export default {
 
     ...mapState('tiles', [
       'tiles'
+    ]),
+
+    ...mapState('settings', [
+      'computerSpeed'
     ]),
 
     playerTiles () {
@@ -53,7 +55,6 @@ export default {
     ]),
 
     ...mapActions('turn', [
-      'selectTile',
       'roll',
       'endTurn'
     ]),
@@ -75,9 +76,9 @@ export default {
           setTimeout(() => {
             this.processRollPhase()
 
-            setTimeout(() => { this.endTurn() }, 1500)
-          }, 1500)
-        }, 1500)
+            setTimeout(() => { this.endTurn() }, this.computerSpeed)
+          }, this.computerSpeed)
+        }, this.computerSpeed)
       }
     },
 
@@ -110,8 +111,6 @@ export default {
     },
 
     processTileAttacks (tile) {
-      this.selectTile(tile)
-
       const ambitionOverride = ((Math.floor(Math.random() * 9) + 1) <= 2)
 
       // Select one tile to attack
@@ -120,25 +119,25 @@ export default {
         x.empire !== 'blocked' && x.empire !== this.selectedPlayer.name &&
 
         // Filter only tiles within range
-        this.rangedTiles.includes(x.identifier) &&
+        tile.rangedTiles.includes(x.identifier) &&
 
         // Filter only tiles the computer wants to attack
-        (x.hitPoints < (this.selectedTile.hitPoints + 1) || (ambitionOverride && x.hitPoints < (this.selectedTile.hitPoints + 3)))
+        (x.hitPoints < (tile.hitPoints + 1) || (ambitionOverride && x.hitPoints < (tile.hitPoints + 3)))
       )
 
       if (potentialTargets.length > 0) {
         const randomTarget = Math.floor(Math.random() * potentialTargets.length) + 1
-        this.attackTile(potentialTargets[randomTarget - 1])
+        this.attackTile(tile, potentialTargets[randomTarget - 1])
       }
     },
 
-    attackTile (defendingTile) {
-      let attackerHitPoints = this.selectedTile.hitPoints
+    attackTile (attackingTile, defendingTile) {
+      let attackerHitPoints = attackingTile.hitPoints
       let defenderHitPoints = defendingTile.hitPoints
 
       // Neutral tiles don't put up a fight
       if (defenderHitPoints < 1) {
-        this.claimTile(attackerHitPoints, defendingTile.identifier)
+        this.claimTile(attackingTile, attackerHitPoints, defendingTile.identifier)
         return
       }
 
@@ -153,13 +152,13 @@ export default {
       }
 
       if (attackerHitPoints > defenderHitPoints) {
-        this.claimTile(attackerHitPoints, defendingTile.identifier)
+        this.claimTile(attackingTile, attackerHitPoints, defendingTile.identifier)
       } else {
-        this.loseBattle(defendingTile, defenderHitPoints)
+        this.loseBattle(attackingTile, defendingTile, defenderHitPoints)
       }
     },
 
-    claimTile (attackerHitPoints, tileIdentifier) {
+    claimTile (attackingTile, attackerHitPoints, tileIdentifier) {
       // Steal tile
       this.controlTile({
         empire: this.selectedPlayer.name,
@@ -171,16 +170,16 @@ export default {
       this.controlTile({
         empire: this.selectedPlayer.name,
         hitPoints: 1,
-        tileIdentifier: this.selectedTile.identifier
+        tileIdentifier: attackingTile.identifier
       })
     },
 
-    loseBattle (defendingTile, defenderHitPoints) {
+    loseBattle (attackingTile, defendingTile, defenderHitPoints) {
       // Update attacking tile
       this.controlTile({
         empire: this.selectedPlayer.name,
         hitPoints: 1,
-        tileIdentifier: this.selectedTile.identifier
+        tileIdentifier: attackingTile.identifier
       })
 
       // Update defending tile
@@ -205,12 +204,9 @@ export default {
       let loop = 0
       while (this.rollValue > 0) {
         for (const tile of this.playerTiles) {
-          // Temporary - Ranged tiles are currently only set on selection - I intend to change that
-          this.selectTile(tile)
-
           const enemyTiles = this.tiles.filter(enemyTile =>
             // Identify enemy tiles
-            this.rangedTiles.includes(enemyTile.identifier) &&
+            tile.rangedTiles.includes(enemyTile.identifier) &&
             enemyTile.empire !== this.selectedPlayer.name &&
             enemyTile.empire !== 'blocked' &&
             enemyTile.empire !== null &&
@@ -254,10 +250,8 @@ export default {
             continue
           }
 
-          this.selectTile(tile)
-
           const neutralTiles = this.tiles.filter(x =>
-            this.rangedTiles.includes(x.identifier) &&
+            tile.rangedTiles.includes(x.identifier) &&
             x.empire === null
           )
 
@@ -290,10 +284,8 @@ export default {
             return
           }
 
-          this.selectTile(tile)
-
           const enemyTiles = this.tiles.filter(x =>
-            this.rangedTiles.includes(x) &&
+            tile.rangedTiles.includes(x) &&
             x.empire !== this.selectedPlayer.name &&
             x.empire !== 'blocked' &&
             x.hitPoints >= tile.hitPoints

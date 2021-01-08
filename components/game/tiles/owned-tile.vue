@@ -73,11 +73,7 @@ export default {
       }
 
       if (this.currentMode === 'attack') {
-        this.selectTile({
-          identifier: this.tile.identifier,
-          empire: this.tile.empire,
-          hitPoints: this.tile.hitPoints
-        })
+        this.selectTile(this.tile)
       }
     }
   }

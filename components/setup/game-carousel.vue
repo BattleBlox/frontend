@@ -17,7 +17,7 @@
         <blitz />
       </slide>
       <slide v-show="slide === 4">
-        <spectacle />
+        <artificial-intelligence />
       </slide>
       <slide v-show="slide === 5">
         <chokepoint />
