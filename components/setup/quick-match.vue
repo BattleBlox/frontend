@@ -4,7 +4,7 @@
     <p>BattleBlox is a free turn based board game, the aim is to wipe out all opposing players and control the map.</p>
     <p>Each turn has an Attack, Roll and Spend phase, choose your moves carefully.</p>
 
-    <button class="c-menu-button" @click="quickMatch()">
+    <button class="c-menu-button" @click="start()">
       <c-icon icon="play-circle" />
       Start Quick Match
     </button>
@@ -12,41 +12,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
-import { PLAYERS_SET_PLAYERS, SETTINGS_SET_COMPUTER_SPEED } from '@/store/mutations.constants'
+import gameTypeMixin from './game-type.mixin'
 
 export default {
-  computed: {
-    ...mapState('turn', [
-      'currentMode',
-      'rollValue'
-    ]),
-    ...mapState('tiles', [
-      'tiles'
-    ]),
-    ...mapState('players', [
-      'players'
-    ])
-  },
+  mixins: [gameTypeMixin],
+
   methods: {
-    ...mapMutations('players', [
-      PLAYERS_SET_PLAYERS
-    ]),
-
-    ...mapMutations('settings', [
-      SETTINGS_SET_COMPUTER_SPEED
-    ]),
-    ...mapActions('tiles', [
-      'setupBoard',
-      'setupBlockedTiles',
-      'controlTiles'
-    ]),
-
-    ...mapActions('turn', [
-      'selectPlayer'
-    ]),
-
-    quickMatch () {
+    start () {
       this.setupBoard()
 
       this.SETTINGS_SET_COMPUTER_SPEED(1500)

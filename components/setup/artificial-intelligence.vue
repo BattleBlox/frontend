@@ -2,7 +2,7 @@
   <div>
     <h2>Watch Artificial Intelligence</h2>
     <p>Watch 10 computers fight to the death. No human players are harmed in this game mode.</p>
-    <button class="c-menu-button" @click="startSpectacle()">
+    <button class="c-menu-button" @click="start()">
       <c-icon icon="brain" />
       Watch Game
     </button>
@@ -10,50 +10,14 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
-import { PLAYERS_SET_PLAYERS, SETTINGS_SET_COMPUTER_SPEED } from '@/store/mutations.constants'
+import gameTypeMixin from './game-type.mixin'
 
 export default {
-  data () {
-    return {
-      startingPoints: 3,
-      blockedTileCount: 25
-    }
-  },
-  computed: {
-    ...mapState('turn', [
-      'currentMode',
-      'rollValue'
-    ]),
-    ...mapState('tiles', [
-      'tiles'
-    ]),
-    ...mapState('players', [
-      'players'
-    ])
-  },
+  mixins: [gameTypeMixin],
+
   methods: {
-    ...mapMutations('players', [
-      PLAYERS_SET_PLAYERS
-    ]),
-
-    ...mapMutations('settings', [
-      SETTINGS_SET_COMPUTER_SPEED
-    ]),
-
-    ...mapActions('tiles', [
-      'setupBoard',
-      'setupBlockedTiles',
-      'controlTiles'
-    ]),
-
-    ...mapActions('turn', [
-      'selectPlayer'
-    ]),
-
-    startSpectacle () {
+    start () {
       this.setupBoard()
-
       this.SETTINGS_SET_COMPUTER_SPEED(500)
 
       this.PLAYERS_SET_PLAYERS(

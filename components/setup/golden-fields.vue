@@ -12,41 +12,12 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
-import { PLAYERS_SET_PLAYERS, SETTINGS_SET_COMPUTER_SPEED } from '@/store/mutations.constants'
+import gameTypeMixin from './game-type.mixin'
 
 export default {
-  computed: {
-    ...mapState('turn', [
-      'currentMode',
-      'rollValue'
-    ]),
-    ...mapState('tiles', [
-      'tiles'
-    ]),
-    ...mapState('players', [
-      'players'
-    ])
-  },
+  mixins: [gameTypeMixin],
+
   methods: {
-    ...mapMutations('players', [
-      PLAYERS_SET_PLAYERS
-    ]),
-
-    ...mapMutations('settings', [
-      SETTINGS_SET_COMPUTER_SPEED
-    ]),
-
-    ...mapActions('tiles', [
-      'setupBoard',
-      'setupBlockedTiles',
-      'controlTiles'
-    ]),
-
-    ...mapActions('turn', [
-      'selectPlayer'
-    ]),
-
     start () {
       this.setupBoard()
 

@@ -49,9 +49,7 @@ export default {
     slide () {
       if (this.slide < 1) {
         this.slide = 7
-      }
-
-      if (this.slide > 7) {
+      } else if (this.slide > 7) {
         this.slide = 1
       }
     }
