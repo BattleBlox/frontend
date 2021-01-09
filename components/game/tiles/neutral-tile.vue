@@ -77,7 +77,7 @@ export default {
 
 <style scoped lang="scss">
 .c-neutral-tile {
-  background-color: silver;
-  opacity: 0.7;
+  background-color: #A0A0A0;
+  opacity: 0.6;
 }
 </style>

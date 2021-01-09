@@ -111,12 +111,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   border: 3px solid black;
-  width: 800px;
+  width: 803px;
   border-radius: 10px;
   margin: 0 auto;
   transition: all 0.3s ease-in-out;
   max-width: 95%;
   user-select: none;
+  border: 6px solid rgba(#000, .2);
 
   @media (max-width: 768px) {
     max-width: 100%;
