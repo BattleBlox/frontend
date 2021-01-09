@@ -67,13 +67,13 @@ export default {
       this.controlTiles({
         empire: 'You',
         hitPoints: 5,
-        tiles: [46, 60, 74, 88]
+        tiles: [47, 61, 75, 89]
       })
 
       this.controlTiles({
         empire: 'Player 2',
         hitPoints: 5,
-        tiles: [53, 67, 81, 95]
+        tiles: [52, 66, 80, 94]
       })
 
       this.setupBlockedTiles(30)

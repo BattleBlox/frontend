@@ -1,6 +1,6 @@
 <template>
   <div
-    class="c-surrender-button u-pointer"
+    class="c-surrenderButton u-pointer"
     title="Surrender Game"
     @click="surrenderGame()">
     <c-icon
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.c-surrender-button {
+.c-surrenderButton {
   position: fixed;
   height: 50px;
   width: 50px;
