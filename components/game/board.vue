@@ -90,6 +90,8 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
     })
+
+    this.isMobile = window.innerWidth <= 768
   },
 
   beforeDestroy () {
