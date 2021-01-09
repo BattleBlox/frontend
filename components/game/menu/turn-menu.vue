@@ -70,7 +70,7 @@ export default {
     },
 
     actionText () {
-      if (this.gameover) {
+      if (this.gameOver) {
         return `Game won by ${this.selectedPlayer.name}`
       }
 
