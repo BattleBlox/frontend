@@ -1,5 +1,5 @@
 <template>
-  <div class="c-turn-menu">
+  <div class="c-turn-menu a-fadeIn">
     <div class="c-turn-menu-header">
       <img
         :class="`c-turn-menu-header-avatar ${playerColourClass}`"

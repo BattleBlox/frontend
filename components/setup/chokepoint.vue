@@ -4,7 +4,7 @@
     <p>Play versus the computer in a tough game with only one path to the enemy.</p>
     <p>Control the chokepoint and you stand a good chance of winning the game!</p>
     <button class="c-menu-button" @click="startChokepoint()">
-      <c-icon icon="brain" />
+      <c-icon icon="exchange-alt" />
       Start Chokepoint
     </button>
   </div>

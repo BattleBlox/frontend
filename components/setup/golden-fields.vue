@@ -5,7 +5,7 @@
     <p>The player who controls the field, will probably win the game.</p>
 
     <button class="c-menu-button" @click="start()">
-      <c-icon icon="play-circle" />
+      <c-icon icon="money-bill-alt" />
       Start Golden Fields
     </button>
   </div>

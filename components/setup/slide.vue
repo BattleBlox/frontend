@@ -20,12 +20,13 @@
     display: block;
     color: white;
     border: 1px solid white;
-    padding: 15px;
+    padding: 20px;
     font-size: 1rem;
     background-color: transparent;
     cursor: pointer;
     text-decoration: none;
     margin: 0 auto;
+    transition: all 0.2s ease-in-out;
 
     svg {
       margin-right: 3px;
@@ -33,6 +34,7 @@
 
     &:hover {
       text-decoration: underline;
+      background: rgba(30, 30, 30, 0.6);
     }
   }
 </style>

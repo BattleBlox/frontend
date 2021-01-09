@@ -30,23 +30,4 @@
       margin-bottom: 10px;
     }
   }
-
-  .c-menu-button {
-    display: block;
-    color: white;
-    border: 1px solid white;
-    padding: 10px;
-    background-color: transparent;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 0 auto;
-
-    svg {
-      margin-right: 3px;
-    }
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 </style>

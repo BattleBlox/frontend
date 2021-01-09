@@ -5,7 +5,7 @@
     <p>Choose your strategy wisely; any mistep can cost you the game.</p>
 
     <button class="c-menu-button" @click="start()">
-      <c-icon icon="play-circle" />
+      <c-icon icon="radiation-alt" />
       Start Overload
     </button>
   </div>

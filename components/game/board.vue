@@ -1,5 +1,5 @@
 <template>
-  <div :class="`c-board ${additionalClasses}`">
+  <div :class="`c-board a-fadeIn ${additionalClasses}`">
     <computer-player />
     <tile v-for="tile in orderedTiles" :key="tile.identifier" :tile="tile" />
   </div>
