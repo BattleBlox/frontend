@@ -10,7 +10,7 @@
 
       <c-icon
         v-show="!gameOver && isComputerPlayer"
-        class="c-turn-menu-header-spinner fa-spin"
+        :class="`c-turn-menu-header-spinner fa-spin ${playerColourClass}`"
         icon="spinner" />
 
       <img
@@ -148,6 +148,8 @@ export default {
     padding: 10px;
     text-align: center;
     border-radius: 10px;
+    border: 5px solid rgba(#000, .2);
+    border-top: 0;
     transition: all 0.3s ease-in-out;
 
     h3 {
@@ -162,7 +164,7 @@ export default {
     width: 125px;
     height: 125px;
     border-radius: 50%;
-    border: 10px solid black;
+    border: 6px solid rgba(#000, .2);
     transition: all 0.3s ease-in-out;
   }
 
@@ -173,7 +175,7 @@ export default {
     width: 125px;
     height: 125px;
     border-radius: 50%;
-    border: 10px solid black;
+    border: 6px solid rgba(#000, .2);
   }
 
   .c-turn-menu-header-spinner {
@@ -184,7 +186,7 @@ export default {
     height: 125px;
     padding: 20px;
     border-radius: 50%;
-    border: 10px solid black;
-    background-color: black;
+    transition: all 0.2s ease-in-out;
+    border: 6px solid rgba(#000, .2);
   }
 </style>
