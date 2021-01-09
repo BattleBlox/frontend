@@ -2,7 +2,7 @@
   <div
     v-show="isLoaded"
     :style="styleOverrides"
-    class="c-circle" />
+    class="c-square" />
 </template>
 
 <script>
@@ -51,17 +51,12 @@ export default {
 </script>
 
 <style scoped>
-  .c-circle {
+  .c-square {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100px;
     border-radius: 10px;
     animation-name: a-translocate_1;
     animation-duration: 120s;
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
-    opacity: 0.5;
   }
 </style>

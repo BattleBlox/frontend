@@ -29,7 +29,7 @@ html {
   color: white;
 }
 
-body {
+body, button {
   font-family: 'Alegreya Sans SC', sans-serif;
 }
 

@@ -5,21 +5,8 @@
         :class="`c-turn-menu-header-avatar ${playerColourClass}`"
         src="/soldier.png">
 
-      <p v-show="!gameOver && isComputerPlayer">
-        Waiting for Computer player...
-      </p>
-
-      <p v-show="!gameOver && !isComputerPlayer && currentMode === 'attack'">
-        Select a tile and attack
-      </p>
-
-      <p v-show="!gameOver && !isComputerPlayer && currentMode === 'roll'">
-        Spend {{ rollValue }} Points
-      </p>
-
-      <p v-show="gameOver">
-        Game won by {{ selectedPlayer.name }}!
-      </p>
+      <p
+        v-text="actionText" />
 
       <c-icon
         v-show="!gameOver && isComputerPlayer"
@@ -42,7 +29,8 @@
     <div :class="`c-turn-menu-footer ${playerColourClass}`">
       <expansion-bonus-indicator />
 
-      <h3 v-text="selectedPlayer.name" />
+      <h3
+        v-text="selectedPlayer.name" />
 
       <capital-bonus-indicator />
     </div>
@@ -79,17 +67,41 @@ export default {
       const player = this.players.find(plr => plr.name === this.selectedPlayer.name)
 
       return `u-background--${player.colour}`
+    },
+
+    actionText () {
+      if (this.gameover) {
+        return `Game won by ${this.selectedPlayer.name}`
+      }
+
+      if (this.isComputerPlayer) {
+        return 'Waiting for computer player...'
+      }
+
+      return (this.currentMode === 'attack')
+        ? 'Select a tile and attack'
+        : `Spend ${this.rollValue} points`
     }
   },
 
   watch: {
     '$store.state.tiles.tiles' () {
-      let remainingPlayers = this.tiles.filter(x => x.empire !== null && x.empire !== 'blocked').map(x => x.empire)
-      remainingPlayers = [...new Set(remainingPlayers)]
+      let remainingPlayerNames = this.tiles.filter(tiles =>
+        tiles.empire !== null &&
+        tiles.empire !== 'blocked'
+      ).map(tiles =>
+        tiles.empire
+      )
 
-      if (remainingPlayers.length === 1) {
-        const winner = this.players.find(x => x.name === remainingPlayers[0])
-        this.setGameOver(winner)
+      // Dedupe the remaining player names
+      remainingPlayerNames = [
+        ...new Set(remainingPlayerNames)
+      ]
+
+      if (remainingPlayerNames.length === 1) {
+        this.setGameOver(this.players.find(x =>
+          x.name === remainingPlayerNames[0]
+        ))
       }
     }
   },
@@ -97,19 +109,11 @@ export default {
   methods: {
     ...mapActions('turn', [
       'roll',
-      'endTurn',
       'setGameOver'
     ]),
 
     rollDice () {
-      switch (this.currentMode) {
-        case 'roll':
-          this.endTurn()
-          break
-        case 'attack':
-          this.roll()
-          break
-      }
+      this.roll()
     }
   }
 }
@@ -122,7 +126,8 @@ export default {
     right: 0;
     left: 0;
     margin: 0 auto;
-    width: 450px;
+    width: 500px;
+    max-width: 90vw;
     z-index: 250;
     user-select: none;
   }
@@ -130,10 +135,10 @@ export default {
   .c-turn-menu-header {
     position: relative;
     background: rgba(30, 30, 30, 0.6);
-    color: white;
     padding: 20px;
     text-align: center;
-    width: 450px;
+    width: 500px;
+    max-width: 90vw;
     margin: 0 auto;
   }
 
@@ -143,9 +148,7 @@ export default {
     padding: 10px;
     text-align: center;
     border-radius: 10px;
-    color: white;
     transition: all 0.3s ease-in-out;
-    border: 2px solid black;
 
     h3 {
       flex-grow: 1;
@@ -183,9 +186,5 @@ export default {
     border-radius: 50%;
     border: 10px solid black;
     background-color: black;
-  }
-
-  .u-pointer {
-    cursor: pointer;
   }
 </style>

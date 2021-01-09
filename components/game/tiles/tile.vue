@@ -6,10 +6,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import OwnedTile from './tiles/owned-tile'
-import EnemyTile from './tiles/enemy-tile'
-import NeutralTile from './tiles/neutral-tile'
-import BlockedTile from './tiles/blocked-tile'
+import OwnedTile from './owned-tile'
+import EnemyTile from './enemy-tile'
+import NeutralTile from './neutral-tile'
+import BlockedTile from './blocked-tile'
 
 export default {
   components: {

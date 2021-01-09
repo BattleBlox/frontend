@@ -2,26 +2,18 @@
   <div
     class="c-surrenderButton u-pointer"
     title="Surrender Game"
-    @click="surrenderGame()">
+    @click="$router.push({ path: '/' })">
     <c-icon
       icon="flag"
       class="u-flex-grow" />
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    surrenderGame () {
-      this.$router.push({ path: '/' })
-    }
-  }
-}
-</script>
-
 <style scoped lang="scss">
 .c-surrenderButton {
   position: fixed;
+  right: 10px;
+  top: 10px;
   height: 50px;
   width: 50px;
   background: rgba(30, 30, 30, 0.5);
@@ -29,8 +21,6 @@ export default {
   display: flex;
   align-items: center;
   transition: all 0.3s ease-in-out;
-  right: 10px;
-  top: 10px;
   z-index: 10;
 
   svg {
@@ -38,7 +28,7 @@ export default {
   }
 
   &:hover {
-    background: rgba(30, 30, 30, 0.8);
+    background: rgba(30, 30, 30, 0.9);
   }
 }
 </style>

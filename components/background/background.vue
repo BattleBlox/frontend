@@ -29,9 +29,5 @@ export default {
     background-color: black;
     height: 100vh;
     overflow: hidden;
-
-    .light & {
-      background-color: white;
-    }
   }
 </style>
