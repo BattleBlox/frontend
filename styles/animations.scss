@@ -11,7 +11,7 @@ page-enter-active,
 
 @keyframes a-translocate_1 {
   0% {
-    background-color: red;
+    background-color: #FF1502;
     margin-left: 100px;
     opacity: .2;
   }
@@ -24,7 +24,7 @@ page-enter-active,
   }
 
   66% {
-    background-color: red;
+    background-color: #FF1502;
     margin-left: 10px;
     margin-top: 400px;
     opacity: .2
@@ -38,7 +38,7 @@ page-enter-active,
 
 @keyframes a-translocate_2 {
   0% {
-    background-color: blue;
+    background-color: #0020FF;
     margin-left: -100px;
     opacity: .2;
   }
@@ -51,9 +51,64 @@ page-enter-active,
   }
 
   66% {
-    background-color: blue;
+    background-color: #0020FF;
     margin-left: 100px;
     margin-top: 150px;
+    opacity: .2
+  }
+
+  100% {
+    background-color: black;
+    opacity: 0.6;
+  }
+}
+
+@keyframes a-translocate_3 {
+  0% {
+    background-color: #8200FF;
+    margin-left: 250px;
+    opacity: .1;
+  }
+
+  33% {
+    background-color: black;
+    margin-left: -100px;
+    margin-top: 100px;
+    opacity: 0.6;
+  }
+
+  66% {
+    background-color: #8200FF;
+    margin-left: 400px;
+    margin-top: 300px;
+    opacity: .4
+  }
+
+  100% {
+    background-color: black;
+    opacity: 0.8;
+  }
+}
+
+@keyframes a-translocate_4 {
+  0% {
+    background-color: #EB7C22;
+    margin-left: 600px;
+    margin-top: 200px;
+    opacity: .2;
+  }
+
+  33% {
+    background-color: black;
+    margin-left: 300px;
+    margin-top: 400px;
+    opacity: 0.6;
+  }
+
+  66% {
+    background-color: #EB7C22;
+    margin-left: 450px;
+    margin-top: 100px;
     opacity: .2
   }
 

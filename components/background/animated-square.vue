@@ -41,8 +41,16 @@ export default {
       this.startLeft = randomiser.generateRandomNumber(-25, 125)
       this.speed = randomiser.generateRandomNumber(10, 70)
 
-      const animationVariant = randomiser.generateRandomNumber(1, 10)
-      this.animationVariant = animationVariant < 7 ? 1 : 2
+      const animationVariant = randomiser.generateRandomNumber(0, 40)
+      if (animationVariant <= 10) {
+        this.animationVariant = 1
+      } else if (animationVariant <= 20) {
+        this.animationVariant = 2
+      } else if (animationVariant <= 30) {
+        this.animationVariant = 3
+      } else {
+        this.animationVariant = 4
+      }
 
       this.isLoaded = true
     }
