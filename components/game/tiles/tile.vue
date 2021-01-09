@@ -52,7 +52,7 @@ export default {
   transition: all 0.3s ease-in-out;
   text-align: center;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 2px solid rgba(white, .5);
   cursor: not-allowed;
   font-size: 1rem;
 
