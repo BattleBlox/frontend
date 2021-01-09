@@ -1,5 +1,5 @@
 # BattleBlox
-> Play our free turn based strategy game and conquer the map!
+> Play our free turn based strategy game and conquer the map! http://www.battleblox.gg
 
 ## Welcome Contributions
 - Reporting Issues: Please report issues for any bugs you find within the game

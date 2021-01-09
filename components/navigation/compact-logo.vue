@@ -1,18 +1,18 @@
 <template functional>
-  <div class="c-navigator">
+  <div class="c-compactLogo">
     <nuxt-link to="/">
       <img src="/logo.png">
     </nuxt-link>
   </div>
 </template>
 
-<style scoped>
-.c-navigator {
-  padding: 15px;
+<style scoped lang="scss">
+.c-compactLogo {
+  padding: 20px;
   text-align:center;
-}
 
-.c-navigator img {
-  width: 200px;
+  img {
+    width: 200px;
+  }
 }
 </style>

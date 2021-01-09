@@ -1,25 +1,15 @@
 <template>
   <div class="c-play">
-    <compact-navigator />
-    <div v-if="players.length > 0" class="c-game">
-      <board />
+    <compact-logo />
+    <board />
 
-      <turn-menu />
-      <surrender-button />
-    </div>
+    <turn-menu />
+    <surrender-button />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
-  computed: {
-    ...mapState('players', [
-      'players'
-    ])
-  },
-
   middleware: 'game-detector'
 }
 </script>
