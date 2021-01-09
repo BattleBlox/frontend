@@ -69,25 +69,31 @@ export default {
 
       this.controlTiles({
         empire: 'You',
-        hitPoints: 3,
-        tiles: [2, 3]
+        hitPoints: 4,
+        tiles: [41, 42, 55, 56]
       })
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 3,
-        tiles: [98, 99]
+        hitPoints: 4,
+        tiles: [85, 86, 99, 100]
       })
 
       this.controlTiles({
         empire: 'blocked',
         hitPoints: 0,
-        tiles: [22, 22, 23, 24, 25, 26, 27, 28, 29, 32, 52, 62, 72, 39, 49, 69, 79, 73, 74, 75, 76, 77, 78, 79]
+        tiles: [
+          31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+          101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
+          45, 73, 87,
+          54, 68, 96,
+          71, 72, 69, 70
+        ]
       })
 
       this.selectPlayer(this.players[0])
 
-      this.$router.push({ path: '/play?type=Golden Fields' })
+      this.$router.push({ path: '/play' })
     }
   }
 }

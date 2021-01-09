@@ -45,8 +45,8 @@ export default {
 
 <style lang="scss">
 .c-tile {
-  width: 60px;
-  height: 60px;
+  width: 56.5px;
+  height: 56.5px;
   display: flex;
   align-items: center;
   transition: all 0.3s ease-in-out;
@@ -54,10 +54,12 @@ export default {
   border-radius: 10px;
   border: 1px solid white;
   cursor: not-allowed;
+  font-size: 1rem;
 
   @media (max-width: 768px) {
-    width: 53px;
-    height: 53px;
+    width: calc(100% / 10);
+    height: calc((95vw / 10));
+    font-size: 1.25rem;
   }
 
   &.c-tile--selected {

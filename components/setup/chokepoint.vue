@@ -73,25 +73,29 @@ export default {
 
       this.controlTiles({
         empire: 'You',
-        hitPoints: 2,
-        tiles: [1, 2, 11, 81, 91, 92]
+        hitPoints: 3,
+        tiles: [30, 31, 32, 39, 40, 41]
       })
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 2,
-        tiles: [9, 10, 20, 90, 99, 100]
+        hitPoints: 3,
+        tiles: [100, 101, 102, 109, 110, 111]
       })
 
       this.controlTiles({
         empire: 'blocked',
         hitPoints: 0,
-        tiles: [5, 6, 15, 16, 24, 25, 26, 27, 34, 35, 36, 37, 44, 45, 46, 47, 64, 65, 66, 67, 74, 75, 76, 77, 85, 86, 95, 96]
+        tiles: [
+          57, 58, 59, 60, 61, 62, 65, 66, 67, 68, 69, 70,
+          71, 72, 73, 74, 75, 76, 79, 80, 81, 82, 83, 84,
+          48, 51, 90, 93, 34, 37, 104, 107
+        ]
       })
 
       this.selectPlayer(this.players[0])
 
-      this.$router.push({ path: '/play?type=Chokepoint' })
+      this.$router.push({ path: '/play' })
     }
   }
 }

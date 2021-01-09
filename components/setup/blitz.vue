@@ -86,33 +86,33 @@ export default {
 
       this.controlTiles({
         empire: 'You',
-        hitPoints: 3,
-        tiles: [1, 2, 11]
+        hitPoints: 5,
+        tiles: [1, 2, 15]
       })
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 3,
-        tiles: [9, 10, 20]
+        hitPoints: 5,
+        tiles: [13, 14, 28]
       })
 
       this.controlTiles({
         empire: 'Player 3',
-        hitPoints: 3,
-        tiles: [81, 91, 92]
+        hitPoints: 5,
+        tiles: [113, 127, 128]
       })
 
       this.controlTiles({
         empire: 'Player 4',
-        hitPoints: 3,
-        tiles: [90, 99, 100]
+        hitPoints: 5,
+        tiles: [126, 139, 140]
       })
 
-      this.setupBlockedTiles(18)
+      this.setupBlockedTiles(25)
 
       this.selectPlayer(this.players[0])
 
-      this.$router.push({ path: '/play?type=Blitz' })
+      this.$router.push({ path: '/play' })
     }
   }
 }

@@ -121,69 +121,69 @@ export default {
 
       this.controlTiles({
         empire: 'Player 1',
-        hitPoints: 2,
+        hitPoints: 3,
         tiles: [1]
       })
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 2,
-        tiles: [3]
+        hitPoints: 3,
+        tiles: [4]
       })
 
       this.controlTiles({
         empire: 'Player 3',
-        hitPoints: 2,
-        tiles: [5]
-      })
-
-      this.controlTiles({
-        empire: 'Player 4',
-        hitPoints: 2,
+        hitPoints: 3,
         tiles: [7]
       })
 
       this.controlTiles({
+        empire: 'Player 4',
+        hitPoints: 3,
+        tiles: [10]
+      })
+
+      this.controlTiles({
         empire: 'Player 5',
-        hitPoints: 2,
-        tiles: [9]
+        hitPoints: 3,
+        tiles: [13]
       })
 
       this.controlTiles({
         empire: 'Player 6',
-        hitPoints: 2,
-        tiles: [92]
+        hitPoints: 3,
+        tiles: [128]
       })
 
       this.controlTiles({
         empire: 'Player 7',
-        hitPoints: 2,
-        tiles: [94]
+        hitPoints: 3,
+        tiles: [131]
       })
 
       this.controlTiles({
         empire: 'Player 8',
-        hitPoints: 2,
-        tiles: [96]
+        hitPoints: 3,
+        tiles: [134]
       })
 
       this.controlTiles({
         empire: 'Player 9',
-        hitPoints: 2,
-        tiles: [98]
+        hitPoints: 3,
+        tiles: [137]
       })
 
       this.controlTiles({
         empire: 'Player 10',
-        hitPoints: 2,
-        tiles: [100]
+        hitPoints: 3,
+        tiles: [140]
       })
 
-      this.setupBlockedTiles(10)
+      this.setupBlockedTiles(20)
 
       this.selectPlayer(this.players[0])
 
-      this.$router.push({ path: '/play?type=Artificial Intelligence' })
+      this.$router.push({ path: '/play' })
     }
   }
 }

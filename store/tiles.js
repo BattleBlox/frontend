@@ -33,12 +33,12 @@ export const actions = {
   setupBoard: ({ commit }) => {
     const tiles = []
 
-    for (let identifier = 1; identifier <= 100; identifier++) {
+    for (let identifier = 1; identifier <= 140; identifier++) {
       const rangedTiles = []
-      if (identifier < 91) rangedTiles.push(identifier + 10)
-      if (identifier % 10 !== 1) rangedTiles.push(identifier - 1)
-      if (identifier % 10 !== 0) rangedTiles.push(identifier + 1)
-      if (identifier > 10) rangedTiles.push(identifier - 10)
+      if (identifier < 127) rangedTiles.push(identifier + 14)
+      if (identifier % 14 !== 1) rangedTiles.push(identifier - 1)
+      if (identifier % 14 !== 0) rangedTiles.push(identifier + 1)
+      if (identifier > 14) rangedTiles.push(identifier - 14)
 
       tiles.push({
         identifier,
@@ -53,7 +53,7 @@ export const actions = {
 
   setupBlockedTiles: ({ commit, state }, numberOfTiles) => {
     while (state.tiles.filter(x => x.empire === 'blocked').length < numberOfTiles) {
-      const tile = Math.floor(Math.random() * 100) + 1
+      const tile = Math.floor(Math.random() * 140) + 1
 
       if (state.tiles.find(x => x.identifier === tile && x.empire === null)) {
         commit(TILES_SET_TILE, {

@@ -70,20 +70,20 @@ export default {
       this.controlTiles({
         empire: 'You',
         hitPoints: 3,
-        tiles: [31, 41, 51, 61]
+        tiles: [46, 60, 74, 88]
       })
 
       this.controlTiles({
         empire: 'Player 2',
         hitPoints: 10,
-        tiles: [40, 50, 60, 70]
+        tiles: [53, 67, 81, 95]
       })
 
-      this.setupBlockedTiles(10)
+      this.setupBlockedTiles(15)
 
       this.selectPlayer(this.players[0])
 
-      this.$router.push({ path: '/play?type=Overload' })
+      this.$router.push({ path: '/play' })
     }
   }
 }

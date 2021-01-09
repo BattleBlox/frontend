@@ -68,21 +68,21 @@ export default {
 
       this.controlTiles({
         empire: 'You',
-        hitPoints: 3,
-        tiles: [34, 44, 54, 64]
+        hitPoints: 5,
+        tiles: [46, 60, 74, 88]
       })
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 3,
-        tiles: [37, 47, 57, 67]
+        hitPoints: 5,
+        tiles: [53, 67, 81, 95]
       })
 
-      this.setupBlockedTiles(25)
+      this.setupBlockedTiles(30)
 
       this.selectPlayer(this.players[0])
 
-      this.$router.push({ path: '/play?type=Quick Match' })
+      this.$router.push({ path: '/play' })
     }
   }
 }
