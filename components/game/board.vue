@@ -91,7 +91,7 @@ export default {
       window.addEventListener('resize', this.onResize)
     })
 
-    this.isMobile = window.innerWidth <= 768
+    this.isMobile = window.innerWidth <= 850
   },
 
   beforeDestroy () {
@@ -100,7 +100,7 @@ export default {
 
   methods: {
     onResize () {
-      this.isMobile = window.innerWidth <= 768
+      this.isMobile = window.innerWidth <= 850
     }
   }
 }
@@ -111,20 +111,24 @@ export default {
   display: flex;
   flex-wrap: wrap;
   border: 3px solid black;
-  width: 803px;
+  width: 807px;
   border-radius: 10px;
   margin: 0 auto;
-  transition: all 0.3s ease-in-out;
+  transition: border 0.3s ease-in-out, background-color 0.3s ease-in-out;
   max-width: 95%;
   user-select: none;
   border: 6px solid rgba(#000, .2);
 
-  @media (max-width: 768px) {
-    width: 612px;
+  @media (max-width: 1024px) {
+    width: 770px;
   }
 
-  @media (max-width: 450px) {
-    max-width: 100%;
+  @media (max-width: 850px) {
+    width: 555px;
+  }
+
+  @media (max-width: 612px) {
+    max-width: 95vw;
     border-radius: 0;
     border: 3px solid rgba(#000, .2);
   }

@@ -45,24 +45,31 @@ export default {
 
 <style lang="scss">
 .c-tile {
-  width: 56.5px;
-  height: 56.5px;
+  width: calc(795px / 14);
+  height: calc(795px / 14);
   display: flex;
   align-items: center;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
   text-align: center;
   border-radius: 10px;
   border: 2px solid rgba(white, .5);
   cursor: not-allowed;
 
-  @media (max-width: 768px) {
-    width: 60px;
-    height: 60px;
+  @media (max-width: 1024px) {
+    width: 54px;
+    height: 54px;
   }
 
-  @media (max-width: 450px) {
-    width: calc(100% / 10);
-    height: calc((95vw / 10));
+  @media (max-width: 850px) {
+    width: calc(541px / 10);
+    height: calc(541px / 10);
+    border-radius: 7.5px;
+    border: 1.5px solid rgba(white, .5);
+  }
+
+  @media (max-width: 612px) {
+    width: calc(93vw / 10);
+    height: calc(93vw / 10);
     border-radius: 7.5px;
     border: 1.5px solid rgba(white, .5);
   }

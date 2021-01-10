@@ -11,14 +11,22 @@
     text-align: center;
     width: 100%;
 
+    @media (max-width: 1024px) {
+      padding-top: 50px;
+    }
+
     @media (max-width: 450px) {
       padding-top: 50px;
     }
-  }
 
-  .c-largeLogo img {
-    width: 300px;
-    max-width: 50vw;
-    margin: 0 auto;
+    img {
+      width: 300px;
+      max-width: 50vw;
+      margin: 0 auto;
+
+      @media (max-width: 1024px) {
+        width: 200px;
+      }
+    }
   }
 </style>
