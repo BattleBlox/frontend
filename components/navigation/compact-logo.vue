@@ -14,5 +14,15 @@
   img {
     width: 200px;
   }
+
+  @media (max-width: 1024px) {
+      padding: 5px;
+      height: 42px;
+      margin-bottom: 5px;
+
+      img {
+        width: 150px;
+      }
+  }
 }
 </style>

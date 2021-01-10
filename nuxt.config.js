@@ -4,7 +4,7 @@ export default {
     title: 'BattleBlox | A challenging turn based strategy game',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' },
       { hid: 'description', name: 'description', content: 'Play BattleBlox online | A challenging turn based strategy game where you aim to conquer the map!' }
     ],
     link: [

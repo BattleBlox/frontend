@@ -36,5 +36,9 @@
       text-decoration: underline;
       background: rgba(30, 30, 30, 0.6);
     }
+
+    @media (max-width: 450px) {
+      padding: 15px;
+    }
   }
 </style>

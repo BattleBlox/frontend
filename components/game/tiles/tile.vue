@@ -54,12 +54,17 @@ export default {
   border-radius: 10px;
   border: 2px solid rgba(white, .5);
   cursor: not-allowed;
-  font-size: 1rem;
 
   @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
+
+  @media (max-width: 450px) {
     width: calc(100% / 10);
     height: calc((95vw / 10));
-    font-size: 1.25rem;
+    border-radius: 7.5px;
+    border: 1.5px solid rgba(white, .5);
   }
 
   &.c-tile--selected {

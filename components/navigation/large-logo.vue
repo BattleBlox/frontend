@@ -4,10 +4,21 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+  .c-largeLogo {
+    padding-top: 80px;
+    padding-bottom: 40px;
+    text-align: center;
+    width: 100%;
+
+    @media (max-width: 450px) {
+      padding-top: 50px;
+    }
+  }
+
   .c-largeLogo img {
-    margin: 80px;
-    margin-bottom: 40px;
-    height: 150px;
+    width: 300px;
+    max-width: 50vw;
+    margin: 0 auto;
   }
 </style>

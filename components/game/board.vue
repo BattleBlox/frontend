@@ -120,8 +120,13 @@ export default {
   border: 6px solid rgba(#000, .2);
 
   @media (max-width: 768px) {
+    width: 612px;
+  }
+
+  @media (max-width: 450px) {
     max-width: 100%;
     border-radius: 0;
+    border: 3px solid rgba(#000, .2);
   }
 
   &.c-board--disabled {

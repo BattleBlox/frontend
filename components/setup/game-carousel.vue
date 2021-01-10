@@ -60,7 +60,7 @@ export default {
 <style scoped lang="scss">
 .c-gameCarousel {
   width: 600px;
-  max-width: 95%;
+  max-width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;
   height: 400px;
@@ -70,14 +70,25 @@ export default {
   display: flex;
   align-items: center;
   user-select: none;
+
+  @media (max-width: 450px) {
+    height: 325px;
+  }
 }
 
 .c-gameCarousel-arrow {
-  margin: 10px;
   text-align: center;
   cursor: pointer;
   font-size: 20px;
   transition: all 0.2s ease-in-out;
+
+  &.c-gameCarousel--left {
+    margin-left: 10px;
+  }
+
+  &.c-gameCarousel--right {
+    margin-right: 10px;
+  }
 
   .c-gameCarousel-arrow-inner {
     width: 50px;
@@ -96,6 +107,11 @@ export default {
       svg {
         color: black;
       }
+    }
+
+    @media (max-width: 450px) {
+      width: 30px;
+      height: 30px;
     }
   }
 }

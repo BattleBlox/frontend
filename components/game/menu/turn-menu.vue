@@ -127,7 +127,7 @@ export default {
     left: 0;
     margin: 0 auto;
     width: 500px;
-    max-width: 90vw;
+    max-width: 85vw;
     z-index: 250;
     user-select: none;
   }
@@ -137,9 +137,12 @@ export default {
     background: rgba(30, 30, 30, 0.6);
     padding: 20px;
     text-align: center;
-    width: 500px;
-    max-width: 90vw;
+    width: 100%;
     margin: 0 auto;
+
+    @media (max-width: 450px) {
+      padding: 12.5px;
+    }
   }
 
   .c-turn-menu-footer {
@@ -147,46 +150,74 @@ export default {
     align-items: center;
     padding: 10px;
     text-align: center;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border: 5px solid rgba(#000, .2);
     border-top: 0;
+    border-bottom: 0;
     transition: all 0.3s ease-in-out;
 
     h3 {
       flex-grow: 1;
     }
+
+    @media (max-width: 450px) {
+      padding: 5px 10px;
+    }
   }
 
   .c-turn-menu-header-avatar {
     position: absolute;
-    left: -25px;
-    top: -45px;
-    width: 125px;
-    height: 125px;
+    left: -20px;
+    top: -25px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: 6px solid rgba(#000, .2);
     transition: all 0.3s ease-in-out;
+
+    @media (max-width: 450px) {
+      left: -15px;
+      top: -30px;
+      width: 80px;
+      height: 80px;
+    }
   }
 
   .c-turn-menu-header-endTurn {
     position: absolute;
-    right: -25px;
-    top: -45px;
-    width: 125px;
-    height: 125px;
+    right: -20px;
+    top: -25px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: 6px solid rgba(#000, .2);
+
+    @media (max-width: 450px) {
+      right: -15px;
+      top: -30px;
+      width: 80px;
+      height: 80px;
+    }
   }
 
   .c-turn-menu-header-spinner {
     position: absolute;
-    right: -25px;
-    top: -45px;
-    width: 125px;
-    height: 125px;
-    padding: 20px;
+    right: -20px;
+    top: -25px;
+    width: 100px;
+    height: 100px;
+    padding: 30px;
     border-radius: 50%;
     transition: all 0.2s ease-in-out;
     border: 6px solid rgba(#000, .2);
+
+    @media (max-width: 450px) {
+      right: -15px;
+      top: -30px;
+      padding: 20px;
+      width: 80px;
+      height: 80px;
+    }
   }
 </style>

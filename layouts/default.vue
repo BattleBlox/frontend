@@ -27,6 +27,10 @@ html {
   box-sizing: border-box;
   background-color: black;
   color: white;
+
+  @media (max-width: 450px) {
+    font-size: 13px;
+  }
 }
 
 body, button {

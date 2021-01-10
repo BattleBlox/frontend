@@ -8,6 +8,10 @@
 
 .u-badge-outer {
   padding-top: 10px;
+
+  @media (max-width: 450px) {
+    padding-top: 5px;
+  }
 }
 
 .u-badge {

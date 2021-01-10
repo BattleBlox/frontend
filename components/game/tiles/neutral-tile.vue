@@ -80,5 +80,9 @@ export default {
   background-color: #A0A0A0;
   border: 2px solid white;
   opacity: 0.6;
+
+    @media (max-width: 450px) {
+      border: 1.5px solid white;
+    }
 }
 </style>

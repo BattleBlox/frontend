@@ -14,8 +14,8 @@
   position: fixed;
   right: 10px;
   top: 10px;
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   background: rgba(30, 30, 30, 0.5);
   border-radius: 10px;
   display: flex;
