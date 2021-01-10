@@ -1,5 +1,7 @@
 
 export default {
+  target: 'static',
+
   head: {
     title: 'BattleBlox | A challenging turn based strategy game',
     meta: [
