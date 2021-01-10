@@ -80,6 +80,7 @@ export const actions = {
 
   selectPlayer: ({ commit }, player) => {
     commit(TURN_SELECT_PLAYER, player)
+    commit(TURN_DESELECT_TILE)
     commit(TURN_SELECT_MODE, 'attack')
     commit(TURN_SET_GAME_OVER, false)
   },

@@ -7,14 +7,6 @@
   </div>
 </template>
 
-<script>
-import '@/styles/animations.scss'
-import '@/styles/colours.scss'
-import '@/styles/utilities.scss'
-
-export default {}
-</script>
-
 <style lang="scss">
 html {
   font-family: 'Alegreya Sans SC', sans-serif;

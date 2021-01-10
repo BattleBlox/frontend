@@ -15,7 +15,10 @@ export default {
   components: true,
 
   css: [
-    '@fortawesome/fontawesome-svg-core/styles.css'
+    '@fortawesome/fontawesome-svg-core/styles.css',
+    './styles/animations.scss',
+    './styles/colours.scss',
+    './styles/utilities.scss'
   ],
 
   loading: { color: '#fff' },
