@@ -46,7 +46,7 @@ export default {
 
       this.controlTiles({
         empire: 'Player 2',
-        hitPoints: 10,
+        hitPoints: 12,
         tiles: [53, 67, 81, 95]
       })
 
