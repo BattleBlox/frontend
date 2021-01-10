@@ -62,7 +62,7 @@ export default {
   width: 600px;
   max-width: 90%;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   height: 400px;
   border: 1px solid white;
   border-radius: 10px;

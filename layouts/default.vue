@@ -35,10 +35,9 @@ body, button {
   left: 0;
   bottom: 0;
   right: 0;
-  width: 850px;
-  max-width: 95vw;
   margin: 0 auto;
   overflow: auto;
+  padding: 20px;
 }
 
 *,

@@ -1,11 +1,12 @@
 <template>
-  <div class="c-largeLogo">
+  <nuxt-link to="/" class="c-largeLogo">
     <img src="/logo-square.png">
-  </div>
+  </nuxt-link>
 </template>
 
 <style scoped lang="scss">
   .c-largeLogo {
+    display: block;
     padding-top: 80px;
     padding-bottom: 40px;
     text-align: center;
