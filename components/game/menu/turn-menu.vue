@@ -15,13 +15,13 @@
 
       <img
         v-show="!gameOver && !isComputerPlayer && currentMode === 'attack'"
-        class="c-turn-menu-header-endTurn u-pointer"
+        :class="`c-turn-menu-header-endTurn  u-pointer ${playerColourClass}`"
         src="/roll.png"
         @click="rollDice">
 
       <img
         v-show="!gameOver && !isComputerPlayer && currentMode === 'roll' && rollValue > 0"
-        class="c-turn-menu-header-endTurn"
+        :class="`c-turn-menu-header-endTurn ${playerColourClass}`"
         title="Please spend your points"
         src="/next-disabled.png">
     </div>
