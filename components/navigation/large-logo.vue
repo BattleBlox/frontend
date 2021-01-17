@@ -7,17 +7,17 @@
 <style scoped lang="scss">
   .c-largeLogo {
     display: block;
-    padding-top: 80px;
+    padding-top: 60px;
     padding-bottom: 40px;
     text-align: center;
     width: 100%;
 
     @media (max-width: 1024px) {
-      padding-top: 50px;
+      padding-top: 40px;
     }
 
     @media (max-width: 450px) {
-      padding-top: 50px;
+      padding-top: 40px;
     }
 
     img {

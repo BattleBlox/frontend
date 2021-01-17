@@ -3,11 +3,7 @@
     <large-logo />
     <game-carousel />
 
-    <p>
-      <c-icon icon="code" />Built by <a href="https://www.tommcclean.me" target="_blank">Thomas William McClean</a>
-    </p>
-
-    <a href="https://github.com/BattleBlox" target="_blank"><c-icon icon="code-branch" /> Open Source on Github</a>
+    <a href="https://github.com/BattleBlox" target="_blank"><c-icon icon="code-branch" /> Github</a>
 
     <span> | </span>
 
@@ -15,6 +11,8 @@
       <c-icon icon="code-branch" />
       Privacy Policy
     </nuxt-link>
+
+    <google-play />
   </div>
 </template>
 
@@ -24,7 +22,11 @@
     text-align: center;
   }
 
+  a {
+    margin: 10px;
+  }
+
   p {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 </style>
