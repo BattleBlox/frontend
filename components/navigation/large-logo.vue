@@ -10,7 +10,6 @@
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: center;
-    width: 100%;
 
     @media (max-width: 1024px) {
       padding-top: 40px;

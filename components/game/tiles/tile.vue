@@ -61,15 +61,15 @@ export default {
   }
 
   @media (max-width: 850px) {
-    width: calc(541px / 10);
-    height: calc(541px / 10);
+    width: calc(542px / 10);
+    height: calc(542px / 10);
     border-radius: 7.5px;
     border: 1.5px solid rgba(white, .5);
   }
 
   @media (max-width: 612px) {
-    width: calc(93vw / 10);
-    height: calc(93vw / 10);
+    width: calc(93.3vw / 10);
+    height: calc(93.3vw / 10);
     border-radius: 7.5px;
     border: 1.5px solid rgba(white, .5);
   }

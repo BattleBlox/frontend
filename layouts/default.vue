@@ -37,7 +37,7 @@ body, button {
   right: 0;
   margin: 0 auto;
   overflow: auto;
-  padding: 20px;
+  padding-bottom: 100px;
 }
 
 *,

@@ -11,7 +11,7 @@
 
 <style scoped lang="scss">
 .c-surrenderButton {
-  position: fixed;
+  position: absolute;
   right: 10px;
   top: 10px;
   height: 45px;
