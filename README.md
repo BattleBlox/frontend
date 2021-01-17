@@ -7,6 +7,7 @@
 - Feel free to pick up any issues which have been triaged
 
 ## Build Setup
+> BattleBlox can be hosted on web servers or statically behind a CDN
 
 ```bash
 # install dependencies
@@ -15,7 +16,6 @@ $ yarn install
 # serve with hot reload at localhost:3000
 $ yarn dev
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+# build static output for CDN
+$ yarn generate
 ```
