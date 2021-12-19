@@ -1,4 +1,5 @@
 # BattleBlox
+[![Netlify Status](https://api.netlify.com/api/v1/badges/50a5cb1a-102a-4e6b-9e82-2c2c56eebe74/deploy-status)](https://app.netlify.com/sites/battlebloxgg/deploys)
 > Play our free turn based strategy game and conquer the map! http://www.battleblox.gg
 
 ## How to Contribute
