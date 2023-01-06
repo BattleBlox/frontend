@@ -32,7 +32,8 @@ export default {
 
   plugins: [
     '~/plugins/fontAwesome.plugin.js',
-    '~/plugins/persistState.plugin.client.js'
+    '~/plugins/persistState.plugin.client.js',
+    '~/plugins/statistics.client.js'
   ],
 
   modules: [
