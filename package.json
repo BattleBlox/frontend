@@ -12,12 +12,6 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"
   },
-  "dependencies": {
-    "@nuxtjs/pwa": "3.3.5",
-    "nuxt": "2.14.12",
-    "nuxt-webfontloader": "1.1.0",
-    "vuex-persist": "3.1.3"
-  },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.34",
     "@fortawesome/free-brands-svg-icons": "5.15.2",
@@ -25,15 +19,19 @@
     "@fortawesome/vue-fontawesome": "0.1.10",
     "@nuxtjs/eslint-config": "2.0.0",
     "@nuxtjs/eslint-module": "1.0.0",
+    "@nuxtjs/pwa": "3.3.5",
     "@vue/test-utils": "1.1.3",
     "babel-eslint": "10.1.0",
     "babel-jest": "24.1.0",
     "eslint": "6.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
-    "fibers": "5.0.0",
     "jest": "24.1.0",
+    "micro-stat": "0.7.0",
+    "nuxt": "2.14.12",
+    "nuxt-webfontloader": "1.1.0",
     "sass": "1.32.7",
     "sass-loader": "10.1.0",
-    "vue-jest": "5.0.0-alpha.7"
+    "vue-jest": "5.0.0-alpha.7",
+    "vuex-persist": "3.1.3"
   }
 }
